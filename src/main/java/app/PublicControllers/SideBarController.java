@@ -2,6 +2,7 @@ package app.PublicControllers;
 
 import app.HR.index.HRIndexApplication;
 import app.Index.IndexApplication;
+import app.Sales.SalesApplication;
 import app.Suppliers.SuppliersApplication;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
@@ -67,6 +68,16 @@ public class SideBarController {
         }
     }
 
+    @FXML
+    private void GoToSales(){
+        SalesApplication salesApplication = new SalesApplication();
+        Stage stage = (Stage) OverView.getScene().getWindow();
+        try {
+            salesApplication.start(stage);
 
+        }catch (IOException e){
+            System.out.println(e.getCause());
+        }
+    }
 
 }
