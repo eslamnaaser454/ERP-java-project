@@ -49,6 +49,8 @@ public class AttendanceController implements Initializable {
     private Button addBtn;
     @FXML
     private Button refreshBtn;
+    @FXML
+    private Button createBtn;
 
 
     public AttendanceController() {
