@@ -16,14 +16,14 @@
         <fx:include source="../../Layouts/side-bar-view.fxml" />
     </left>
     <center>
-        <VBox prefHeight="692.0" prefWidth="1083.0" BorderPane.alignment="TOP_CENTER">
+        <VBox prefHeight="551.0" prefWidth="906.0" BorderPane.alignment="TOP_CENTER">
             <children>
                 <Label alignment="CENTER" minHeight="40.0" prefHeight="45.0" style="-fx-background-color: white; -fx-label-padding: 10; -fx-font-family: 'System Bold'; -fx-font-size: 16.0;" text="HR Management" textFill="#3676ff">
                     <font>
                         <Font name="Baskerville Old Face" size="36.0" />
                     </font>
                 </Label>
-                <AnchorPane prefHeight="647.0" prefWidth="981.0" VBox.vgrow="ALWAYS">
+                <AnchorPane prefHeight="596.0" prefWidth="1048.0" VBox.vgrow="ALWAYS">
                     <children>
                         <VBox style="-fx-background-color: white;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                             <children>
@@ -36,7 +36,7 @@
                                         <Button fx:id="downloadbtn" layoutX="457.0" layoutY="14.0" mnemonicParsing="false" onAction="#GotoCreateForm" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: blue;" text="Download Report" textFill="WHITE" />
                                     </children>
                                 </AnchorPane>
-                                <TableView fx:id="table" VBox.vgrow="ALWAYS">
+                                <TableView fx:id="table" prefHeight="504.0" prefWidth="1017.0" VBox.vgrow="ALWAYS">
                                     <columns>
                                         <TableColumn fx:id="idCol" text="ID" />
                                         <TableColumn fx:id="firstNameCol" text="First Name" />

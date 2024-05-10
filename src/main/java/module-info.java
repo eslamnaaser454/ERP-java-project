@@ -15,6 +15,8 @@ module app {
     opens app.Suppliers.Create to javafx.fxml;
     opens app.Suppliers.Preview to javafx.fxml;
     opens app.Suppliers.Preview.CreateSupply to javafx.fxml;
+    opens app.Suppliers.Preview.PreviewSupply to javafx.fxml;
+    opens app.Suppliers.Preview.PreviewSupply.EditeSupply to javafx.fxml;
     opens app.HR.index to javafx.graphics;
     opens app.PublicControllers to javafx.fxml;
     opens app.HR.Manage to javafx.fxml;
@@ -37,6 +39,9 @@ module app {
     exports app.Suppliers.Create;
     exports app.Suppliers.Preview;
     exports app.Suppliers.Preview.CreateSupply;
+
+    exports app.Suppliers.Preview.PreviewSupply;
+    exports app.Suppliers.Preview.PreviewSupply.EditeSupply ;
     exports app.HR.Manage.add;
     exports app.HR.Manage.Edite;
     exports app.HR.Attendance;

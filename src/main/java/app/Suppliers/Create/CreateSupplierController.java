@@ -9,6 +9,9 @@ import javafx.scene.paint.Paint;
 
 public class CreateSupplierController {
     private String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+
+
+
     @FXML
     private Label ErrMsg;
 

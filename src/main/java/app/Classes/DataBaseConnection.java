@@ -5,6 +5,8 @@ import java.sql.*;
 import java.util.*;
 
 public class DataBaseConnection {
+    public static final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
@@ -58,7 +60,7 @@ public class DataBaseConnection {
 
             }
 
-          //  connection = DriverManager.getConnection(getHost(),getUser(),getPassword());
+            //  connection = DriverManager.getConnection(getHost(),getUser(),getPassword());
             statement = connection.createStatement();
             statement.execute(query);
             connection.close();
@@ -92,8 +94,8 @@ public class DataBaseConnection {
             String value;
             List<Map<String,String>> list = new ArrayList<>();
             while (resultSet.next()){
-               Map<String,String> map = new HashMap<>();
-               String coumnName ;
+                Map<String,String> map = new HashMap<>();
+                String coumnName ;
                 for (int i = 1; i <= columnCount; i++) {
                     coumnName = metaData.getColumnName(i);
                     value = resultSet.getString(i);
@@ -115,6 +117,25 @@ public class DataBaseConnection {
         }
 
     }
+
+    public int insert(String query) {
+        int generatedId = -1;
+        try {
+            Class.forName(this.jar);
+            connection = DriverManager.getConnection(getDb());
+            statement = connection.createStatement();
+            statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                generatedId = generatedKeys.getInt(1);
+            }
+            connection.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return generatedId;
+    }
+
 
 
     public String getHost() {

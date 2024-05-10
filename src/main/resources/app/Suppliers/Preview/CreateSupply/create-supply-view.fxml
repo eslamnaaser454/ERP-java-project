@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="427.0" spacing="10.0" style="-fx-padding: 30;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Suppliers.Preview.CreateSupply.CreateSupplyController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="427.0" spacing="10.0" style="-fx-padding: 30;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Suppliers.Preview.CreateSupply.CreateSupplyController">
    <children>
       <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-padding: 10;" text="Add Supply">
          <font>
@@ -36,7 +36,7 @@
             <HBox prefWidth="200.0" spacing="5.0">
                <children>
                   <TextField fx:id="imageFiled" prefHeight="25.0" prefWidth="301.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" HBox.hgrow="ALWAYS" />
-                  <Button onAction="#chooseImage" fx:id="imageBtn" mnemonicParsing="false" prefHeight="27.0" prefWidth="72.0" text="Choose" HBox.hgrow="ALWAYS">
+                  <Button fx:id="imageBtn" mnemonicParsing="false" onAction="#chooseImage" prefHeight="27.0" prefWidth="72.0" text="Choose" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -69,16 +69,30 @@
             </VBox>
          </children>
       </HBox>
-      <VBox prefWidth="100.0" spacing="5.0">
+      <HBox prefWidth="200.0" spacing="5.0">
          <children>
-            <Label text="additional fees (Optional): ">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <TextField fx:id="feesFiled" prefHeight="25.0" prefWidth="301.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+            <VBox prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="additional fees (Optional): ">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="feesFiled" prefHeight="25.0" prefWidth="301.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+               </children>
+            </VBox>
+            <VBox prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Sell Price (Unite) : ">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="sellPriceFiled" prefHeight="25.0" prefWidth="301.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
       <VBox prefWidth="100.0" spacing="5.0">
          <children>
             <Label text="Stock">
@@ -89,7 +103,7 @@
             <ComboBox fx:id="stockCombo" maxWidth="1.7976931348623157E308" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
          </children>
       </VBox>
-      <Button onAction="#submit" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="378.0" style="-fx-background-color: blue;" text="Add" textFill="WHITE">
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#submit" prefHeight="39.0" prefWidth="378.0" style="-fx-background-color: blue;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

@@ -1,82 +1,94 @@
-package app.Suppliers.Preview.CreateSupply;
+package app.Suppliers.Preview.PreviewSupply.EditeSupply;
 
 import app.Classes.DataBaseConnection;
-import app.Classes.Image;
+import app.Suppliers.Preview.PreviewSupply.PreviewSupplyController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
 import javafx.scene.paint.Paint;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
-import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class CreateSupplyController implements Initializable {
-    private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
-
-    private final String resourcesPath = System.getProperty("user.dir") + "\\src\\main\\resources";
-
-
+public class EditeSupplyController implements Initializable {
     DataBaseConnection dataBaseConnection;
-
     private String id;
+    private PreviewSupplyController previewSupplyController;
 
     public void setId(String id) {
         this.id = id;
     }
 
+    public void setPreviewSupplyController(PreviewSupplyController previewSupplyController) {
+        this.previewSupplyController = previewSupplyController;
+    }
     @FXML
-    TextField nameFiled;
+    private TextField nameFiled;
     @FXML
-    TextField imageFiled;
+    private TextField qntFiled;
     @FXML
-    TextField qntFiled;
+    private TextField priceFiled;
     @FXML
-    TextField priceFiled;
+    private TextField feesFiled;
     @FXML
-    TextField sellPriceFiled;
+    private TextField sellPriceFiled;
     @FXML
-    TextField feesFiled;
-    @FXML
-    ComboBox<String> stockCombo ;
-
-    @FXML
-    Button imageBtn;
+    private ComboBox<String> stockCombo;
 
     @FXML
     Label ErrMsg;
 
-    @FXML
-    public void chooseImage(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
-        );
-        File file = fileChooser.showOpenDialog(new Stage());
-        imageFiled.setText(file.getAbsolutePath());
+
+
+    private Map<String,String> getSupply(){
+        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        List<Map<String ,String>> list = dataBaseConnection.select("select * from supply where id="+id+";");
+        if (!list.isEmpty()){
+            Map<String,String> map = list.getFirst();
+            return map;
+        }else
+            return null;
+    }
+    public void setData(){
+        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        String stockName = null;
+
+        List<Map<String ,String>> list = dataBaseConnection.select("select * from supply where id="+id+";");
+        if (!list.isEmpty()){
+            Map<String,String> map = list.getFirst();
+            List<Map<String,String>> stocks = dataBaseConnection.select("select * from stock;");
+            for (Map<String ,String> stock:stocks){
+                stockCombo.getItems().add(stock.get("name"));
+                if (stock.get("id").equals(map.get("stock_id")))
+                    stockName = stock.get("name");
+
+            }
+            nameFiled.setText(map.get("name"));
+            qntFiled.setText(map.get("qnt"));
+            priceFiled.setText(map.get("unite_price"));
+            feesFiled.setText(map.get("additional_fees"));
+            sellPriceFiled.setText(map.get("sell_price"));
+            stockCombo.setValue(stockName);
+        }
     }
 
-    @FXML
     public void submit(){
         String name = (String) nameFiled.getText();
-        String imagePath = imageFiled.getText();
+
         String qnt = qntFiled.getText();
         String price = priceFiled.getText();
         String sellPrice = sellPriceFiled.getText();
         String fees = feesFiled.getText();
         String stock = stockCombo.getValue();
-        File image = new File(imagePath);
+
         String stockId;
-        dataBaseConnection = new DataBaseConnection(dbPath);
+        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
 
         List<Map<String,String>> getStockes = dataBaseConnection.select("select * from stock where name='"+stock+"'");
 
@@ -157,64 +169,26 @@ public class CreateSupplyController implements Initializable {
             ErrMsg.setTextFill(Paint.valueOf("red"));
             return;
         }
-        if (!imagePath.isEmpty()){
-            if (!image.exists()){
-                imageFiled.setBorder(Border.stroke(Paint.valueOf("red")));
-                ErrMsg.setText("Image Dosen't Exist");
-                ErrMsg.setTextFill(Paint.valueOf("red"));
-                return;
-            }
 
-            System.out.println(image.toPath());
-
-        }else {
-            image = null;
-        }
         if (getStockes.isEmpty() ){
             System.out.println("Stock Not Found");
             return;
         }else {
             stockId = getStockes.getFirst().get("id");
         }
-        dataBaseConnection = new DataBaseConnection(dbPath);
+        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
         String NoneImagePath = "\\src\\main\\resources\\images\\defulteImages\\NoneImage.jpg";
-        String query = "insert into supply (name,image,qnt,unite_price,sell_price,additional_fees,supplier_id,stock_id) values('"+name +"','"+NoneImagePath+"',"+qnt+","+price+","+sellPrice+","+fees+","+id+","+stockId+");";
+        String query = "update supply set  name = '"+name +"' , qnt = "+qnt+" , unite_price = "+price+" , sell_price = "+sellPrice+", additional_fees = "+fees+", stock_id = "+stockId+" where id = "+id+";";
         System.out.println("Query is : "+query);
         dataBaseConnection.excute(query);
-        ErrMsg.setText("Supply Created SuccessFuly");
-        nameFiled.setText("");
-        imageFiled.setText("");
-        qntFiled.setText("");
-        priceFiled.setText("");
-        feesFiled.setText("");
-
+        ErrMsg.setText("Supply Edited SuccessFuly");
         ErrMsg.setTextFill(Paint.valueOf("green"));
-
-
-        List<Map<String,String>> getSupply = dataBaseConnection.select("select * from supply where name='"+name+"' and qnt="+qnt+" and unite_price="+qnt+" and additional_fees="+fees+" and supplier_id="+id+" and stock_id="+stockId+";");
-        String supplyId;
-        supplyId = getSupply.getFirst().get("id");
-
-        if (image != null){
-            Image SavedImage = new Image(imagePath);
-            String newPath = "\\src\\main\\resources\\app\\DataBaseImages\\SuppliesImages\\"+supplyId;
-            SavedImage.SaveAt(System.getProperty("user.dir")+newPath+"\\");
-            dataBaseConnection.excute("update supply set image='"+newPath+"\\"+image.getName()+"' where id="+supplyId+";");
-        }
+        setData();
+        this.previewSupplyController.setData();
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//      imageFiled.setDisable(true);
-        dataBaseConnection = new DataBaseConnection(dbPath);
-        List<Map<String,String>> list = dataBaseConnection.select("select * from stock;");
-        if (!list.isEmpty()){
-            System.out.println("Not Empty");
-            for (Map<String,String> map:list){
-                stockCombo.getItems().add(map.get("name"));
-            }
-            }else {
-            System.out.println(" Empty");
-
-        }
+        setData();
     }
 }

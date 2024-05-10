@@ -2,6 +2,7 @@ package app.Suppliers.Preview;
 
 import app.Classes.DataBaseConnection;
 import app.Suppliers.Preview.CreateSupply.CreateSupplyApplication;
+import app.Suppliers.Preview.PreviewSupply.PreviewSupplyApplication;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -139,6 +140,12 @@ public class PreviewSupplierController implements Initializable {
             Label additionalFeesValueLabel = new Label(map.get("additional_fees"));
             HBox additionalFeesHbox = new HBox(additionalFeesLabel,additionalFeesValueLabel);
 
+
+            Label sellingPriceLabel = new Label("Selling Price : ");
+            Label sellingPriceValueLabel = new Label(map.get("sell_price"));
+            HBox sellingPriceHbox = new HBox(sellingPriceLabel,sellingPriceValueLabel);
+
+
             Label supplierLabel = new Label("Supplier : ");
             Hyperlink supplierHyperlink = new Hyperlink(supplier.get("name"));
             HBox supplierHbox = new HBox(supplierLabel,supplierHyperlink);
@@ -150,6 +157,19 @@ public class PreviewSupplierController implements Initializable {
             Button previewButton = new Button("Preview");
             previewButton.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
             previewButton.setPadding(new Insets(5,15,5,15));
+
+            previewButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    PreviewSupplyApplication previewSupplyApplication = new PreviewSupplyApplication(map.get("id"));
+                    Stage stage = (Stage) supplyContainer.getScene().getWindow();
+                    try {
+                        previewSupplyApplication.start(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
 
             Button removeButton = new Button("Remove");
             removeButton.setStyle("-fx-background-color: red; -fx-text-fill: white;");
@@ -179,7 +199,7 @@ public class PreviewSupplierController implements Initializable {
             HBox imageBox = new HBox(imageView);
             imageBox.setAlignment(Pos.CENTER_LEFT);
             VBox detilesVbox =  new VBox(
-                    nameHbox,qntHbox,unitPriceHbox,additionalFeesHbox,supplierHbox,stockHbox
+                    nameHbox,qntHbox,unitPriceHbox,additionalFeesHbox,sellingPriceHbox,supplierHbox,stockHbox
             );
             detilesVbox.setSpacing(5);
 
