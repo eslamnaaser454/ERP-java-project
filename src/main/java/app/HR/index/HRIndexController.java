@@ -1,5 +1,6 @@
 package app.HR.index;
 
+import app.HR.Department.DepartmentApplication;
 import app.HR.Employees.EmployeesAplication;
 import app.HR.Manage.ManageEmplyessApplication;
 import app.Stores.Manage.StoreManageApplication;
@@ -19,6 +20,18 @@ public class HRIndexController {
         stage.setResizable(true);
         try {
             ManageEmplyessApplication.start(stage);
+
+        }catch (IOException e){
+            System.out.println(e.getCause());
+        }
+    }
+    @FXML
+    public void GotoDepartment(){
+        DepartmentApplication DepartmentApplication = new DepartmentApplication();
+        Stage stage = (Stage) manage.getScene().getWindow();
+        stage.setResizable(true);
+        try {
+            DepartmentApplication.start(stage);
 
         }catch (IOException e){
             System.out.println(e.getCause());

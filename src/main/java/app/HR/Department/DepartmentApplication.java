@@ -1,13 +1,12 @@
-package app.HR.index;
-
-
+package app.HR.Department;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
-public class HRIndexApplication extends Application {
+public class DepartmentApplication extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -15,7 +14,7 @@ public class HRIndexApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HRIndexApplication.class.getResource("HR-index-views.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(DepartmentApplication.class.getResource("Department.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setScene(scene);
         primaryStage.show();

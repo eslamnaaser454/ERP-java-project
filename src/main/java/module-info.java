@@ -23,6 +23,7 @@ module app {
     opens app.HR.Manage.add to javafx.fxml;
     opens app.HR.Manage.Edite to javafx.fxml;
     opens app.HR.Attendance to javafx.fxml;
+    opens app.HR.Department to javafx.fxml;
 
 
     exports app.Index;
@@ -45,5 +46,6 @@ module app {
     exports app.HR.Manage.add;
     exports app.HR.Manage.Edite;
     exports app.HR.Attendance;
+    exports app.HR.Department;
 
 }
