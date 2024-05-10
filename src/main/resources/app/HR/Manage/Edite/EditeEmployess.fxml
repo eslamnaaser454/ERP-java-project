@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="417.0" spacing="10.0" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.HR.Manage.Edite.EditeEmployessController">
+    <children>
+        <Label alignment="CENTER" prefHeight="34.0" prefWidth="404.0" text="Edit Employee">
+            <font>
+                <Font name="System Bold" size="25.0" />
+            </font>
+        </Label>
+        <Label fx:id="ErrMsg" prefHeight="17.0" prefWidth="374.0" />
+        <Label style="-fx-font-family: 'System Bold'; -fx-font-size: 13;" text="First Name" />
+        <TextField fx:id="fnameField" prefHeight="31.0" prefWidth="339.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+        <Label style="-fx-font-family: 'System Bold'; -fx-font-size: 13;" text="Last Name" />
+        <TextField fx:id="lnameField" prefHeight="31.0" prefWidth="339.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+        <Label style="-fx-font-family: 'System Bold'; -fx-font-size: 13;" text="Phone" />
+        <TextField fx:id="phoneField" prefHeight="31.0" prefWidth="339.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+        <Label style="-fx-font-family: 'System Bold'; -fx-font-size: 13;" text="E-mail" />
+        <TextField fx:id="emailField" prefHeight="31.0" prefWidth="339.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+        <Label style="-fx-font-family: 'System Bold'; -fx-font-size: 13;" text="Salary" />
+        <TextField fx:id="salaryField" prefHeight="31.0" prefWidth="339.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+            <children>
+                <Label style="-fx-font-family: 'System Bold'; -fx-font-size: 13;" text="SSN" />
+            </children>
+        </VBox>
+        <TextField fx:id="SSNField" layoutX="30.0" layoutY="557.0" prefHeight="31.0" prefWidth="339.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+        <Label style="-fx-font-family: 'System Bold'; -fx-font-size: 13;" text="Address" />
+        <TextField fx:id="AddressField" prefHeight="31.0" prefWidth="339.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+        <Label style="-fx-font-family: 'System Bold'; -fx-font-size: 13;" text="Department" />
+        <ChoiceBox fx:id="Departmentco" prefHeight="25.0" prefWidth="403.0" />
+        <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="370.0" spacing="20">
+            <children>
+                <RadioButton fx:id="Malerad" mnemonicParsing="false" text="Male" />
+                <RadioButton fx:id="Femalerad" mnemonicParsing="false" text="Female" />
+            </children>
+        </HBox>
+        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#submit" prefHeight="41.0" prefWidth="349.0" style="-fx-background-color: blue; -fx-font-family: 'System Bold'; -fx-font-size: 17;" text="Edit " textFill="WHITE" />
+        <Label fx:id="ErrMsg1" text="" />
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" />
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" />
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" />
+    </children>
+</VBox>

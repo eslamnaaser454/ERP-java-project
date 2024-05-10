@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="579.0" prefWidth="1058.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Suppliers.Preview.PreviewSupplierController">
+    <left>
+        <fx:include source="../../Layouts/side-bar-view.fxml" />
+
+    </left>
+    <center>
+        <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" pannable="true" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+            <content>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <VBox prefWidth="100.0" style="-fx-background-color: white; -fx-padding: 5;" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+                     <children>
+                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-border-color: rgb(203,203,203);">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <ImageView fitHeight="202.0" fitWidth="203.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                                       <image>
+                                          <Image url="@../../images/icons/userIcon.png" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <VBox alignment="CENTER_LEFT" spacing="5.0">
+                                             <children>
+                                                <Label text="Name: " textFill="#989898">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="nameLable">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="5.0">
+                                             <children>
+                                                <Label text="Company :" textFill="#989898">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="companyLable">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Contact Information">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <VBox alignment="CENTER" spacing="5.0">
+                                       <children>
+                                          <Label text="Email : " textFill="#989898">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="emailLable">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" spacing="5.0">
+                                       <children>
+                                          <Label text="Phone : " textFill="#989898">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="phoneLable">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox prefWidth="200.0" spacing="5.0" style="-fx-padding: 0;">
+                           <children>
+                              <HBox prefWidth="200.0" style="-fx-border-color: rgb(203,203,203); -fx-padding: 5;" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <ImageView fitHeight="87.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../images/icons/handshak.png" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="CENTER_LEFT" prefWidth="100.0" spacing="5.0" style="-fx-padding: 10;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Total Trades" textFill="#888888">
+                                             <font>
+                                                <Font name="System Bold" size="19.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="totalTradesValue" text="150">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox prefWidth="200.0" style="-fx-border-color: rgb(203,203,203); -fx-padding: 5;" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <ImageView fitHeight="87.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../images/icons/monyicon.png" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="CENTER_LEFT" prefWidth="100.0" spacing="5.0" style="-fx-padding: 10;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Total Finantial Gain" textFill="#888888">
+                                             <font>
+                                                <Font name="System Bold" size="19.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="33000$">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <AnchorPane maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                           <children>
+                              <TextField layoutX="14.0" layoutY="15.0" prefHeight="31.0" prefWidth="207.0" promptText="Search..." style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" AnchorPane.leftAnchor="14.0" />
+                              <Button layoutX="255.0" layoutY="17.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: blue;" text="Search" textFill="WHITE" AnchorPane.leftAnchor="255.0" />
+                              <Button layoutX="360.0" layoutY="17.0" mnemonicParsing="false" onAction="#setData" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: blue;" text="Refresh" textFill="WHITE" AnchorPane.leftAnchor="360.0" />
+                              <Button layoutX="616.0" layoutY="17.0" mnemonicParsing="false" onAction="#createSupply" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: blue;" text="Add Supply" textFill="WHITE" AnchorPane.rightAnchor="41.33333333333326" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </AnchorPane>
+                        <VBox fx:id="supplyContainer" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefWidth="200.0" style="-fx-background-color: rgba(203,203,203,0.4);">
+                                 <children>
+                                    <ImageView fitHeight="231.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                                       <image>
+                                          <Image url="@../../../../../../../../Downloads/1-intro-photo-final.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-padding: 10;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Product Name : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="B;ack Man From Nigiria">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Qnt : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="30">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Unite Price : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="20$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="additional fees : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="5$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Supplier : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Hyperlink text="Mohamed Saif" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Stock">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Hyperlink text="Aswan Store" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: blue;" text="Preview" textFill="WHITE" />
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: red;" text="Remove" textFill="WHITE" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefWidth="200.0" style="-fx-background-color: rgba(203,203,203,0.4);">
+                                 <children>
+                                    <ImageView fitHeight="231.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                                       <image>
+                                          <Image url="@../../../../../../../../Downloads/1-intro-photo-final.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-padding: 10;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Product Name : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="B;ack Man From Nigiria">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Qnt : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="30">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Unite Price : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="20$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="additional fees : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="5$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Supplier : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Hyperlink text="Mohamed Saif" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Stock">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Hyperlink text="Aswan Store" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: blue;" text="Preview" textFill="WHITE" />
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: red;" text="Remove" textFill="WHITE" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefWidth="200.0" style="-fx-background-color: rgba(203,203,203,0.4);">
+                                 <children>
+                                    <ImageView fitHeight="231.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                                       <image>
+                                          <Image url="@../../../../../../../../Downloads/1-intro-photo-final.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-padding: 10;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Product Name : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="B;ack Man From Nigiria">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Qnt : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="30">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Unite Price : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="20$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="additional fees : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="5$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Supplier : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Hyperlink text="Mohamed Saif" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Stock">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Hyperlink text="Aswan Store" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: blue;" text="Preview" textFill="WHITE" />
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: red;" text="Remove" textFill="WHITE" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefWidth="200.0" style="-fx-background-color: rgba(203,203,203,0.4);">
+                                 <children>
+                                    <ImageView fitHeight="231.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                                       <image>
+                                          <Image url="@../../../../../../../../Downloads/1-intro-photo-final.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-padding: 10;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Product Name : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="B;ack Man From Nigiria">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Qnt : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="30">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Unite Price : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="20$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="additional fees : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="5$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Supplier : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Hyperlink text="Mohamed Saif" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Stock">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Hyperlink text="Aswan Store" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: blue;" text="Preview" textFill="WHITE" />
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: red;" text="Remove" textFill="WHITE" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefWidth="200.0" style="-fx-background-color: rgba(203,203,203,0.4);">
+                                 <children>
+                                    <ImageView fitHeight="231.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                                       <image>
+                                          <Image url="@../../../../../../../../Downloads/1-intro-photo-final.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-padding: 10;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Product Name : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="B;ack Man From Nigiria">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Qnt : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="30">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Unite Price : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="20$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="additional fees : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="5$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Supplier : ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Hyperlink text="Mohamed Saif" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="5.0">
+                                             <children>
+                                                <Label text="Stock">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Hyperlink text="Aswan Store" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: blue;" text="Preview" textFill="WHITE" />
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: red;" text="Remove" textFill="WHITE" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

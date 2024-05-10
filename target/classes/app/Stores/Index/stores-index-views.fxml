@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:controller="app.Stores.Index.StoreIndexController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="1257.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+        <fx:include source="../../Layouts/side-bar-view.fxml"/>
+      </left>
+   <center>
+      <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label maxWidth="1.7976931348623157E308" minHeight="40.0" style="-fx-background-color: white; -fx-label-padding: 10;" text="Stores Managment">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefWidth="1021.0" spacing="50.0">
+               <children>
+                  <VBox alignment="CENTER" fx:id="manage" onMouseClicked="#GotoManage" maxHeight="-Infinity" prefHeight="164.0" prefWidth="176.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20;">
+                     <children>
+                        <ImageView fitHeight="151.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icons/manage.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Manage">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER"  onMouseClicked="#GotoManage" maxHeight="-Infinity" prefHeight="164.0" prefWidth="176.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20;">
+                     <children>
+                        <ImageView fitHeight="151.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icons/package-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Products">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="164.0" prefWidth="176.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20;">
+                     <children>
+                        <ImageView fitHeight="151.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icons/reports.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Reports">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets top="50.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

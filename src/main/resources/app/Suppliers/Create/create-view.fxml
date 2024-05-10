@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox fx:controller="app.Suppliers.Create.CreateSupplierController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="389.0" spacing="10.0" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-padding: 20;" text="Add Supplier">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="ErrMsg" text="" />
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+         <children>
+            <Label text="Name">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nameField" prefHeight="31.0" prefWidth="339.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+         </children>
+      </VBox>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+         <children>
+            <Label text="Phone">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="phoneField" prefHeight="31.0" prefWidth="339.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+         </children>
+      </VBox>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+         <children>
+            <Label text="E-mail">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailField" prefHeight="31.0" prefWidth="339.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+         </children>
+      </VBox>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+         <children>
+            <Label text="Company">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="companyField" prefHeight="31.0" prefWidth="339.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+         </children>
+      </VBox>
+      <Button onAction="#submit" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="41.0" prefWidth="349.0" style="-fx-background-color: blue;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>

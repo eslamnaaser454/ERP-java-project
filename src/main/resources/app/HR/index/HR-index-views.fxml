@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.HR.index.HRIndexController">
+    <left>
+        <fx:include source="../../Layouts/side-bar-view.fxml" />
+
+    </left>
+    <center>
+        <VBox fx:id="Department" maxWidth="1.7976931348623157E308" prefHeight="576.0" prefWidth="1045.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label maxWidth="1.7976931348623157E308" minHeight="40.0" style="-fx-background-color: white; -fx-label-padding: 10;" text="HR Managment">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <HBox alignment="CENTER" prefWidth="1021.0" spacing="90.0">
+                    <children>
+                        <VBox fx:id="manage" alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#GotoManageemployes" prefHeight="227.0" prefWidth="237.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20;">                            <children>
+                                <ImageView fitHeight="151.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../images/icons/process.png" />
+                                    </image>
+                                </ImageView>
+                                <Label alignment="CENTER" prefHeight="26.0" prefWidth="182.0" text="Manage Employees">
+                                    <font>
+                                        <Font name="System Bold" size="17.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="227.0" prefWidth="239.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20;">
+                            <children>
+                                <ImageView fitHeight="151.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../images/icons/approve.png" />
+                                    </image>
+                                </ImageView>
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="133.0" text="Attendance">
+                                    <font>
+                                        <Font name="System Bold" size="17.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                        </VBox>
+                  <VBox alignment="CENTER" layoutX="377.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="227.0" prefWidth="239.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20;">
+                     <children>
+                        <ImageView fitHeight="151.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icons/PD-Operational-Support-Bureau.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="133.0" text="Department ">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                    </children>
+                    <padding>
+                        <Insets left="40.0" top="50.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="50.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

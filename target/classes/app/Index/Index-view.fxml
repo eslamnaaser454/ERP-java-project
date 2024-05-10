@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane fx:controller="app.Index.IndexController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="1257.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+        <fx:include source="../Layouts/side-bar-view.fxml"/>
+   </left>
+   <center>
+      <ScrollPane hbarPolicy="NEVER"    pannable="true" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefHeight="566.0" prefWidth="1029.0">
+               <children>
+                  <HBox prefHeight="73.0" prefWidth="1029.0">
+                     <children>
+                        <Label />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

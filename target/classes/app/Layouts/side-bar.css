@@ -1,0 +1,12 @@
+.hbox-container:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 30, 0, 0, 0);
+    -fx-margin: 10px;
+}
+.hbox-container {
+    -fx-transition: all 0.3s ease;
+}
+
+.hbox-container:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,255,0.6), 30, 0, 0, 0); /* Change drop shadow color to a darker shade of blue on hover */
+    -fx-margin: 10px;
+}

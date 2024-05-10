@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="sideBar" prefHeight="579.0" prefWidth="219.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.PublicControllers.SideBarController">
+    <children>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <children>
+                <ImageView fitHeight="52.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/dash-icon.png" />
+                    </image>
+                </ImageView>
+                <Label text="DashBoard">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <Line endX="132.95953369140625" endY="-0.6213432550430298" startX="-100.0" stroke="#0575ff" />
+        <HBox fx:id="OverView" alignment="CENTER_LEFT" onMouseClicked="#GoToOverView" prefHeight="62.0" prefWidth="235.0" spacing="10.0" style="-fx-padding: 0 0 0 20;" styleClass="hbox-container" stylesheets="@side-bar.css">
+            <children>
+                <ImageView fitHeight="37.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/overviewicon.png" />
+                    </image>
+                </ImageView>
+                <Label text="Overview">
+                    <font>
+                        <Font name="Trebuchet MS" size="12.0" />
+                    </font>
+                </Label>
+            </children>
+            <opaqueInsets>
+                <Insets left="10.0" />
+            </opaqueInsets>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" onMouseClicked="#GoToStoresIndex" prefHeight="62.0" prefWidth="236.0" spacing="10.0" style="-fx-padding: 0 0 0 20;" styleClass="hbox-container" stylesheets="@side-bar.css">
+            <children>
+                <ImageView fitHeight="37.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/store-icon.png" />
+                    </image>
+                </ImageView>
+                <Label prefHeight="17.0" prefWidth="103.0" text="Stores Managmedt">
+                    <font>
+                        <Font name="Trebuchet MS" size="12.0" />
+                    </font>
+                </Label>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" onMouseClicked="#GotoHR" prefHeight="62.0" prefWidth="236.0" spacing="10.0" style="-fx-padding: 0 0 0 20;" styleClass="hbox-container" stylesheets="@side-bar.css">
+            <children>
+                <ImageView fitHeight="37.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/hricon.png" />
+                    </image>
+                </ImageView>
+                <Label text="HR Managment">
+                    <font>
+                        <Font name="Trebuchet MS" size="12.0" />
+                    </font>
+                </Label>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" onMouseClicked="#GoToSuppliers" prefHeight="62.0" prefWidth="236.0" spacing="10.0" style="-fx-padding: 0 0 0 20;" styleClass="hbox-container" stylesheets="@side-bar.css">
+            <children>
+                <ImageView fitHeight="37.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/suppliericon.png" />
+                    </image>
+                </ImageView>
+                <Label text="Suppliers Managment">
+                    <font>
+                        <Font name="Trebuchet MS" size="12.0" />
+                    </font>
+                </Label>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="236.0" spacing="10.0" style="-fx-padding: 0 0 0 20;" styleClass="hbox-container" stylesheets="@side-bar.css">
+            <children>
+                <ImageView fitHeight="37.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/salesicon.png" />
+                    </image>
+                </ImageView>
+                <Label text="Sales Managment">
+                    <font>
+                        <Font name="Trebuchet MS" size="12.0" />
+                    </font>
+                </Label>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="236.0" spacing="10.0" style="-fx-padding: 0 0 0 20;" styleClass="hbox-container" stylesheets="@side-bar.css">
+            <children>
+                <ImageView fitHeight="37.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/usersicon.png" />
+                    </image>
+                </ImageView>
+                <Label text="Users Managmet">
+                    <font>
+                        <Font name="Trebuchet MS" size="12.0" />
+                    </font>
+                </Label>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+        <Line endX="132.95953369140625" endY="-0.6213432550430298" startX="-100.0" stroke="#0575ff" />
+        <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="236.0" spacing="10.0" style="-fx-padding: 0 0 0 20;" styleClass="hbox-container" stylesheets="@side-bar.css">
+            <children>
+                <ImageView fitHeight="37.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/logouticon.png" />
+                    </image>
+                </ImageView>
+                <Label text="Log Out">
+                    <font>
+                        <Font name="Trebuchet MS" size="12.0" />
+                    </font>
+                </Label>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+    </children>
+</VBox>
