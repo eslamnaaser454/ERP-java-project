@@ -27,6 +27,7 @@ module app {
 
     opens app.Sales to javafx.fxml;
     opens app.Sales.Invoice to javafx.fxml;
+    opens app.HR.Department.Edit to javafx.fxml;
 
 
     exports app.Index;
@@ -45,12 +46,12 @@ module app {
     exports app.Suppliers.Preview.CreateSupply;
     exports app.Sales ;
     exports app.Sales.Invoice ;
-
+    exports app.HR.Department;
     exports app.Suppliers.Preview.PreviewSupply;
     exports app.Suppliers.Preview.PreviewSupply.EditeSupply ;
     exports app.HR.Manage.add;
     exports app.HR.Manage.Edite;
     exports app.HR.Attendance;
-    exports app.HR.Department;
+    exports app.HR.Department.Edit;
 
 }

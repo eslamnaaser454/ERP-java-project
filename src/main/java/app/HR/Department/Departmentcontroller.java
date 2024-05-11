@@ -1,4 +1,6 @@
 package app.HR.Department;
+
+import app.HR.Department.Edit.EditDepartmentApplication;
 import app.HR.Manage.Edite.EditeEmployessApplication;
 import app.HR.Manage.add.AddEmployessApplication;
 import app.Stores.Manage.StoreManageController;
@@ -50,12 +52,13 @@ public class Departmentcontroller implements Initializable {
     private FlowPane cardsContainer;
     @FXML
     private TextField searchField;
-    private void LoadCards(){
+
+    private void LoadCards() {
         dataBaseConnection = new DataBaseConnection(dbPath);
-        List<Map<String,String>> list = dataBaseConnection.select("select * from department;");
-        if (list != null){
+        List<Map<String, String>> list = dataBaseConnection.select("select * from department;");
+        if (list != null) {
             cardsContainer.getChildren().clear();
-            for (Map<String,String> map:list){
+            for (Map<String, String> map : list) {
                 VBox vbox = new VBox();
                 vbox.setAlignment(javafx.geometry.Pos.TOP_CENTER);
                 vbox.setPrefWidth(200.0);
@@ -73,28 +76,33 @@ public class Departmentcontroller implements Initializable {
                 id.setFont(Font.font("Arial", 12.0));
                 id.setPadding(new Insets(5.0, 10.0, 5.0, 10.0));
 
-                Button previewBtn = new Button("Preview");
-                previewBtn.setMaxWidth(Double.MAX_VALUE);
-                previewBtn.setPrefHeight(30.0);
-                previewBtn.setStyle("-fx-background-color: #4a86e8; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;");
-                previewBtn.setPadding(new Insets(5.0, 10.0, 5.0, 10.0));
-                previewBtn.setOnAction(new EventHandler<ActionEvent>() {
+                Button Edit = new Button("Edit");
+                Edit.setMaxWidth(Double.MAX_VALUE);
+                Edit.setPrefHeight(30.0);
+                Edit.setStyle("-fx-background-color: #4a86e8; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;");
+                Edit.setPadding(new Insets(5.0, 10.0, 5.0, 10.0));
+                Edit.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        PreviewSupplierApplication page = new PreviewSupplierApplication(map.get("id"));
-                        Stage stage = (Stage) cardsContainer.getScene().getWindow();
+                        EditDepartmentApplication page = new EditDepartmentApplication(map.get("id"));
+                        System.out.println(map.get("id"));
+                        Stage stage = new Stage();
                         try {
                             page.start(stage);
-                        }catch (IOException e){
-                            System.out.println(e.getCause());
+                        } catch (IOException e) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Error Dialog");
+                            alert.setHeaderText("An Error Occurred");
+                            alert.setContentText(e.getMessage());
+                            alert.showAndWait();
                         }
                     }
                 });
-                VBox.setMargin(previewBtn, new Insets(10.0, 0, 0, 0));
+                VBox.setMargin(Edit, new Insets(10.0, 0, 0, 0));
 
-                vbox.getChildren().addAll(nameLabel, id, previewBtn);
+                vbox.getChildren().addAll(nameLabel, id, Edit);
                 nameLabel.setText(map.get("name"));
-                id.setText("id: "+ map.get("id"));
+                id.setText("id: " + map.get("id"));
 
                 cardsContainer.getChildren().add(vbox);
 
@@ -103,13 +111,13 @@ public class Departmentcontroller implements Initializable {
         }
     }
 
-    private void LoadCards(String search){
+    private void LoadCards(String search) {
         dataBaseConnection = new DataBaseConnection(dbPath);
-        List<Map<String,String>> list = dataBaseConnection.select("select * from department where name like '"+search+"%';");
+        List<Map<String, String>> list = dataBaseConnection.select("select * from department where name like '" + search + "%';");
 
-        if (list != null){
+        if (list != null) {
             cardsContainer.getChildren().clear();
-            for (Map<String,String> map:list){
+            for (Map<String, String> map : list) {
                 VBox vbox = new VBox();
                 vbox.setAlignment(javafx.geometry.Pos.TOP_CENTER);
                 vbox.setPrefWidth(200.0);
@@ -127,15 +135,17 @@ public class Departmentcontroller implements Initializable {
                 id.setFont(Font.font("Arial", 12.0));
                 id.setPadding(new Insets(5.0, 10.0, 5.0, 10.0));
 
-                Button previewBtn = new Button("Preview");
-                previewBtn.setMaxWidth(Double.MAX_VALUE);
-                previewBtn.setPrefHeight(30.0);
-                previewBtn.setStyle("-fx-background-color: #4a86e8; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;");
-                previewBtn.setPadding(new Insets(5.0, 10.0, 5.0, 10.0));
-                previewBtn.setOnAction(new EventHandler<ActionEvent>() {
+                Button Edit = new Button("Edit");
+                Edit.setMaxWidth(Double.MAX_VALUE);
+                Edit.setPrefHeight(30.0);
+                Edit.setStyle("-fx-background-color: #4a86e8; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;");
+                Edit.setPadding(new Insets(5.0, 10.0, 5.0, 10.0));
+                Edit.setUserData(map.get("id"));
+                Edit.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        PreviewSupplierApplication page = new PreviewSupplierApplication(map.get("id"));
+                        EditDepartmentApplication page = new EditDepartmentApplication(map.get("id"));
+                        page.setDepartmentcontroller(Departmentcontroller.this);
                         Stage stage = (Stage) cardsContainer.getScene().getWindow();
                         try {
                             page.start(stage);
@@ -144,11 +154,11 @@ public class Departmentcontroller implements Initializable {
                         }
                     }
                 });
-                VBox.setMargin(previewBtn, new Insets(10.0, 0, 0, 0));
+                VBox.setMargin(Edit, new Insets(10.0, 0, 0, 0));
 
-                vbox.getChildren().addAll(nameLabel, id, previewBtn);
+                vbox.getChildren().addAll(nameLabel, id, Edit);
                 nameLabel.setText(map.get("name"));
-                id.setText("id: "+ map.get("id"));
+                id.setText("id: " + map.get("id"));
 
                 cardsContainer.getChildren().add(vbox);
 
@@ -157,15 +167,16 @@ public class Departmentcontroller implements Initializable {
         }
     }
 
-    public void search() {
+    public void search(ActionEvent event) {
         String text = (String) searchField.getText();
-        if (!text.isEmpty()){
+        if (!text.isEmpty()) {
             LoadCards(text);
         }
     }
+    //dcsaca
 
     @FXML
-    public void reFresh(){
+    public void reFresh(ActionEvent event) {
         searchField.setText("");
         System.out.println("refresh");
         LoadCards();
@@ -179,5 +190,9 @@ public class Departmentcontroller implements Initializable {
     }
 
     public void GoToCreate(ActionEvent actionEvent) {
+    }
+
+    public void refresh() {
+        LoadCards();
     }
 }
