@@ -25,6 +25,9 @@ module app {
     opens app.HR.Attendance to javafx.fxml;
     opens app.HR.Department to javafx.fxml;
 
+    opens app.Sales to javafx.fxml;
+    opens app.Sales.Invoice to javafx.fxml;
+
 
     exports app.Index;
     exports app.Login;
@@ -40,6 +43,8 @@ module app {
     exports app.Suppliers.Create;
     exports app.Suppliers.Preview;
     exports app.Suppliers.Preview.CreateSupply;
+    exports app.Sales ;
+    exports app.Sales.Invoice ;
 
     exports app.Suppliers.Preview.PreviewSupply;
     exports app.Suppliers.Preview.PreviewSupply.EditeSupply ;

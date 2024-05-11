@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="370.0" spacing="10.0" style="-fx-padding: 10; -fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Sales.Invoice.InvoiceController">
+   <children>
+      <HBox prefWidth="200.0">
+         <children>
+            <Label text="Customer Name : ">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="nameLable" text="Mohamed Saif ">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox prefWidth="200.0">
+         <children>
+            <Label text="Contact Nom : ">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="contactLable" text="01145954371">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox prefWidth="200.0">
+         <children>
+            <Label prefHeight="21.0" prefWidth="49.0" text="Date : ">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="contactLable1" text="5 May 2024, 11:00AM">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <TableView fx:id="table" maxWidth="1.7976931348623157E308" prefHeight="200.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="productCol" prefWidth="75.0" text="Product" />
+            <TableColumn fx:id="qntCol" prefWidth="75.0" text="Qnt" />
+            <TableColumn fx:id="priceCol" prefWidth="75.0" text="Unite Price" />
+            <TableColumn fx:id="totalCol" prefWidth="75.0" text="Total" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <HBox>
+         <children>
+            <Label text="Total Purch : ">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="purchLable">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="111.0" style="-fx-background-color: blue;" text="Print" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>
