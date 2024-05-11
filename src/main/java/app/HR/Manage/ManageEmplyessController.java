@@ -1,5 +1,6 @@
 package app.HR.Manage;
 
+import app.Classes.ExcelSheet;
 import app.HR.Manage.Edite.EditeEmployessApplication;
 import app.HR.Manage.add.AddEmployessApplication;
 import app.Stores.Manage.StoreManageController;
@@ -26,14 +27,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,6 +41,7 @@ import java.util.ResourceBundle;
 public class ManageEmplyessController implements Initializable {
     private String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
     private String TableName = "Employees";
+    DataBaseConnection dataBaseConnection;
 
     @FXML
     public void GotoaddForm() {
@@ -120,6 +121,81 @@ public class ManageEmplyessController implements Initializable {
         table.getItems().clear();
         table.setItems(hrObservableList(value));
     }
+
+    public void Report(){
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        // Set the title for the directory chooser dialog
+        directoryChooser.setTitle("Choose Directory");
+        // Set the initial directory (optional)
+        // directoryChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        File selectedDirectory = directoryChooser.showDialog(new Stage());
+        if (selectedDirectory != null) {
+            // Do something with the chosen directory
+            String chosenDirectoryPath = selectedDirectory.getAbsolutePath();
+            Date date = new Date();
+
+//            System.out.println("Chosen directory: " + chosenDirectoryPath+"\\Invoice-Report-("+date.toString()+").xlsx");
+            ExcelSheet excelSheet = new ExcelSheet(chosenDirectoryPath,"Staff-report");
+
+            dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+            List<Map<String,String>> list = dataBaseConnection.select("select * from staff;");
+            List<Map<Integer,String>> list1 = new ArrayList<>();
+            Map<Integer,String> header = new HashMap<>();
+            header.put(0,"ID");
+            header.put(1,"First Name");
+            header.put(2,"Last Name");
+            header.put(3,"Phone");
+            header.put(4,"Email");
+            header.put(5,"Salary");
+            header.put(6,"SSN");
+            header.put(7,"Department");
+            header.put(8,"Gender");
+            header.put(9,"Address");
+            list1.add(header);
+            for (Map<String,String> map:list){
+                Map<Integer,String> staff = new HashMap<>();
+//                observableList.add(new ManageEmplyessController.hr(map.get("id"), map.get("first_name"), map.get("last_name"), map.get("phone"), map.get("email"), map.get("address"), map.get("department_id"), map.get("salary"), map.get("mail"), map.get("ssn"), this));
+
+                staff.put(0, map.get("id"));
+                staff.put(1, map.get("first_name"));
+                staff.put(2, map.get("last_name"));
+                staff.put(3, map.get("phone"));
+                staff.put(4, map.get("email"));
+                staff.put(5, map.get("salary"));
+                staff.put(6, map.get("ssn"));
+                List<Map<String,String>> departmentGet = dataBaseConnection.select("select * from department where id = "+map.get("department_id")+";");
+                if (!departmentGet.isEmpty() || departmentGet != null){
+                    staff.put(7, departmentGet.getFirst().get("name"));
+                }else{
+                    staff.put(7, "None");
+
+                }
+
+                if (map.get("mail").equals("1") || map.get("mail").equals("true")){
+                    staff.put(8, "male");
+
+                }else{
+                    staff.put(8, "female");
+                }
+                staff.put(9, map.get("address"));
+
+
+                list1.add(staff);
+            }
+            try {
+                excelSheet.write(list1);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+        } else {
+            // User canceled the directory chooser dialog
+            System.out.println("No directory selected.");
+        }
+    }
+
+
 
 
     public static class hr {

@@ -3,6 +3,8 @@ module app {
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
+    requires org.apache.poi.ooxml;
+    requires org.apache.xmlbeans;
 
     opens app.Login to javafx.fxml;
     opens app.Index to javafx.fxml;

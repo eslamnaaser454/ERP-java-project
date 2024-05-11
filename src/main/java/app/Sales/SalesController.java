@@ -2,6 +2,7 @@ package app.Sales;
 
 
 import app.Classes.DataBaseConnection;
+import app.Classes.ExcelSheet;
 import app.Sales.Invoice.InvoiceApplication;
 import app.Suppliers.Preview.PreviewSupply.PreviewSupplyController;
 import javafx.collections.FXCollections;
@@ -17,14 +18,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Background;
 import javafx.scene.paint.Paint;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SalesController implements Initializable {
 
@@ -55,6 +56,9 @@ public class SalesController implements Initializable {
     @FXML
     private TableColumn<Sale,Button> printCol;
 
+    @FXML
+    private Button reportBtn;
+
 
 
 
@@ -64,9 +68,11 @@ public class SalesController implements Initializable {
         dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
         List<Map<String,String>> list = dataBaseConnection.select("select * from invoice ;");
         ObservableList<Sale> observableList = FXCollections.observableArrayList();
-        for (Map<String,String> map:list){
-            Sale sale = new Sale(map.get("id"),map.get("customer_name"),map.get("customer_phone"),map.get("date"));
-            observableList.add(sale);
+        if (!list.isEmpty() || list != null) {
+            for (Map<String, String> map : list) {
+                Sale sale = new Sale(map.get("id"), map.get("customer_name"), map.get("customer_phone"), map.get("date"));
+                observableList.add(sale);
+            }
         }
         return  observableList;
     }
@@ -107,7 +113,58 @@ public class SalesController implements Initializable {
 
 
 
+    public void Report(){
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        // Set the title for the directory chooser dialog
+        directoryChooser.setTitle("Choose Directory");
+        // Set the initial directory (optional)
+        // directoryChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        File selectedDirectory = directoryChooser.showDialog(new Stage());
+        if (selectedDirectory != null) {
+            // Do something with the chosen directory
+            String chosenDirectoryPath = selectedDirectory.getAbsolutePath();
+            Date date = new Date();
 
+//            System.out.println("Chosen directory: " + chosenDirectoryPath+"\\Invoice-Report-("+date.toString()+").xlsx");
+            ExcelSheet excelSheet = new ExcelSheet(chosenDirectoryPath,"Invoice-Report");
+
+            dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+            List<Map<String,String>> list = dataBaseConnection.select("select * from invoice;");
+            List<Map<Integer,String>> list1 = new ArrayList<>();
+            Map<Integer,String> header = new HashMap<>();
+            header.put(0,"ID");
+            header.put(1,"Customer Name");
+            header.put(2,"Customer Contact");
+            header.put(3,"Total Purch");
+            list1.add(header);
+            for (Map<String,String> map:list){
+                Map<Integer,String> invoice = new HashMap<>();
+                invoice.put(0, map.get("id"));
+                invoice.put(1, map.get("customer_name"));
+                invoice.put(2, map.get("customer_phone"));
+                List<Map<String,String>> Sales = dataBaseConnection.select("select * from sale where invoice_id = "+map.get("id")+";");
+                double purch = 0;
+
+                for (Map<String,String> sale:Sales){
+                    double total = Double.parseDouble(sale.get("qnt")) * Double.parseDouble(sale.get("unitePrice"));
+                    purch+=total;
+
+                }
+                invoice.put(3,""+purch);
+                list1.add(invoice);
+            }
+            try {
+                excelSheet.write(list1);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+        } else {
+            // User canceled the directory chooser dialog
+            System.out.println("No directory selected.");
+        }
+    }
 
 
 
