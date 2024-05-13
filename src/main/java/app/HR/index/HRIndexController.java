@@ -1,9 +1,7 @@
 package app.HR.index;
 
 import app.HR.Department.DepartmentApplication;
-import app.HR.Employees.EmployeesAplication;
 import app.HR.Manage.ManageEmplyessApplication;
-import app.Stores.Manage.StoreManageApplication;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;

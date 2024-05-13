@@ -20,17 +20,19 @@ public class IndexApplication extends Application {
         this.authentication = authentication;
 
     }
+    public static boolean isMaximized = false;
 
     @Override
     public void start(Stage stage)  throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(IndexApplication.class.getResource("Index-view.fxml"));
-        Scene scene =  scene = new Scene(fxmlLoader.load() );
+        Scene scene =  scene = new Scene(fxmlLoader.load() ,1288, 579);
 
         stage.setTitle("ERP!");
         stage.setResizable(true);
         stage.setScene(scene);
-
+        stage.centerOnScreen(); // Center the window on the screen
         stage.show();
+
     }
 
     public static void main(String[] args) {

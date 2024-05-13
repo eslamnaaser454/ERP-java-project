@@ -15,7 +15,6 @@
 <BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="579.0" prefWidth="1058.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Index.IndexController">
    <left>
       <fx:include source="../Layouts/side-bar-view.fxml" />
-
    </left>
    <center>
       <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" pannable="true" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
@@ -28,14 +27,14 @@
                            <children>
                               <HBox layoutX="28.0" layoutY="67.0" maxWidth="1.7976931348623157E308" prefHeight="217.0" prefWidth="753.0" spacing="100.0" style="-fx-padding: 10;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-5.0">
                                  <children>
-                                    <VBox prefHeight="243.0" prefWidth="292.0" style="-fx-background-color: #25d6df; -fx-background-radius: 40;" HBox.hgrow="ALWAYS">
+                                    <VBox prefHeight="243.0" prefWidth="292.0" style="-fx-background-color: #25d6df; -fx-background-radius: 40;" styleClass="vbox-hover" stylesheets="@index.css" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="Employees" textAlignment="CENTER" textFill="WHITE">
+                                          <Label alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" styleClass="hbox-container" stylesheets="@index.css" text="Employees" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold Italic" size="34.0" />
                                              </font>
                                           </Label>
-                                          <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0" style="-fx-padding: 10;">
+                                          <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0" style="-fx-padding: 10;" styleClass="hbox-container" stylesheets="@index.css">
                                              <children>
                                                 <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="233.0" text="61" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <font>
@@ -59,12 +58,12 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefHeight="237.0" prefWidth="299.0" style="-fx-background-color: #726ffc; -fx-background-radius: 40;" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="Sales" textAlignment="CENTER" textFill="WHITE">
+                                          <Label alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" styleClass="hbox-container" stylesheets="@index.css" text="Sales" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold Italic" size="34.0" />
                                              </font>
                                           </Label>
-                                          <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0">
+                                          <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0" styleClass="hbox-container" stylesheets="@index.css">
                                              <children>
                                                 <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="5655$" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <font>
@@ -90,14 +89,14 @@
                               </HBox>
                               <HBox layoutY="300.0" maxWidth="1.7976931348623157E308" prefHeight="217.0" spacing="100.0" style="-fx-padding: 10;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                    <VBox prefHeight="243.0" prefWidth="292.0" style="-fx-background-color: #0964fe; -fx-background-radius: 40;" HBox.hgrow="ALWAYS">
+                                    <VBox prefHeight="243.0" prefWidth="292.0" style="-fx-background-color: #0964fe; -fx-background-radius: 40;" styleClass="vbox-hover" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" text=" Stocks" textAlignment="CENTER" textFill="WHITE">
+                                          <Label alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" styleClass="hbox-container" stylesheets="@index.css" text=" Stocks" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold Italic" size="34.0" />
                                              </font>
                                           </Label>
-                                          <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0">
+                                          <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0" styleClass="hbox-container" stylesheets="@index.css">
                                              <children>
                                                 <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="51" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <font>
@@ -119,14 +118,14 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <VBox alignment="CENTER_RIGHT" prefHeight="237.0" prefWidth="299.0" style="-fx-background-color: #0b97a1; -fx-background-radius: 40;" HBox.hgrow="ALWAYS">
+                                    <VBox alignment="CENTER_RIGHT" prefHeight="237.0" prefWidth="299.0" style="-fx-background-color: #0b97a1; -fx-background-radius: 40;" styleClass="vbox-hover" HBox.hgrow="ALWAYS">
                                        <children>
                                           <Label alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="products" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold Italic" size="34.0" />
                                              </font>
                                           </Label>
-                                          <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0">
+                                          <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0" styleClass="hbox-container" stylesheets="@index.css">
                                              <children>
                                                 <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="562" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <font>

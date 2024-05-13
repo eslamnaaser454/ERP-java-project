@@ -180,7 +180,7 @@ public class CreateSupplyController implements Initializable {
         String NoneImagePath = "\\src\\main\\resources\\images\\defulteImages\\NoneImage.jpg";
         String query = "insert into supply (name,image,qnt,unite_price,sell_price,additional_fees,supplier_id,stock_id) values('"+name +"','"+NoneImagePath+"',"+qnt+","+price+","+sellPrice+","+fees+","+id+","+stockId+");";
         System.out.println("Query is : "+query);
-        dataBaseConnection.excute(query);
+        int supplyId =dataBaseConnection.insert(query);
         ErrMsg.setText("Supply Created SuccessFuly");
         nameFiled.setText("");
         imageFiled.setText("");
@@ -191,9 +191,7 @@ public class CreateSupplyController implements Initializable {
         ErrMsg.setTextFill(Paint.valueOf("green"));
 
 
-        List<Map<String,String>> getSupply = dataBaseConnection.select("select * from supply where name='"+name+"' and qnt="+qnt+" and unite_price="+qnt+" and additional_fees="+fees+" and supplier_id="+id+" and stock_id="+stockId+";");
-        String supplyId;
-        supplyId = getSupply.getFirst().get("id");
+
 
         if (image != null){
             Image SavedImage = new Image(imagePath);

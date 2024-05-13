@@ -9,7 +9,6 @@ import javafx.scene.layout.HBox;
 import app.Stores.Index.*;
 import javafx.stage.Stage;
 import app.Stores.Index.StoreIndexApplication;
-import app.HR.Employees.EmployeesAplication;
 
 import java.io.IOException;
 

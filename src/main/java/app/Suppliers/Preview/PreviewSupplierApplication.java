@@ -23,7 +23,7 @@ public class PreviewSupplierApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PreviewSupplierApplication.class.getResource("preview-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = new Scene(fxmlLoader.load(),1288, 579);
         PreviewSupplierController previewSupplierController =  fxmlLoader.getController();
 
         previewSupplierController.setId(this.id);

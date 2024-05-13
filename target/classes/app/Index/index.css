@@ -1,0 +1,4 @@
+.hbox-container:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 30, 0, 0, 0); /* Change drop shadow color to black on hover */
+    -fx-margin: 10px;
+}

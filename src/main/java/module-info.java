@@ -12,7 +12,6 @@ module app {
     opens app.Stores.Manage to javafx.fxml;
     opens app.Stores.Manage.Create to javafx.fxml;
     opens app.Stores.Manage.Edite to javafx.fxml;
-    opens app.HR.Employees to javafx.fxml;
     opens app.Suppliers to javafx.fxml;
     opens app.Suppliers.Create to javafx.fxml;
     opens app.Suppliers.Preview to javafx.fxml;
@@ -24,7 +23,6 @@ module app {
     opens app.HR.Manage to javafx.fxml;
     opens app.HR.Manage.add to javafx.fxml;
     opens app.HR.Manage.Edite to javafx.fxml;
-    opens app.HR.Attendance to javafx.fxml;
     opens app.HR.Department to javafx.fxml;
 
     opens app.Sales to javafx.fxml;
@@ -38,7 +36,6 @@ module app {
     exports app.Stores.Manage;
     exports app.Stores.Manage.Create;
     exports app.Stores.Manage.Edite;
-    exports app.HR.Employees;
     exports app.HR.index;
     exports app.HR.Manage;
     exports app.PublicControllers;
@@ -53,7 +50,6 @@ module app {
     exports app.Suppliers.Preview.PreviewSupply.EditeSupply ;
     exports app.HR.Manage.add;
     exports app.HR.Manage.Edite;
-    exports app.HR.Attendance;
     exports app.HR.Department.Edit;
 
 }

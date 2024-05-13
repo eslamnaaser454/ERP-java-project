@@ -37,24 +37,6 @@
                                 </Label>
                             </children>
                         </VBox>
-
-                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="227.0" prefWidth="239.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20;">
-                            <children>
-                                <ImageView fitHeight="151.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../../images/icons/approve.png" />
-                                    </image>
-                                </ImageView>
-                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="133.0" text="Attendance">
-                                    <font>
-                                        <Font name="System Bold" size="17.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
-                        </VBox>
                   <VBox alignment="CENTER" layoutX="377.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#GotoDepartment" prefHeight="227.0" prefWidth="239.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20;">
                      <children>
                         <ImageView fitHeight="151.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">

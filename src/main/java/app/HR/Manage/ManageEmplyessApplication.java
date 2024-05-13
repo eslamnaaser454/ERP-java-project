@@ -17,7 +17,7 @@ public class ManageEmplyessApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/app/HR/Manage/ManageEmployess.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = new Scene(fxmlLoader.load(),1288, 579);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

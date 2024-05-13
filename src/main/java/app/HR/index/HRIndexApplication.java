@@ -16,7 +16,7 @@ public class HRIndexApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HRIndexApplication.class.getResource("HR-index-views.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = new Scene(fxmlLoader.load(),1288, 579);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
