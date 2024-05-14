@@ -38,5 +38,6 @@ public class IndexController implements Initializable {
 
     public void setAuthentication(Authentication authentication) {
         this.authentication = authentication;
+        sideBar = null;
     }
 }

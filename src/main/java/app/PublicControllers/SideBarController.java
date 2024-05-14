@@ -5,6 +5,7 @@ import app.Index.IndexApplication;
 import app.Login.LoginApplication;
 import app.Sales.SalesApplication;
 import app.Suppliers.SuppliersApplication;
+import app.usermanagment.usermanagmentapp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -77,6 +78,19 @@ public class SideBarController {
         Stage stage = (Stage) OverView.getScene().getWindow();
         try {
             salesApplication.start(stage);
+
+        }catch (IOException e){
+            System.out.println(e.getCause());
+        }
+    }
+
+    @FXML
+    private void GoToUserManagment(){
+
+        usermanagmentapp Usermanagmentapp = new usermanagmentapp();
+        Stage stage = (Stage) OverView.getScene().getWindow();
+        try {
+            Usermanagmentapp.start(stage);
 
         }catch (IOException e){
             System.out.println(e.getCause());

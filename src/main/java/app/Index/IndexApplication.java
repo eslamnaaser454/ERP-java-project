@@ -30,6 +30,8 @@ public class IndexApplication extends Application {
         stage.setTitle("ERP!");
         stage.setResizable(true);
         stage.setScene(scene);
+        IndexController indexController =  fxmlLoader.getController();
+        indexController.setAuthentication(authentication);
         stage.centerOnScreen();
         stage.show();
 

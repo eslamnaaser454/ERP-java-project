@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="1257.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.usermanagment.usermangmentcontroller">
+
+   <left>
+      <fx:include source="../Layouts/side-bar-view.fxml" />
+     </left>
+   <center>
+      <ScrollPane hbarPolicy="NEVER" pannable="true" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefHeight="566.0" prefWidth="1029.0">
+               <children>
+                 <AnchorPane prefHeight="99.0" prefWidth="1030.0">
+                     <children>
+                        <Button layoutX="840.0" layoutY="30.0" mnemonicParsing="false" onAction="#adduser" prefHeight="26.0" prefWidth="164.0" style="-fx-background-color: #5f4da9;" text="Add user" textFill="#f4f3fa" />
+                        <Button fx:id="refresh" layoutX="364.0" layoutY="30.0" mnemonicParsing="false" onAction="#refresh" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: #5f4da9;" text="Refresh" textFill="WHITE" />
+                        <TextField fx:id="tsearch" layoutX="13.0" layoutY="30.0" prefHeight="26.0" prefWidth="222.0" />
+                        <Button fx:id="search" layoutX="247.0" layoutY="30.0" mnemonicParsing="false" onAction="#Search" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #5f4da9;" text="Search" textFill="WHITE" />
+                     </children></AnchorPane>
+                  <TableView fx:id="tabel" prefHeight="441.0" prefWidth="1030.0" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="userCol" prefWidth="128.8000060915947" text="UserName" />
+                        <TableColumn fx:id="emailCol" prefWidth="101.60003662109375" text="email" />
+                        <TableColumn fx:id="phoneCol" prefWidth="94.40003967285156" text="phone" />
+                        <TableColumn fx:id="ssnCol" prefWidth="119.20001220703125" text="SSN" />
+                        <TableColumn fx:id="activeCol" prefWidth="136.79995727539062" text="Active" />
+                        <TableColumn fx:id="typeCol" prefWidth="136.800048828125" text="type" />
+                        <TableColumn fx:id="action" prefWidth="75.0" text="action" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <BorderPane prefHeight="68.0" prefWidth="1030.0">
+                     <right>
+                        <Pagination prefHeight="62.0" prefWidth="1030.0" style="-fx-border-color: #5E5ADB; -fx-background-color: white;" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
