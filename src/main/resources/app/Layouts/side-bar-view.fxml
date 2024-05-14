@@ -36,7 +36,7 @@
                 </ImageView>
                 <Label text="Overview">
                     <font>
-                        <Font name="Trebuchet MS" size="12.0" />
+                        <Font name="Trebuchet MS Bold" size="12.0" />
                     </font>
                 </Label>
             </children>
@@ -51,9 +51,9 @@
                         <Image url="@../images/icons/store-icon.png" />
                     </image>
                 </ImageView>
-                <Label prefHeight="17.0" prefWidth="103.0" text="Stores Managmedt">
+                <Label prefHeight="32.0" prefWidth="163.0" text="Stores Managmedt">
                     <font>
-                        <Font name="Trebuchet MS" size="12.0" />
+                        <Font name="Trebuchet MS Bold" size="12.0" />
                     </font>
                 </Label>
             </children>
@@ -70,7 +70,7 @@
                 </ImageView>
                 <Label text="HR Managment">
                     <font>
-                        <Font name="Trebuchet MS" size="12.0" />
+                        <Font name="Trebuchet MS Bold" size="12.0" />
                     </font>
                 </Label>
             </children>
@@ -85,9 +85,9 @@
                         <Image url="@../images/icons/suppliericon.png" />
                     </image>
                 </ImageView>
-                <Label text="Suppliers Managment">
+                <Label prefHeight="16.0" prefWidth="140.0" text="Suppliers Managment">
                     <font>
-                        <Font name="Trebuchet MS" size="12.0" />
+                        <Font name="Trebuchet MS Bold" size="12.0" />
                     </font>
                 </Label>
             </children>
@@ -104,7 +104,7 @@
                 </ImageView>
                 <Label text="Sales Managment">
                     <font>
-                        <Font name="Trebuchet MS" size="12.0" />
+                        <Font name="Trebuchet MS Bold" size="12.0" />
                     </font>
                 </Label>
             </children>
@@ -121,7 +121,7 @@
                 </ImageView>
                 <Label text="Users Managmet">
                     <font>
-                        <Font name="Trebuchet MS" size="12.0" />
+                        <Font name="Trebuchet MS Bold" size="12.0" />
                     </font>
                 </Label>
             </children>
@@ -139,7 +139,7 @@
                 </ImageView>
                 <Label text="Log Out">
                     <font>
-                        <Font name="Trebuchet MS" size="12.0" />
+                        <Font name="Trebuchet MS Bold" size="12.0" />
                     </font>
                 </Label>
             </children>
