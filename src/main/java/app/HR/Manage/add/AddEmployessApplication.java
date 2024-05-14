@@ -1,5 +1,6 @@
 package app.HR.Manage.add;
 
+import app.HR.Department.Departmentcontroller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,6 +12,7 @@ public class AddEmployessApplication extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 
     @Override
     public void start(Stage primaryStage) throws IOException {

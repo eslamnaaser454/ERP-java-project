@@ -1,5 +1,6 @@
 package app.HR.Department;
 
+import app.HR.Department.Add.AddDepartmentApplication;
 import app.HR.Department.Edit.EditDepartmentApplication;
 import app.HR.Manage.Edite.EditeEmployessApplication;
 import app.HR.Manage.add.AddEmployessApplication;
@@ -53,7 +54,7 @@ public class Departmentcontroller implements Initializable {
     @FXML
     private TextField searchField;
 
-    private void LoadCards() {
+    public void LoadCards() {
         dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String, String>> list = dataBaseConnection.select("select * from department;");
         if (list != null) {
@@ -190,6 +191,17 @@ public class Departmentcontroller implements Initializable {
     }
 
     public void GoToCreate(ActionEvent actionEvent) {
+        AddDepartmentApplication page = new AddDepartmentApplication(this);
+        Stage stage = new Stage();
+        try {
+            page.start(stage);
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("An Error Occurred");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     public void refresh() {
