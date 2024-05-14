@@ -69,6 +69,9 @@ public class EditeEmployessController implements Initializable {
             AddressField.setText(element.get("address"));
             salaryField.setText(element.get("salary"));
             SSNField.setText(element.get("ssn"));
+            ToggleGroup toggleGroup = new ToggleGroup();
+            Malerad.setToggleGroup(toggleGroup);
+            Femalerad.setToggleGroup(toggleGroup);
 
             // Add all departments to the ChoiceBox
             for (Map<String, String> department : departments) {
@@ -110,49 +113,81 @@ public class EditeEmployessController implements Initializable {
 
 
 
-        if (fname.isEmpty()) {
+        if (fname.isEmpty()|| fname == null) {
             ErrMsg.setText("Please Enter First Name");
             ErrMsg.setTextFill(Paint.valueOf("red"));
             return;
         }
-        if (lname.isEmpty()) {
+        if (lname.isEmpty()|| lname ==null) {
             ErrMsg.setText("Please Enter Last Name");
             ErrMsg.setTextFill(Paint.valueOf("red"));
             return;
         }
-        if (email.isEmpty()) {
+        if (email.isEmpty() || email==null) {
             ErrMsg.setText("Please Enter Email");
             ErrMsg.setTextFill(Paint.valueOf("red"));
             return;
         }
-        if (phone.isEmpty()) {
+        if (!email.contains("@")) {
+            ErrMsg.setText("Email must contain @ symbol");
+            ErrMsg.setTextFill(Paint.valueOf("red"));
+            return;
+        }
+        if (phone.isEmpty()||phone==null) {
             ErrMsg.setText("Please Enter Phone");
             ErrMsg.setTextFill(Paint.valueOf("red"));
             return;
         }
-        if (address.isEmpty()) {
+        if (phone.length()>11||phone.length()<11){
+            ErrMsg.setText("the number must be 11 ");
+            ErrMsg.setTextFill(Paint.valueOf("red"));
+            return;
+        }
+        if (!phone.matches("\\d+")){
+            ErrMsg.setText("Phone Field Contains Non-Digit Characters");
+            ErrMsg.setTextFill(Paint.valueOf("red"));
+            return;
+
+        }
+        if (address.isEmpty()||address==null) {
             ErrMsg.setText("Please Enter Address");
             ErrMsg.setTextFill(Paint.valueOf("red"));
             return;
         }
-        if (salary.isEmpty()) {
+        if (salary.isEmpty()||salary==null) {
             ErrMsg.setText("Please Enter Salary");
             ErrMsg.setTextFill(Paint.valueOf("red"));
             return;
         }
-        if (ssn.isEmpty()) {
+//        if (!salary.matches("\\d+")){
+//            ErrMsg.setText("salary Field Contains Non-Digit Characters");
+//            ErrMsg.setTextFill(Paint.valueOf("red"));
+//            return;
+//
+//        }
+        if (ssn.isEmpty()||ssn ==null) {
             ErrMsg.setText("Please Enter SSN");
             ErrMsg.setTextFill(Paint.valueOf("red"));
             return;
         }
-        if (department.isEmpty()) {
+        if (ssn.length()!=16) {
+            ErrMsg.setText(" SSN must be 16 integer");
+            ErrMsg.setTextFill(Paint.valueOf("red"));
+            return;
+        }
+        if (department.isEmpty()||department==null) {
             ErrMsg.setText("Please Enter Department");
             ErrMsg.setTextFill(Paint.valueOf("red"));
             return;
         }
-        if (!Malerad.isSelected() && !Femalerad.isSelected()) {
-            ErrMsg.setText("Please Select gender");
-        }
+//        if (!(Malerad.isSelected() ^ Femalerad.isSelected())) {
+//            ErrMsg.setText("Please Select one gender");
+//            ErrMsg.setTextFill(Paint.valueOf("red"));
+//            return;
+//        }
+
+
+
         List<Map<String, String>> departments = dataBaseConnection.select("select * from department;");
         for (Map<String, String> departmentc : departments) {
             if (departmentc.get("name").equals(department)) {
@@ -180,5 +215,6 @@ public class EditeEmployessController implements Initializable {
     private ManageEmplyessController manageEmplyessController;
     public void setManageEmplyessController(ManageEmplyessController manageEmplyessController) {
         this.manageEmplyessController = manageEmplyessController;
-    }
+}
+
 }
