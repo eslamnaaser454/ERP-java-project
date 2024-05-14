@@ -23,6 +23,7 @@ public class LoginApplication extends Application {
         stage.setTitle("ERP!");
         stage.setResizable(false);
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     }
     //test push

@@ -2,15 +2,19 @@ package app.PublicControllers;
 
 import app.HR.index.HRIndexApplication;
 import app.Index.IndexApplication;
+import app.Login.LoginApplication;
 import app.Sales.SalesApplication;
 import app.Suppliers.SuppliersApplication;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.HBox;
 import app.Stores.Index.*;
 import javafx.stage.Stage;
 import app.Stores.Index.StoreIndexApplication;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class SideBarController {
 
@@ -78,5 +82,22 @@ public class SideBarController {
             System.out.println(e.getCause());
         }
     }
+@FXML
+private void GoToLogin(){
+    Alert alert = new Alert(Alert.AlertType.WARNING);
+    alert.setContentText("Are you sure you want to logout?");
+
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.get() == ButtonType.OK){
+        LoginApplication loginApplication = new LoginApplication();
+        Stage stage = (Stage) OverView.getScene().getWindow();
+        try {
+            loginApplication.start(stage);
+        }
+        catch (IOException e){
+            System.out.println(e.getCause());
+        }
+    }
+}
 
 }

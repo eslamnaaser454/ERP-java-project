@@ -30,7 +30,7 @@ public class IndexApplication extends Application {
         stage.setTitle("ERP!");
         stage.setResizable(true);
         stage.setScene(scene);
-        stage.centerOnScreen(); // Center the window on the screen
+        stage.centerOnScreen();
         stage.show();
 
     }

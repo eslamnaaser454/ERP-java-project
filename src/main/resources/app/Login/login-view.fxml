@@ -62,7 +62,7 @@
                   <PasswordField fx:id="password" prefHeight="28.0" prefWidth="190.0" style="-fx-background-color: none; -fx-border-color: gray;" />
                </children>
             </VBox>
-            <Button fx:id="loginBtn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#LoginEvent" prefHeight="39.0" prefWidth="439.0" style="-fx-background-color: blue; -fx-background-radius: 20;" text="Button" textFill="WHITE">
+            <Button fx:id="loginBtn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#LoginEvent" prefHeight="39.0" prefWidth="439.0" style="-fx-background-color: blue; -fx-background-radius: 20;" text="Login" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
