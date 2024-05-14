@@ -28,6 +28,7 @@ module app {
     opens app.Sales to javafx.fxml;
     opens app.Sales.Invoice to javafx.fxml;
     opens app.HR.Department.Edit to javafx.fxml;
+    opens app.Stores.Products to javafx.fxml;
 
 
     exports app.Index;
@@ -51,5 +52,6 @@ module app {
     exports app.HR.Manage.add;
     exports app.HR.Manage.Edite;
     exports app.HR.Department.Edit;
+    exports app.Stores.Products;
 
 }
