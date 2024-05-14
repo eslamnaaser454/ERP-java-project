@@ -7,12 +7,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:controller="app.Stores.Index.StoreIndexController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="1257.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="1257.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Stores.Index.StoreIndexController">
    <left>
-        <fx:include source="../../Layouts/side-bar-view.fxml"/>
+        <fx:include source="../../Layouts/side-bar-view.fxml" />
       </left>
    <center>
       <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -22,47 +21,32 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER" prefWidth="1021.0" spacing="50.0">
+            <HBox alignment="CENTER" prefWidth="1021.0" spacing="100.0">
                <children>
-                  <VBox alignment="CENTER" fx:id="manage" onMouseClicked="#GotoManage" maxHeight="-Infinity" prefHeight="164.0" prefWidth="176.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20;">
+                  <VBox fx:id="manage" alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#GotoManage" prefHeight="227.0" prefWidth="313.0" spacing="10.0" style="-fx-background-color: #1f2252; -fx-background-radius: 40; -fx-padding: 20;" styleClass="hbox-container" stylesheets="@../../Layouts/side-bar.css">
                      <children>
-                        <ImageView fitHeight="151.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="151.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/icons/manage.png" />
                            </image>
                         </ImageView>
-                        <Label text="Manage">
+                        <Label text="Manage" textFill="WHITE">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="System Bold" size="17.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER"  onMouseClicked="#GotoManage" maxHeight="-Infinity" prefHeight="164.0" prefWidth="176.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20;">
+                  <VBox alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#GotoManage" prefHeight="227.0" prefWidth="302.0" spacing="10.0" style="-fx-background-color: #1f2252; -fx-background-radius: 40; -fx-padding: 20;" styleClass="hbox-container" stylesheets="@../../Layouts/side-bar.css">
                      <children>
                         <ImageView fitHeight="151.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/icons/package-icon.png" />
                            </image>
                         </ImageView>
-                        <Label text="Products">
+                        <Label text="Products" textFill="WHITE">
                            <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-
-                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="164.0" prefWidth="176.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20;">
-                     <children>
-                        <ImageView fitHeight="151.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/icons/reports.png" />
-                           </image>
-                        </ImageView>
-                        <Label text="Reports">
-                           <font>
-                              <Font size="17.0" />
+                              <Font name="System Bold" size="17.0" />
                            </font>
                         </Label>
                      </children>

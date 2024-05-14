@@ -24,27 +24,27 @@
                 </Label>
                 <HBox alignment="CENTER" prefWidth="1021.0" spacing="90.0">
                     <children>
-                        <VBox fx:id="manage" alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#GotoManageemployes" prefHeight="227.0" prefWidth="237.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20;">                            <children>
+                        <VBox fx:id="manage" alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#GotoManageemployes" prefHeight="227.0" prefWidth="359.0" spacing="10.0" style="-fx-background-color: #1f2252; -fx-padding: 20; -fx-background-radius: 40;" styleClass="hbox-container" stylesheets="@../../Layouts/side-bar.css">                            <children>
                                 <ImageView fitHeight="151.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../../images/icons/process.png" />
                                     </image>
                                 </ImageView>
-                                <Label alignment="CENTER" prefHeight="26.0" prefWidth="182.0" text="Manage Employees">
+                                <Label alignment="CENTER" prefHeight="26.0" prefWidth="182.0" text="Manage Employees" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="17.0" />
                                     </font>
                                 </Label>
                             </children>
                         </VBox>
-                  <VBox alignment="CENTER" layoutX="377.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#GotoDepartment" prefHeight="227.0" prefWidth="239.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20;">
+                  <VBox alignment="CENTER" layoutX="377.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#GotoDepartment" prefHeight="227.0" prefWidth="335.0" spacing="10.0" style="-fx-background-color: #1f2252; -fx-background-radius: 40; -fx-padding: 20;" styleClass="hbox-container" stylesheets="@../../Layouts/side-bar.css">
                      <children>
-                        <ImageView fitHeight="151.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="138.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../images/icons/PD-Operational-Support-Bureau.png" />
+                              <Image url="@../../images/icons/building.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="133.0" text="Department ">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="133.0" text="Department " textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
