@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import javafx.scene.control.Label;
 
 
 public class IndexController implements Initializable {
@@ -23,31 +24,53 @@ public class IndexController implements Initializable {
     private Authentication authentication;
     @FXML
     private HBox sideBar;
-//    private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
-//    private DataBaseConnection dataBaseConnection;
-//    public void updateEmployeeCount() {
-//        dataBaseConnection = new DataBaseConnection(dbPath);
-//        List<Map<String, String>> result = dataBaseConnection.select("SELECT * from staff;");
-//        if (!result.isEmpty()) {
-//            String count = (result.size()+1)+"";
-//            empCount.setText(count);
-//        }
-//    }
+    @FXML
+    private Label empCount;
+    @FXML
+    private Label salescont;
+    @FXML
+    private Label stockscont;
+    @FXML
+    private Label productscont;
+
+    private DataBaseConnection dataBaseConnection;
+
+    private void updateEmployeeCount() {
+        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        List<Map<String, String>> result = dataBaseConnection.select("SELECT * FROM staff;");
+        if (result != null) {
+            empCount.setText(String.valueOf(result.size()));
+        }
+    }
+    private void updatesale() {
+        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        List<Map<String, String>> result = dataBaseConnection.select("SELECT * FROM sale;");
+        if (result != null) {
+            salescont.setText(String.valueOf(result.size()));
+        }
+    }
+    private void updatestock() {
+        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        List<Map<String, String>> result = dataBaseConnection.select("SELECT * FROM stock;");
+        if (result != null) {
+            stockscont.setText(String.valueOf(result.size()));
+        }
+    }
+    private void updateproducts() {
+        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        List<Map<String, String>> result = dataBaseConnection.select("SELECT * FROM supply;");
+        if (result != null) {
+            productscont.setText(String.valueOf(result.size()));
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        updateEmployeeCount();
+        updatesale();
+        updatestock();
+        updateproducts();
 
-//        if (!authentication.check()){
-//            Stage stage = (Stage) sideBar.getScene().getWindow();
-//            LoginApplication loginApplication = new LoginApplication();
-//            stage.setResizable(false);
-//            try {
-//                loginApplication.start(stage);
-//
-//            }catch (IOException e){
-//                System.out.println(e.toString());
-//            }
-//        }
     }
 
 

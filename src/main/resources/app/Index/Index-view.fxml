@@ -36,13 +36,13 @@
                                           </Label>
                                           <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0" style="-fx-padding: 10;" styleClass="hbox-container" stylesheets="@index.css">
                                              <children>
-                                                <Label fx:id="empCount" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="233.0" text="61" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                <Label fx:id="empCount" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="246.0" text="61" textFill="WHITE">
+                                                   <HBox.margin>
+                                                      <Insets left="20.0" />
+                                                   </HBox.margin>
                                                    <font>
                                                       <Font name="System Bold Italic" size="62.0" />
                                                    </font>
-                                                   <padding>
-                                                      <Insets left="20.0" />
-                                                   </padding>
                                                 </Label>
                                                 <ImageView fitHeight="83.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
