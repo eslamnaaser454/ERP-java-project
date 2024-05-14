@@ -90,13 +90,6 @@ public class Authentication {
         this.dataBaseConnection = dataBaseConnection;
     }
 
-
-
-
-
-
-
-
     public boolean check(){
         String query = "select * from users where username='"+getUsername()+"' and password='"+getPassword()+"';";
         List<Map<String,String >> list = dataBaseConnection.select(query);
