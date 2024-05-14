@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<VBox fx:id="sideBar" prefHeight="579.0" prefWidth="219.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.PublicControllers.SideBarController">
+<VBox fx:id="sideBar" prefHeight="579.0" prefWidth="219.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.PublicControllers.SideBarController">
     <children>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
             <children>
@@ -112,7 +109,7 @@
                 <Insets />
             </opaqueInsets>
         </HBox>
-        <HBox alignment="CENTER_LEFT" onMouseClicked="#GoToUserManagment" prefHeight="62.0" prefWidth="236.0" spacing="10.0" style="-fx-padding: 0 0 0 20;" styleClass="hbox-container" stylesheets="@side-bar.css">
+        <HBox fx:id="UsersNav" alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="236.0" spacing="10.0" style="-fx-padding: 0 0 0 20;" styleClass="hbox-container" stylesheets="@side-bar.css">
             <children>
                 <ImageView fitHeight="37.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                     <image>
