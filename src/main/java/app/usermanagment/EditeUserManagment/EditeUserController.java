@@ -55,15 +55,6 @@ public void setId(String id) {
            tusername.setBorder(Border.stroke(Paint.valueOf("red")));
            return;
        }
-       for (Map<String,String> map:maps1p){
-           String user=map.get("username");
-           if (username.equals(user)){
-               error.setText("user name is exist");
-               error.setTextFill(Paint.valueOf("red"));
-               tusername.setBorder(Border.stroke(Paint.valueOf("red")));
-               return;
-           }
-       }
        if (password==null||password.isEmpty()){
            error.setText("password is empty ");
            error .setTextFill(Paint.valueOf("red"));
@@ -101,15 +92,6 @@ public void setId(String id) {
            temail.setBorder(Border.stroke(Paint.valueOf("red")));
            return;
        }
-       for (Map<String ,String> map : maps){
-           String existingEmail = map.get("email");
-           if (email.equals(existingEmail)){
-               error.setText("Email already exists");
-               error.setTextFill(Paint.valueOf("red"));
-               temail.setBorder(Border.stroke(Paint.valueOf("red")));
-               return;
-           }
-       }
        if (ssn==null||ssn.isEmpty()){
            error.setText("Ssn is empty ");
            error .setTextFill(Paint.valueOf("red"));
@@ -128,7 +110,7 @@ public void setId(String id) {
            error.setText("ssn is null");
            error.setTextFill(Paint.valueOf("red"));
        }
-       String query = "update users set username = '" +  username+ "', password = '" +password+ "', phone = '" +phone+ "', email= '" +email+ "', ssn = '" +ssn+ "'  where id = " + id + ";";
+       String query = "update users set username = '" +  username+ "', password = '" +password+ "', phone = '" +phone+ "', email= '" +email+ "', SSN = '" +ssn+ "'  where id = " + id + ";";
        DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
        boolean result = dataBaseConnection.excute(query);
 
@@ -159,7 +141,7 @@ public void setId(String id) {
         tpassword.setText(users.get("password"));
         temail.setText(users.get("email"));
         tphone.setText(users.get("phone"));
-        tssn.setText(users.get("ssn"));
+        tssn.setText(users.get("SSN"));
         admin.setText(users.get("admins"));
 
     }

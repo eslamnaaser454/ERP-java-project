@@ -36,7 +36,7 @@
                                           </Label>
                                           <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0" style="-fx-padding: 10;" styleClass="hbox-container" stylesheets="@index.css">
                                              <children>
-                                                <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="233.0" text="61" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                <Label fx:id="empCount" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="233.0" text="61" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <font>
                                                       <Font name="System Bold Italic" size="62.0" />
                                                    </font>
@@ -65,7 +65,7 @@
                                           </Label>
                                           <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0" styleClass="hbox-container" stylesheets="@index.css">
                                              <children>
-                                                <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="5655$" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                <Label fx:id="salescont" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="5655$" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <font>
                                                       <Font name="System Bold Italic" size="62.0" />
                                                    </font>
@@ -98,7 +98,7 @@
                                           </Label>
                                           <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0" styleClass="hbox-container" stylesheets="@index.css">
                                              <children>
-                                                <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="51" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                <Label fx:id="stockscont" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="51" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <font>
                                                       <Font name="System Bold Italic" size="62.0" />
                                                    </font>
@@ -127,7 +127,7 @@
                                           </Label>
                                           <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0" styleClass="hbox-container" stylesheets="@index.css">
                                              <children>
-                                                <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="562" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                <Label fx:id="productscont" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="562" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <font>
                                                       <Font name="System Bold Italic" size="62.0" />
                                                    </font>

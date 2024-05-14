@@ -19,6 +19,10 @@ public class StoreManageApplication extends Application {
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(StoreManageApplication.class.getResource("store-manage-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),1288, 579);
+        StoreManageController storeManageController = fxmlLoader.getController();
+        new Thread(() -> {
+            storeManageController.refreshTable();
+        }).start();
         primaryStage.setScene(scene);
         primaryStage.show();
     }
