@@ -13,13 +13,55 @@ public class Authentication {
         setDataBaseConnection(authentication.getDataBaseConnection());
         setUsername(authentication.getPassword());
         setPassword(authentication.getPassword());
+        clearSesions();
+        createSession();
+
     }
 
     public Authentication(String username,String password,DataBaseConnection dataBaseConnection){
         setDatabaseConnection(dataBaseConnection);
         setUsername(username);
         setPassword(password);
+        clearSesions();
+        createSession();
     }
+
+    public Authentication(){
+    getSession();
+    }
+    public Map<String,String> getSession(){
+        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        List<Map<String,String>> list = dataBaseConnection.select("select * from session;");
+        if (list == null || list.isEmpty()){
+            return null;
+        }else {
+            username = list.getFirst().get("username");
+            password = list.getFirst().get("password");
+            System.out.println("session geted with values("+username+" , "+password+")");
+            return list.getFirst();
+        }
+    }
+
+    public void createSession(){
+        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        List<Map<String,String>> list = dataBaseConnection.select("select * from session;");
+        if (list == null || list.isEmpty()){
+            dataBaseConnection.excute("insert into session(username,password ) values ('"+getUsername()+"','"+getPassword()+"');");
+            System.out.println("Created a new session");
+        }else {
+            Map<String,String> map = list.getFirst();
+            dataBaseConnection.excute("update session set username='"+getUsername()+"',password='"+getPassword()+"', where id = "+map.get("id")+";");
+            System.out.println("Updated a session");
+
+        }
+    }
+
+    public void clearSesions(){
+        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection.excute("delete from session;");
+        System.out.println("sessions cleared");
+    }
+
 
     public DataBaseConnection getDataBaseConnection() {
         return dataBaseConnection;

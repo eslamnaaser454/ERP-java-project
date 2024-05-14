@@ -42,7 +42,7 @@ public class LoginController {
        Authentication authentication = new Authentication(user,pass,dataBaseConnection);
         System.out.println("here");
         if (authentication.check()){
-           IndexApplication indexApplication = new IndexApplication(authentication);
+           IndexApplication indexApplication = new IndexApplication();
 
             Stage stage = (Stage) errorMsg.getScene().getWindow();
             stage.setResizable(true);
@@ -51,6 +51,7 @@ public class LoginController {
 
                 try {
                     indexApplication.start(stage);
+
 
                 }catch (IOException e){
                     System.out.println(e.getMessage());
