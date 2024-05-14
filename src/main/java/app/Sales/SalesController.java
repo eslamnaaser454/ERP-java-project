@@ -180,7 +180,6 @@ public class SalesController implements Initializable {
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
 //        qntCol.setCellValueFactory(new PropertyValueFactory<>("qnt"));
 //        priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
         totalCol.setCellValueFactory(new PropertyValueFactory<>("total"));
 //        productCol.setCellValueFactory(new PropertyValueFactory<>("product"));
         printCol.setCellValueFactory(new PropertyValueFactory<>("printBtn"));
@@ -219,7 +218,8 @@ public class SalesController implements Initializable {
             this.total = Total+"";
             this.date = date;
 
-            printBtn = new Button("Detiles");
+            printBtn = new Button("Details");
+            printBtn.setStyle("-fx-background-color: red; -fx-background-radius: 15;");
             printBtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
