@@ -21,5 +21,4 @@ public class ManageEmplyessApplication extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    //commentt
 }

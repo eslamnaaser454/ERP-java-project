@@ -152,6 +152,7 @@ public class StoreManageController implements Initializable {
 
             editBtn = new Button("Edite");
             editBtn.setBackground(Background.fill(Paint.valueOf("blue")));
+            editBtn.setStyle("-fx-background-color: blue; -fx-background-radius: 15;");
             editBtn.setTextFill(Paint.valueOf("white"));
             editBtn.setUserData(idCol);
             editBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -174,6 +175,7 @@ public class StoreManageController implements Initializable {
 
             deleteBtn = new Button("Delete");
             deleteBtn.setBackground(Background.fill(Paint.valueOf("red")));
+            deleteBtn.setStyle("-fx-background-color: red; -fx-background-radius: 15;");
             deleteBtn.setTextFill(Paint.valueOf("white"));
             deleteBtn.setUserData(idCol);
             deleteBtn.setOnAction(new EventHandler<ActionEvent>() {

@@ -63,7 +63,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="table" maxWidth="1.7976931348623157E308" prefWidth="200.0">
+                        <TableView fx:id="table" maxWidth="1.7976931348623157E308" prefWidth="200.0" stylesheets="@../HR/Manage/ManageEmployess.css">
                           <columns>
                             <TableColumn fx:id="idCol" prefWidth="43.33331298828125" text="ID" />
 <!--                            <TableColumn fx:id="productCol" prefWidth="123.33334350585938" text="Product" />-->
@@ -71,7 +71,6 @@
 <!--                              <TableColumn fx:id="priceCol" prefWidth="75.0" text="Unite Price" />-->
                               <TableColumn fx:id="customerCol" prefWidth="75.0" text="Customer" />
                               <TableColumn fx:id="contactCol" prefWidth="119.3333740234375" text="Contact Number" />
-                              <TableColumn fx:id="dateCol" prefWidth="52.6666259765625" text="Date" />
                               <TableColumn fx:id="totalCol" prefWidth="111.3333740234375" text="Total Purch" />
                               <TableColumn fx:id="printCol" prefWidth="69.33331298828125" />
                           </columns>
