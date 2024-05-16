@@ -13,8 +13,6 @@ import java.io.IOException;
 public class LoginController {
 
 
-    //  private DataBaseConnection dataBaseConnection;
-    //private Authentication authentication;
 
     public LoginController(){
         System.out.println("Logincontroller Runder");

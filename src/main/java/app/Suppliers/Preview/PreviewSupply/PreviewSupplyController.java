@@ -1,6 +1,7 @@
 package app.Suppliers.Preview.PreviewSupply;
 
 import app.Classes.DataBaseConnection;
+import app.Suppliers.Preview.PreviewSupplierApplication;
 import app.Suppliers.Preview.PreviewSupply.EditeSupply.EditeSupplyApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -71,12 +72,14 @@ public class PreviewSupplyController implements Initializable {
     private TableColumn<Sale,String> priceCol;
 
 
-    @FXML
-    private TableColumn<Sale,String> dateCol;
+
 
 
     @FXML
     private TableColumn<Sale,String> totalCol;
+
+    @FXML
+    private ImageView backIcon;
 
 
 
@@ -84,6 +87,19 @@ public class PreviewSupplyController implements Initializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @FXML
+    private void back(){
+        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        Map<String,String> map = dataBaseConnection.select("select * from supply where id = "+id+";").getFirst();
+        PreviewSupplierApplication page = new PreviewSupplierApplication(map.get("supplier_id"));
+        Stage stage = (Stage) table.getScene().getWindow();
+        try {
+            page.start(stage);
+        }catch (IOException e){
+            System.out.println(e.getCause());
+        }
     }
 
     public void setData(){
@@ -115,6 +131,8 @@ public class PreviewSupplyController implements Initializable {
         table.setItems(observableList());
 
     }
+
+
 
     @FXML
     public void addSales(){
@@ -243,7 +261,7 @@ public class PreviewSupplyController implements Initializable {
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
         qntCol.setCellValueFactory(new PropertyValueFactory<>("qnt"));
         priceCol.setCellValueFactory(new PropertyValueFactory<>("unitePrice"));
-        dateCol.setCellValueFactory(new PropertyValueFactory<>("unitePrice"));
+
         totalCol.setCellValueFactory(new PropertyValueFactory<>("total"));
 
 

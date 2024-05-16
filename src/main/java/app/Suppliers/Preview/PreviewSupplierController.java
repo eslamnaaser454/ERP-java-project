@@ -54,6 +54,9 @@ public class PreviewSupplierController implements Initializable {
     @FXML
     private VBox supplyContainer;
 
+    @FXML
+    private Label totalGain;
+
     public void setId(String id) {
         this.id = id;
     }

@@ -29,6 +29,8 @@ public class Authentication {
     public Authentication(){
     getSession();
     }
+
+
     public Map<String,String> getSession(){
         dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
         List<Map<String,String>> list = dataBaseConnection.select("select * from session;");

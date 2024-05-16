@@ -1,6 +1,7 @@
 package app.usermanagment;
 
 import app.Classes.DataBaseConnection;
+import app.Log.LogApplication;
 import app.usermanagment.Createuser.CreateuserApplication;
 import app.usermanagment.EditeUserManagment.EditeUserApplication;
 import javafx.collections.FXCollections;
@@ -98,6 +99,17 @@ public class usermangmentcontroller implements Initializable
         }
 
         return userObservableList;
+    }
+
+    @FXML
+    public void Logg(){
+        LogApplication logApplication = new LogApplication();
+        Stage stage =(Stage) tabel.getScene().getWindow();
+        try {
+            logApplication.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static class user

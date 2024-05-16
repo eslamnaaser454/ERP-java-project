@@ -1,6 +1,7 @@
 package app.HR.Department.Add;
 
 import app.Classes.DataBaseConnection;
+import app.Classes.Logging;
 import app.HR.Department.Departmentcontroller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,6 +49,9 @@ public class AddDepartmentcontroller implements Initializable {
         ErrMsg.setTextFill(Paint.valueOf("green"));
         DepartmentName.setText("");
         departmentcontroller.LoadCards();
+
+        Logging logging = new Logging();
+        logging.addLog("Department with Name \"" + departmentName + "\" added successfully");
     }
 
 

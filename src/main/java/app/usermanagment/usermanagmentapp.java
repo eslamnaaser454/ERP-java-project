@@ -16,7 +16,7 @@ public class usermanagmentapp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(usermanagmentapp.class.getResource("usermanagment.fxml"));
-        Scene scene = new Scene(fxmlLoader.load() );
+        Scene scene = new Scene(fxmlLoader.load(),1288, 579 );
         stage.setTitle("ERP!");
         stage.setResizable(false);
         stage.setScene(scene);

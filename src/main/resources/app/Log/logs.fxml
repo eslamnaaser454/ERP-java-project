@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="579.0" prefWidth="1058.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Log.LogController">
+   <left>
+      <fx:include source="../Layouts/side-bar-view.fxml" />
+
+       </left>
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" pannable="true" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+         <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <VBox prefWidth="100.0" spacing="20.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+                     <children>
+                        <AnchorPane prefHeight="76.0" prefWidth="761.0">
+                           <children>
+                              <Button layoutX="235.0" layoutY="29.0" mnemonicParsing="false" onAction="#filter" prefHeight="29.0" prefWidth="93.0" style="-fx-background-color: blue;" text="Filter" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="358.0" layoutY="29.0" mnemonicParsing="false" onAction="#load_cards" prefHeight="29.0" prefWidth="93.0" style="-fx-background-color: blue;" text="Refresh" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <DatePicker fx:id="dateField" layoutX="21.0" layoutY="27.0" prefHeight="33.0" prefWidth="186.0" promptText="Filter by Date" />
+                           </children>
+                        </AnchorPane>
+                        <VBox fx:id="cardsContainer" prefWidth="100.0" spacing="10.0" style="-fx-padding: 10;" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

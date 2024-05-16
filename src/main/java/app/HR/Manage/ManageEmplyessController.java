@@ -1,6 +1,7 @@
 package app.HR.Manage;
 
 import app.Classes.ExcelSheet;
+import app.Classes.Logging;
 import app.HR.Manage.Edite.EditeEmployessApplication;
 import app.HR.Manage.add.AddEmployessApplication;
 import app.Stores.Manage.StoreManageController;
@@ -98,8 +99,7 @@ public class ManageEmplyessController implements Initializable {
 
 
     public void initialize() {
-        // Bind column widths to the width of TableView
-        NumberBinding tableWidth = table.widthProperty().subtract(2); // subtract 2 for border thickness
+        NumberBinding tableWidth = table.widthProperty().subtract(2);
         idCol.prefWidthProperty().bind(tableWidth.multiply(0.1));
         firstNameCol.prefWidthProperty().bind(tableWidth.multiply(0.1));
         lastNameCol.prefWidthProperty().bind(tableWidth.multiply(0.1));
@@ -342,6 +342,9 @@ public class ManageEmplyessController implements Initializable {
                         System.out.println(query);
                         dataBaseConnection.excute(query);
                         ManageEmplyessController.refreshTable();
+                        Logging logging = new Logging() ;
+                        logging.addLog("Employee with name "+firstNameCol+" "+lastNameCol+" has been deleted");
+
 
                     }
 
@@ -390,17 +393,14 @@ public class ManageEmplyessController implements Initializable {
 
     @FXML
     private void refreshTable(ActionEvent event) {
-        // Refresh table logic here
     }
 
     @FXML
     private void GotoCreateForm(ActionEvent event) {
-        // Navigation logic here
     }
 
     @FXML
     private void search(ActionEvent event) {
-        // Search logic here
     }
 
     @Override

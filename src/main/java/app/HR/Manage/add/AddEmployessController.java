@@ -1,6 +1,7 @@
 package app.HR.Manage.add;
 
 
+import app.Classes.Logging;
 import app.Stores.Manage.StoreManageController;
 import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.SimpleStringProperty;
@@ -173,6 +174,9 @@ public class AddEmployessController implements Initializable {
         Departmentco.setValue("");
         Malerad.setSelected(false);
         Femalerad.setSelected(false);
+        Logging logging = new Logging() ;
+        logging.addLog("Employee with name "+fname+" "+lname+" has been Adeed to the system");
+
 
     }
 

@@ -81,7 +81,7 @@ public class CreateuserConroller implements Initializable {
             return;
         }
         if (phone.length() <11 ) {
-            error.setText("Phone Field Is great 11 ");
+            error.setText("Phone Field Is greater 11 ");
             error.setTextFill(Paint.valueOf("red"));
             tphone.setBorder(Border.stroke(Paint.valueOf("red")));
             return;
@@ -116,7 +116,7 @@ public class CreateuserConroller implements Initializable {
             tusername.setBorder(Border.stroke(Paint.valueOf("red")));
             return;
         }
-        if (ssn.length()< 16) {
+        if (ssn.length()!=16) {
             error.setText("ssn Field must be gretar than 16 ");
             error.setTextFill(Paint.valueOf("red"));
             tusername.setBorder(Border.stroke(Paint.valueOf("red")));

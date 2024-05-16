@@ -1,6 +1,7 @@
 package app.Suppliers.Create;
 
 import app.Classes.DataBaseConnection;
+import app.Classes.Logging;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -61,6 +62,8 @@ public class CreateSupplierController {
             phoneField.setText("");
             emailField.setText("");
             companyField.setText("");
+            Logging logging = new Logging();
+            logging.addLog("new Supplier with name "+name+" Added ");
         }
     }
 }

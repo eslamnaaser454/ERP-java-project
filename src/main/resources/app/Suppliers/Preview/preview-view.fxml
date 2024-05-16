@@ -125,29 +125,6 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox prefWidth="200.0" style="-fx-border-color: rgb(203,203,203); -fx-padding: 5;" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <ImageView fitHeight="87.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../images/icons/monyicon.png" />
-                                       </image>
-                                    </ImageView>
-                                    <VBox alignment="CENTER_LEFT" prefWidth="100.0" spacing="5.0" style="-fx-padding: 10;" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label text="Total Finantial Gain" textFill="#888888">
-                                             <font>
-                                                <Font name="System Bold" size="19.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="33000$">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
                            </children>
                            <VBox.margin>
                               <Insets top="10.0" />

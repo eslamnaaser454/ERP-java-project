@@ -91,18 +91,18 @@ public class SideBarController implements Initializable {
         }
     }
 
-//    @FXML
-//    private void GoToUserManagment(){
-//
-//        usermanagmentapp Usermanagmentapp = new usermanagmentapp();
-//        Stage stage = (Stage) OverView.getScene().getWindow();
-//        try {
-//            Usermanagmentapp.start(stage);
-//
-//        }catch (IOException e){
-//            System.out.println(e.getCause());
-//        }
-//    }
+    @FXML
+    private void GoToUserManagment(){
+
+        usermanagmentapp Usermanagmentapp = new usermanagmentapp();
+        Stage stage = (Stage) OverView.getScene().getWindow();
+        try {
+            Usermanagmentapp.start(stage);
+
+        }catch (IOException e){
+            System.out.println();
+        }
+    }
 @FXML
 private void GoToLogin(){
     Alert alert = new Alert(Alert.AlertType.WARNING);

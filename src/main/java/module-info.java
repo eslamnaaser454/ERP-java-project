@@ -34,6 +34,7 @@ module app {
     opens app.usermanagment to javafx.fxml;
     opens app.usermanagment.Createuser to javafx.fxml;
     opens app.usermanagment.EditeUserManagment to javafx.fxml;
+    opens app.Log to javafx.fxml;
 
 
     exports app.Index;
@@ -62,5 +63,6 @@ module app {
     exports app.usermanagment;
     exports app.usermanagment.Createuser;
     exports app.usermanagment.EditeUserManagment;
+    exports app.Log;
 
 }
