@@ -18,7 +18,6 @@ public class IndexApplication extends Application {
 
     public static boolean isMaximized = false;
 
-    @Override
     public void start(Stage stage)  throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(IndexApplication.class.getResource("Index-view.fxml"));
         Scene scene =  scene = new Scene(fxmlLoader.load() ,1288, 579);

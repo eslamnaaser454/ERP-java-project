@@ -129,7 +129,7 @@ public class CreateuserConroller implements Initializable {
             error.setTextFill(Paint.valueOf("red"));
         }
 
-        String query = "insert into users(username, password, phone, email, SSN, is_active) values ('" + username + "', '" + password + "', '" + phone + "', '" + email + "', '" + ssn + "','" + admins + "')";
+        String query = "insert into users(username, password, phone, email, SSN, is_super_user) values ('" + username + "', '" + password + "', '" + phone + "', '" + email + "', '" + ssn + "','" + admins + "')";
 
 
         try {

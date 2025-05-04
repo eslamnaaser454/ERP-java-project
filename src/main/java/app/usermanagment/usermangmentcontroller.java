@@ -151,7 +151,7 @@ public class usermangmentcontroller implements Initializable
                     }
                 }
             });
-            Button delet=new Button("delet");
+            Button delet=new Button("delete");
             delet.setBackground(Background.fill(Paint.valueOf("red")));
             delet.setTextFill(Paint.valueOf("white"));
             delet.setOnAction(new EventHandler<ActionEvent>() {

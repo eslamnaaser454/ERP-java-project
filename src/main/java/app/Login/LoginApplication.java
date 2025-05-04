@@ -26,7 +26,6 @@ public class LoginApplication extends Application {
         stage.centerOnScreen();
         stage.show();
     }
-    //test push
 
     public static void main(String[] args) {
         launch();
