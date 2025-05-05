@@ -125,10 +125,11 @@ private void GoToLogin(){
     public void initialize(URL location, ResourceBundle resources) {
         Authentication authentication = new Authentication();
 
-        if (!authentication.getUser().get("is_super_user").equals("1")){
+        if (authentication.getUser().get("is_super_user").equals("false")){
             System.out.println("Equal");
             UsersNav.setVisible(false);
-        }else {
+        }
+        else {
             System.out.println("Not Equal "+authentication.getUser().get("is_super_user"));
 
         }
