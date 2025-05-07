@@ -125,7 +125,7 @@ public class usermangmentcontroller implements Initializable
 
 
 
-        public user(String username, String email, String phone, String ssn, String active, String type,String id ,usermangmentcontroller usermangmentcontroller)
+        public user(String username, String email, String phone, String ssn, String active, String type, String id, usermangmentcontroller usermangmentcontroller)
         {
             this.username = username;
             this.email = email;
@@ -133,16 +133,30 @@ public class usermangmentcontroller implements Initializable
             this.ssn = ssn;
             this.active = active;
             this.type = type;
-            this.id =id;
-            Button edit=new Button("edit");
+            this.id = id;
+
+            Button edit = new Button("edit");
             edit.setBackground(Background.fill(Paint.valueOf("blue")));
             edit.setTextFill(Paint.valueOf("white"));
+
+            Button delete = new Button("delete");
+            delete.setBackground(Background.fill(Paint.valueOf("red")));
+            delete.setTextFill(Paint.valueOf("white"));
+
+            // Check if user is admin
+            boolean isAdmin = "1".equals(type) || "true".equalsIgnoreCase(type);
+            // Edit action
             edit.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
                     try {
-                        EditeUserApplication editeUserApplication=new EditeUserApplication(id);
-                        Stage stage=new Stage();
+                        if (isAdmin) {
+                            System.out.println("MASTER IS CALL");
+                            delete.setDisable(true); // prevent deleting after edit
+                        }
+
+                        EditeUserApplication editeUserApplication = new EditeUserApplication(id);
+                        Stage stage = new Stage();
                         stage.setTitle("edit");
                         stage.setResizable(true);
                         editeUserApplication.start(stage);
@@ -151,42 +165,40 @@ public class usermangmentcontroller implements Initializable
                     }
                 }
             });
-            Button delet=new Button("delete");
-            delet.setBackground(Background.fill(Paint.valueOf("red")));
-            delet.setTextFill(Paint.valueOf("white"));
-            delet.setOnAction(new EventHandler<ActionEvent>() {
+
+            // Delete action
+            delete.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    try{
-                    ButtonType buttonType=new ButtonType("cancel");
-                    ButtonType buttonType1=new ButtonType("delete");
-                    Alert alert =new Alert(Alert.AlertType.WARNING,"Are you want to delete this item ",buttonType,buttonType1);
-                    alert.setHeaderText(null);
-                    Optional<ButtonType> result = alert.showAndWait();//return the value of alert
-                        //////////////////////////////////////////////
-                    if (result.isPresent()&&result.get()==buttonType1){
-                        String query = "delete from users where id = " + id + ";";
-                        if (query ==null){
-                            System.out.println( "here1");
+                    try {
+                        ButtonType buttonTypeCancel = new ButtonType("cancel");
+                        ButtonType buttonTypeDelete = new ButtonType("delete");
+                        Alert alert = new Alert(Alert.AlertType.WARNING, "Are you want to delete this item", buttonTypeCancel, buttonTypeDelete);
+                        alert.setHeaderText(null);
+                        Optional<ButtonType> result = alert.showAndWait();
+
+                        if (result.isPresent() && result.get() == buttonTypeDelete) {
+                            String query = "delete from users where id = " + id + ";";
+                            DataBaseConnection dataBaseConnection = new DataBaseConnection(usermangmentcontroller.dbPath);
+                            dataBaseConnection.excute(query);
+                            usermangmentcontroller.refresh();
                         }
-                        System.out.println("Executing query: " + query);
-                        DataBaseConnection dataBaseConnection=new DataBaseConnection(usermangmentcontroller.dbPath);
-                        dataBaseConnection.excute(query);
-                        usermangmentcontroller.refresh();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
                     }
+                }
+            });
 
-                }
-                catch (Exception e){
-                       throw new  RuntimeException(e);
-                }
-                }
+            // If user is admin, disable delete button initially
+            if (isAdmin) {
+                delete.setDisable(true);
+            }
 
-           });
-            HBox hBox=new HBox();
-            hBox.getChildren().addAll(edit,delet);
+            HBox hBox = new HBox(10); // spacing = 10
+            hBox.getChildren().addAll(edit, delete);
             setAction(hBox);
-
         }
+
 
 
         public void setAction(HBox action) {
@@ -300,7 +312,7 @@ public class usermangmentcontroller implements Initializable
             return userObservableList;
         }
 
-                for (Map<String, String> map : list) {
+        for (Map<String, String> map : list) {
             userObservableList.add(new user(
                     map.get("username"),
                     map.get("email"),
@@ -317,7 +329,7 @@ public class usermangmentcontroller implements Initializable
     }
 
 
-@FXML
+    @FXML
     public void Search()
     {
         String search=(String)tsearch.getText();

@@ -8,17 +8,19 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class EditeUserApplication extends Application {
-private String id;
+    private String id;
     public EditeUserApplication() {
     }
     public EditeUserApplication(String id) {
-    this.id=id;
+
+        this.id=id;
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(app.usermanagment.EditeUserManagment.EditeUserApplication.class.getResource("EditeUser.fxml"));
         Scene scene = new Scene(fxmlLoader.load() );
+
         EditeUserController editeUserController=fxmlLoader.getController();
         stage.setTitle("ERP!");
         stage.setResizable(false);

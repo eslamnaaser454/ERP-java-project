@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -60,6 +61,14 @@
                      </font>
                   </Label>
                   <PasswordField fx:id="password" prefHeight="28.0" prefWidth="190.0" style="-fx-background-color: none; -fx-border-color: gray;" />
+                  <CheckBox fx:id="isAdmin" mnemonicParsing="false" prefHeight="8.0" prefWidth="74.0" text="Admin">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="10.0" />
+                     </font>
+                  </CheckBox>
                </children>
             </VBox>
             <Button fx:id="loginBtn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#LoginEvent" prefHeight="39.0" prefWidth="439.0" style="-fx-background-color: blue; -fx-background-radius: 20;" text="Login" textFill="WHITE">

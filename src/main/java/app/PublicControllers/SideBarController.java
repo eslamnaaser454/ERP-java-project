@@ -103,23 +103,23 @@ public class SideBarController implements Initializable {
             System.out.println();
         }
     }
-@FXML
-private void GoToLogin(){
-    Alert alert = new Alert(Alert.AlertType.WARNING);
-    alert.setContentText("Are you sure you want to logout?");
+    @FXML
+    private void GoToLogin(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setContentText("Are you sure you want to logout?");
 
-    Optional<ButtonType> result = alert.showAndWait();
-    if (result.get() == ButtonType.OK){
-        LoginApplication loginApplication = new LoginApplication();
-        Stage stage = (Stage) OverView.getScene().getWindow();
-        try {
-            loginApplication.start(stage);
-        }
-        catch (IOException e){
-            System.out.println(e.getCause());
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            LoginApplication loginApplication = new LoginApplication();
+            Stage stage = (Stage) OverView.getScene().getWindow();
+            try {
+                loginApplication.start(stage);
+            }
+            catch (IOException e){
+                System.out.println(e.getCause());
+            }
         }
     }
-}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -128,8 +128,7 @@ private void GoToLogin(){
         if (authentication.getUser().get("is_super_user").equals("false")){
             System.out.println("Equal");
             UsersNav.setVisible(false);
-        }
-        else {
+        }else {
             System.out.println("Not Equal "+authentication.getUser().get("is_super_user"));
 
         }

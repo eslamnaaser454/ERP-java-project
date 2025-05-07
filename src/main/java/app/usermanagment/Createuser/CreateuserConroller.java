@@ -6,6 +6,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.Border;
 import javafx.scene.paint.Paint;
+import org.openxmlformats.schemas.drawingml.x2006.diagram.STOutputShapeType;
+//java new
+
 import java.net.URL;
 import java.util.*;
 
@@ -39,9 +42,13 @@ public class CreateuserConroller implements Initializable {
         boolean admins=admin.isSelected();
         String emaill ="select email from users";
         String usernamee="select username from users";
+        String ssnn="select ssn from users";
+        String phonee="select phone from users";
         DataBaseConnection dataBaseConnectionss=new DataBaseConnection(dbPath);
         List <Map<String,String>>maps= dataBaseConnectionss.select(emaill);
         List <Map<String,String>>maps1p= dataBaseConnectionss.select(usernamee);
+        List <Map<String,String>>maps2p= dataBaseConnectionss.select(ssnn);
+        List <Map<String,String>>maps3p= dataBaseConnectionss.select(phonee);
 
 
         if (username == null || username.isEmpty()) {
@@ -51,11 +58,36 @@ public class CreateuserConroller implements Initializable {
             return;
         }
         for (Map<String,String> map:maps1p){
+
             String user=map.get("username");
+
             if (username.equals(user)){
                 error.setText("user name is exist");
                 error.setTextFill(Paint.valueOf("red"));
                 tusername.setBorder(Border.stroke(Paint.valueOf("red")));
+                return;
+            }
+        }
+
+        for (Map<String,String> map:maps2p){
+
+            String ssn1=map.get("SSN");
+
+            if (ssn.equals(ssn1)){
+                error.setText("SSN is exist");
+                error.setTextFill(Paint.valueOf("red"));
+                tssn.setBorder(Border.stroke(Paint.valueOf("red")));
+                return;
+            }
+        }
+        for (Map<String,String> map:maps3p){
+
+            String phone1=map.get("phone");
+
+            if (phone.equals(phone1)){
+                error.setText("Phone is exist");
+                error.setTextFill(Paint.valueOf("red"));
+                tphone.setBorder(Border.stroke(Paint.valueOf("red")));
                 return;
             }
         }
@@ -113,15 +145,30 @@ public class CreateuserConroller implements Initializable {
         if (ssn == null || ssn.isEmpty()) {
             error.setText("ssn Field Is Empty");
             error.setTextFill(Paint.valueOf("red"));
-            tusername.setBorder(Border.stroke(Paint.valueOf("red")));
+            tssn.setBorder(Border.stroke(Paint.valueOf("red")));
+
             return;
         }
-        if (ssn.length()!=16) {
-            error.setText("ssn Field must be gretar than 16 ");
+        if (ssn.length()!=14) {
+            error.setText("ssn Field must be  14 digits");
             error.setTextFill(Paint.valueOf("red"));
-            tusername.setBorder(Border.stroke(Paint.valueOf("red")));
+            tssn.setBorder(Border.stroke(Paint.valueOf("red")));
             return;
         }
+        if(admins){
+
+            try {
+
+                password= SecureAES.encrypt(password);
+                System.out.println("Encrypted: " + password);
+
+                String decrypted = SecureAES.decrypt(password);
+                System.out.println("Decrypted: " + decrypted);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         DataBaseConnection dataBaseConnections = new DataBaseConnection(dbPath);
         List<Map<String,String>> SSN= dataBaseConnections.select("SELECT * FROM users where SSN ='"+ssn+"' ");
         if (SSN==null||SSN.isEmpty()){
@@ -137,6 +184,7 @@ public class CreateuserConroller implements Initializable {
             boolean result = dataBaseConnection.excute(query);
 
             if (result) {
+                System.out.println(admins);
                 error.setText("user add successfully");
                 error.setTextFill(Paint.valueOf("green"));
             } else {
@@ -154,7 +202,7 @@ public class CreateuserConroller implements Initializable {
         try {
             DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
             List<Map<String, String>> users = dataBaseConnection.select("SELECT * FROM users");
-
+            error.setText("");
             if (users == null || users.isEmpty()) {
                 System.err.println("sql databse is null");
                 return;
