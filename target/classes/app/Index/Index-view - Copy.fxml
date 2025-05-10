@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="579.0" prefWidth="1058.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Index.IndexController">
+   <left>
+      <fx:include source="../Layouts/side-bar-view.fxml" />
+   </left>
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" pannable="true" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+         <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
+               <children>
+                  <VBox prefWidth="100.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
+                  <AnchorPane layoutX="541.0" layoutY="14.0" prefHeight="161.0" prefWidth="253.0" style="-fx-background-color: #00B4D8; -fx-background-radius: 25;">
+                     <children>
+                        <ImageView fitHeight="107.0" fitWidth="110.0" layoutX="140.0" layoutY="46.0" opacity="0.61" pickOnBounds="true" preserveRatio="true" rotate="-14.9">
+                           <image>
+                              <Image url="@../images/icons/business.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="27.0" layoutY="21.0" text="Sales" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="52.0" text="overall" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="91.0" text="55.5 L.E" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="32.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+                  <AnchorPane layoutX="278.0" layoutY="14.0" prefHeight="161.0" prefWidth="253.0" style="-fx-background-color: #FFB400; -fx-background-radius: 25;">
+                     <children>
+                        <ImageView fitHeight="107.0" fitWidth="110.0" layoutX="140.0" layoutY="46.0" opacity="0.61" pickOnBounds="true" preserveRatio="true" rotate="-14.9">
+                           <image>
+                              <Image url="@../images/icons/recycle.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="27.0" layoutY="21.0" text="Products" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="52.0" text="overall" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="91.0" text="35" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="161.0" prefWidth="253.0" style="-fx-background-color: #FF6F61; -fx-background-radius: 25;">
+                     <children>
+                        <ImageView fitHeight="107.0" fitWidth="110.0" layoutX="140.0" layoutY="46.0" opacity="0.61" pickOnBounds="true" preserveRatio="true" rotate="-14.9">
+                           <image>
+                              <Image url="@../images/icons/user-white.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="27.0" layoutY="21.0" text="Employees" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="52.0" text="overall" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="91.0" text="12" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="414.0" layoutY="198.0" prefHeight="379.0" prefWidth="380.0" style="-fx-background-color: white; -fx-background-radius: 25;">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.1599999964237213" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <LineChart layoutX="8.0" layoutY="12.0" prefHeight="355.0" prefWidth="346.0" style="-fx-background-color: white;">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="14.0" layoutY="198.0" prefHeight="379.0" prefWidth="380.0" style="-fx-background-color: white; -fx-background-radius: 25;">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.1599999964237213" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <LineChart layoutX="8.0" layoutY="12.0" prefHeight="355.0" prefWidth="346.0" style="-fx-background-color: white;">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis side="LEFT" />
+                           </yAxis>
+                        </LineChart>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

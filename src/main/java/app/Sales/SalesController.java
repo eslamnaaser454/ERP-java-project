@@ -219,7 +219,7 @@ public class SalesController implements Initializable {
             this.date = date;
 
             printBtn = new Button("Details");
-            printBtn.setStyle("-fx-background-color: red; -fx-background-radius: 15;");
+            printBtn.setStyle("-fx-background-color: #021B2A; -fx-background-radius: 5;");
             printBtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {

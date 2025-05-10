@@ -63,7 +63,7 @@ public class Departmentcontroller implements Initializable {
                 VBox vbox = new VBox();
                 vbox.setAlignment(javafx.geometry.Pos.TOP_CENTER);
                 vbox.setPrefWidth(200.0);
-                vbox.setStyle("-fx-padding: 10; -fx-background-color: #e0e0e0; -fx-border-color: #c0c0c0; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;");
+                vbox.setStyle("-fx-padding: 10; -fx-background-color: white; -fx-border-color: #c0c0c0; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;");
 
                 Label nameLabel = new Label();
                 nameLabel.setMaxWidth(Double.MAX_VALUE);
@@ -80,7 +80,7 @@ public class Departmentcontroller implements Initializable {
                 Button Edit = new Button("Edit");
                 Edit.setMaxWidth(Double.MAX_VALUE);
                 Edit.setPrefHeight(30.0);
-                Edit.setStyle("-fx-background-color: #4a86e8; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;");
+                Edit.setStyle("-fx-background-color: #00A1FF; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;");
                 Edit.setPadding(new Insets(5.0, 10.0, 5.0, 10.0));
                 Edit.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
@@ -122,7 +122,7 @@ public class Departmentcontroller implements Initializable {
                 VBox vbox = new VBox();
                 vbox.setAlignment(javafx.geometry.Pos.TOP_CENTER);
                 vbox.setPrefWidth(200.0);
-                vbox.setStyle("-fx-padding: 10; -fx-background-color: #e0e0e0; -fx-border-color: #c0c0c0; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;");
+                vbox.setStyle("-fx-padding: 10; -fx-background-color: white; -fx-border-color:  rgb(203,203,203); -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;");
 
                 Label nameLabel = new Label();
                 nameLabel.setMaxWidth(Double.MAX_VALUE);
@@ -139,7 +139,7 @@ public class Departmentcontroller implements Initializable {
                 Button Edit = new Button("Edit");
                 Edit.setMaxWidth(Double.MAX_VALUE);
                 Edit.setPrefHeight(30.0);
-                Edit.setStyle("-fx-background-color: #4a86e8; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;");
+                Edit.setStyle("-fx-background-color: #00A1FF; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;");
                 Edit.setPadding(new Insets(5.0, 10.0, 5.0, 10.0));
                 Edit.setUserData(map.get("id"));
                 Edit.setOnAction(new EventHandler<ActionEvent>() {

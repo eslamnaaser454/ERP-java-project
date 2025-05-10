@@ -7,14 +7,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="426.0" spacing="20.0" style="-fx-padding: 30;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.usermanagment.Createuser.CreateuserConroller">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="426.0" spacing="20.0" style="-fx-padding: 30; -fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.usermanagment.Createuser.CreateuserConroller">
     <children>
-        <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" style="-fx-padding: 10;" text="Add User">
+        <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Add User">
             <font>
                 <Font name="System Bold" size="25.0" />
             </font>
         </Label>
-        <Label fx:id="error" maxWidth="1.7976931348623157E308" />
+        <Label fx:id="error" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Err">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
         <VBox prefWidth="100.0" spacing="10.0">
             <children>
                 <Label fx:id="lusername" text="usename">
@@ -22,7 +25,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="tusername" prefHeight="38.0" prefWidth="266.0" promptText="Username" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: rgba(23,23,23,0.5);" />
+                <TextField fx:id="tusername" prefHeight="41.0" prefWidth="266.0" promptText="Username" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: rgba(23,23,23,0.5); -fx-border-radius: 250;" />
             </children>
         </VBox>
         <VBox prefWidth="100.0" spacing="10.0">
@@ -32,7 +35,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="tpassword" prefHeight="38.0" prefWidth="266.0" promptText="passowrd" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: rgba(23,23,23,0.5);" />
+                <TextField fx:id="tpassword" prefHeight="41.0" prefWidth="266.0" promptText="passowrd" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: rgba(23,23,23,0.5); -fx-border-radius: 250;" />
             </children>
         </VBox>
         <VBox prefWidth="100.0" spacing="10.0">
@@ -42,7 +45,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="tphone" prefHeight="38.0" prefWidth="266.0" promptText="phone" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: rgba(23,23,23,0.5);" />
+                <TextField fx:id="tphone" prefHeight="41.0" prefWidth="266.0" promptText="phone" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: rgba(23,23,23,0.5); -fx-border-radius: 250;" />
             </children>
         </VBox>
         <VBox prefWidth="100.0" spacing="10.0">
@@ -52,7 +55,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="temail" prefHeight="38.0" prefWidth="266.0" promptText="Email" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: rgba(23,23,23,0.5);" />
+                <TextField fx:id="temail" prefHeight="41.0" prefWidth="266.0" promptText="Email" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: rgba(23,23,23,0.5); -fx-border-radius: 250;" />
             </children>
         </VBox>
         <VBox prefWidth="100.0" spacing="10.0">
@@ -62,7 +65,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="tssn" prefHeight="38.0" prefWidth="266.0" promptText="Ssn" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: rgba(23,23,23,0.5);" />
+                <TextField fx:id="tssn" prefHeight="41.0" prefWidth="266.0" promptText="Ssn" style="-fx-background-color: rgba(0,0,0,0); -fx-border-color: rgba(23,23,23,0.5); -fx-border-radius: 250;" />
             </children>
         </VBox>
         <CheckBox fx:id="admin" mnemonicParsing="false" text="Admin">
@@ -70,9 +73,9 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </CheckBox>
-        <Button fx:id="add" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#add" style="-fx-background-color: blue; -fx-padding: 10;" text="Add" textFill="WHITE">
+        <Button fx:id="add" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #021B2A; -fx-padding: 10; -fx-background-radius: 250;" text="Add" textFill="WHITE">
             <font>
-                <Font size="18.0" />
+                <Font name="System Bold" size="18.0" />
             </font>
         </Button>
     </children>

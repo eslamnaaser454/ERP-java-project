@@ -7,12 +7,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="579.0" prefWidth="1288.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.HR.Manage.ManageEmplyessController">
@@ -21,24 +23,43 @@
         <fx:include source="../../Layouts/side-bar-view.fxml" />
     </left>
     <center>
-        <VBox prefHeight="551.0" prefWidth="906.0" BorderPane.alignment="TOP_CENTER">
+        <VBox prefHeight="551.0" prefWidth="906.0" style="-fx-background-color: white;" BorderPane.alignment="TOP_CENTER">
             <children>
-                <Label alignment="CENTER" minHeight="40.0" prefHeight="45.0" style="-fx-background-color: white; -fx-label-padding: 10; -fx-font-family: 'System Bold'; -fx-font-size: 16.0;" text="HR Management" textFill="#3676ff">
-                    <font>
-                        <Font name="Baskerville Old Face" size="36.0" />
-                    </font>
-                </Label>
                 <AnchorPane prefHeight="539.0" prefWidth="1053.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <VBox style="-fx-background-color: white;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <VBox style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <AnchorPane prefHeight="50.0">
+                        <AnchorPane prefHeight="64.0" prefWidth="1053.0">
+                           <children>
+                              <Label layoutX="29.0" layoutY="7.0" text="Employees Management">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="29.0" layoutY="32.0" text="HR Management / employees" textFill="#00000080">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                                <AnchorPane prefHeight="59.0" prefWidth="1003.0" style="-fx-background-color: white; -fx-background-radius: 50;">
                                     <children>
-                                        <TextField fx:id="searchField" focusTraversable="false" prefHeight="33.0" prefWidth="303.0" promptText="Search..." style="-fx-background-color: rgba(0 ,0,0,0); -fx-border-color: rgb(232, 232, 232);" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
-                                        <Button fx:id="add" layoutX="220.0" layoutY="10.0" mnemonicParsing="false" onAction="#GotoaddForm" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: blue;" text="Add employees " textFill="WHITE" AnchorPane.rightAnchor="10.0" />
-                                        <Button fx:id="refreshBtn" layoutX="458.0" layoutY="14.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: blue; -fx-font-family: 'System Bold'; -fx-font-size: 12.0;" text="Refresh" textFill="WHITE" />
-                                        <Button fx:id="searchBtn" layoutX="337.0" layoutY="14.0" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: blue; -fx-font-family: 'System Bold'; -fx-font-size: 12.0;" text="Search" textFill="WHITE" />
-                                        <Button fx:id="repotBtn" layoutX="803.0" layoutY="8.0" mnemonicParsing="false" onAction="#Report" style="-fx-background-color: green;" textFill="WHITE" AnchorPane.rightAnchor="148.33333333333326">
+                                        <TextField fx:id="searchField" focusTraversable="false" layoutX="53.0" layoutY="11.0" prefHeight="34.0" prefWidth="303.0" promptText="Search here.." style="-fx-background-color: rgba(0 ,0,0,0); -fx-border-color: rgb(232, 232, 232); -fx-border-radius: 50;" AnchorPane.leftAnchor="53.0" AnchorPane.topAnchor="11.0" />
+                                        <Button fx:id="add" layoutX="842.0" layoutY="9.0" mnemonicParsing="false" onAction="#GotoaddForm" prefHeight="41.0" prefWidth="148.0" style="-fx-background-color: #021B2A; -fx-background-radius: 50;" text="Add employee" textFill="WHITE" AnchorPane.rightAnchor="13.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Button>
+                                        <Button fx:id="refreshBtn" alignment="BASELINE_LEFT" layoutX="462.0" layoutY="11.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="34.0" prefWidth="96.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 50;" text=" Refresh">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Button>
+                                        <Button fx:id="searchBtn" alignment="BASELINE_LEFT" layoutX="365.0" layoutY="11.0" mnemonicParsing="false" onAction="#search" prefHeight="34.0" prefWidth="89.0" style="-fx-background-color: #021B2A; -fx-background-radius: 50;" text=" Search" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Button>
+                                        <Button fx:id="repotBtn" layoutX="729.0" layoutY="9.0" mnemonicParsing="false" onAction="#Report" prefHeight="41.0" prefWidth="105.0" style="-fx-background-color: green; -fx-background-radius: 50;" textFill="WHITE" AnchorPane.rightAnchor="169.0">
                                             <font>
                                                 <Font name="System Bold" size="12.0" />
                                             </font>
@@ -50,18 +71,48 @@
                                                                 <Image url="@../../images/icons/excell.png" />
                                                             </image>
                                                         </ImageView>
-                                                        <Label text="Report" textFill="WHITE">
+                                                        <Label prefWidth="56.0" text="Export" textFill="WHITE">
                                                             <font>
-                                                                <Font size="13.0" />
+                                                                <Font name="System Bold" size="16.0" />
                                                             </font>
                                                         </Label>
                                                     </children>
                                                 </HBox>
                                             </graphic>
                                         </Button>
+                              <ImageView fitHeight="15.0" fitWidth="14.0" layoutX="530.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/icons/refresh-arrow.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="15.0" fitWidth="14.0" layoutX="428.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/icons/search%20(9).png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="backbutton" alignment="BASELINE_LEFT" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #021B2A; -fx-font-family: 'System Bold'; -fx-background-radius: 100;" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <ImageView fitHeight="15.0" fitWidth="14.0" layoutX="24.0" layoutY="21.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/icons/right-arrow%20(2).png" />
+                                 </image>
+                              </ImageView>
                                     </children>
+                           <VBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" />
+                           </VBox.margin>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color opacity="0.1599999964237213" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
                                 </AnchorPane>
-                                <TableView fx:id="table" prefHeight="504.0" prefWidth="1017.0" stylesheets="@ManageEmployess.css" VBox.vgrow="ALWAYS">
+                                <TableView fx:id="table" prefHeight="440.0" prefWidth="1013.0" stylesheets="@ManageEmployess.css" VBox.vgrow="ALWAYS">
                                     <columns>
                                         <TableColumn fx:id="idCol" text="ID" />
                                         <TableColumn fx:id="firstNameCol" text="First Name" />
@@ -79,7 +130,7 @@
                                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                     </columnResizePolicy>
                                     <VBox.margin>
-                                        <Insets left="10.0" right="10.0" top="20.0" />
+                                        <Insets left="15.0" right="15.0" />
                                     </VBox.margin>
                            <styleClass>
                               <String fx:value="column-header" />

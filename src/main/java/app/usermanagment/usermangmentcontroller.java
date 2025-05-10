@@ -136,12 +136,15 @@ public class usermangmentcontroller implements Initializable
             this.id = id;
 
             Button edit = new Button("edit");
-            edit.setBackground(Background.fill(Paint.valueOf("blue")));
+//            edit.setBackground(Background.fill(Paint.valueOf("#021B2A")));
             edit.setTextFill(Paint.valueOf("white"));
+            edit.setStyle("-fx-background-radius: 5;-fx-background-color: #021B2A");
+
 
             Button delete = new Button("delete");
-            delete.setBackground(Background.fill(Paint.valueOf("red")));
+//            delete.setBackground(Background.fill(Paint.valueOf("red")));
             delete.setTextFill(Paint.valueOf("white"));
+            delete.setStyle("-fx-background-radius: 5;-fx-background-color: red");
 
             // Check if user is admin
             boolean isAdmin = "1".equals(type) || "true".equalsIgnoreCase(type);

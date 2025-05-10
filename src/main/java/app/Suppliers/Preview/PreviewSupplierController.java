@@ -158,7 +158,7 @@ public class PreviewSupplierController implements Initializable {
             HBox stockHbox = new HBox(stockLabel,stockHyperlink);
             // Buttons
             Button previewButton = new Button("Preview");
-            previewButton.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+            previewButton.setStyle("-fx-background-color: #021B2A; -fx-text-fill: white; -fx-font-weight: bold;");
             previewButton.setPadding(new Insets(5,15,5,15));
 
             previewButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -175,7 +175,7 @@ public class PreviewSupplierController implements Initializable {
             });
 
             Button removeButton = new Button("Remove");
-            removeButton.setStyle("-fx-background-color: red; -fx-text-fill: white;");
+            removeButton.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold");
             removeButton.setPadding(new Insets(5,15,5,15));
             removeButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override

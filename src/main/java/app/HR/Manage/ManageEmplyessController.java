@@ -323,7 +323,7 @@ public class ManageEmplyessController implements Initializable {
             deleteBtn = new Button("Delete");
             deleteBtn.setBackground(Background.fill(Paint.valueOf("red")));
             deleteBtn.setTextFill(Paint.valueOf("white"));
-            deleteBtn.setStyle("-fx-background-color: red; -fx-background-radius: 15;");
+            deleteBtn.setStyle("-fx-background-color: red; -fx-background-radius: 5;");
             deleteBtn.setUserData(idCol);
 
             deleteBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -353,10 +353,10 @@ public class ManageEmplyessController implements Initializable {
 
 
             this.ManageEmplyessController = manageEmplyessController;
-            editBtn = new Button("Edite");
+            editBtn = new Button("Edit");
             editBtn.setBackground(Background.fill(Paint.valueOf("blue")));
             editBtn.setTextFill(Paint.valueOf("white"));
-            editBtn.setStyle("-fx-background-color: blue; -fx-background-radius: 15;");            editBtn.setUserData(idCol);
+            editBtn.setStyle("-fx-background-color: #021B2A; -fx-background-radius: 5;");            editBtn.setUserData(idCol);
             actions = new HBox();
             actions.setSpacing(40);
             actions.setPrefHeight(20);

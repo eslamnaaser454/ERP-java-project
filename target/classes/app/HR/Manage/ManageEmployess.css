@@ -4,8 +4,9 @@
 }
 
 .table-view .column-header {
-    -fx-background-color: #818af3;
     -fx-text-fill: white;
+    -fx-background-color:  #00A1FF;
+    
 
 }
 
@@ -15,7 +16,7 @@
 }
 
 .table-row-cell:odd {
-    -fx-background-color: #f9f9f9;
+    -fx-background-color: white;
 }
 
 .table-row-cell:even {

@@ -72,7 +72,7 @@ public class SuppliersController implements Initializable {
                 VBox vbox = new VBox();
                 vbox.setAlignment(javafx.geometry.Pos.TOP_CENTER);
                 vbox.setPrefWidth(188.0);
-                vbox.setStyle("-fx-padding: 5; -fx-background-color: #d7e2fc;");
+                vbox.setStyle("-fx-padding: 5; -fx-background-color: #d7e2fc;-fx-background-radius: 5");
 
                 Label nameLabel = new Label();
                 nameLabel.setMaxWidth(Double.MAX_VALUE);
@@ -101,7 +101,7 @@ public class SuppliersController implements Initializable {
                 Button previewBtn = new Button("Preview");
                 previewBtn.setMaxWidth(Double.MAX_VALUE);
                 previewBtn.setPrefHeight(25.0);
-                previewBtn.setStyle("-fx-background-color: blue;");
+                previewBtn.setStyle("-fx-background-color: #00A1FF;-fx-font-weight: bold");
                 previewBtn.setFont(Font.font("System Bold", 12.0));
                 previewBtn.setTextFill(Paint.valueOf("white"));
                 previewBtn.setOnAction(new EventHandler<ActionEvent>() {
