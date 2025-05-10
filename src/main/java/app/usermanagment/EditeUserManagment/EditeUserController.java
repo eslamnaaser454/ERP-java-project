@@ -216,7 +216,9 @@ public class EditeUserController implements Initializable {
 
 
         // Handle admin checkbox and password field
-        String isAdmin = users.get("is_super_user");
+        String isAdmin = users.get("type");
+        if(isAdmin.equals("HR")){
+            isAdmin = "true";}
         admin.setSelected(isAdmin.equalsIgnoreCase("true") || isAdmin.equals("1"));
         // This is the correct field
         Authentication authentication = new Authentication();

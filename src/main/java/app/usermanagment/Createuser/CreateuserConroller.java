@@ -1,6 +1,7 @@
 package app.usermanagment.Createuser;
 
 import app.Classes.DataBaseConnection;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -13,33 +14,82 @@ import java.net.URL;
 import java.util.*;
 
 public class CreateuserConroller implements Initializable {
+String selected="User";
+String Department_name="HR";
+    @FXML
+    private ComboBox<String> Department;
+
+    @FXML
+    private RadioButton HR;
+
+    @FXML
+    private Button add;
+
+    @FXML
+    private RadioButton admin;
+
+    @FXML
+    private Label error;
+
+    @FXML
+    private Label lemail;
+
+    @FXML
+    private Label lpassword;
+
+    @FXML
+    private Label lphone;
+
+    @FXML
+    private Label lssn;
+
+    @FXML
+    private Label lusername;
+
+    @FXML
+    private TextField temail;
+
+    @FXML
+    private TextField tpassword;
+
+    @FXML
+    private TextField tphone;
+
+    @FXML
+    private TextField tssn;
 
     @FXML
     private TextField tusername;
+
     @FXML
-    private TextField tpassword;
+    private RadioButton user;
+
     @FXML
-    private TextField tphone;
-    @FXML
-    private TextField temail;
-    @FXML
-    private TextField tssn;
-    @FXML
-    private CheckBox admin;
-    @FXML
-    private Button add;
-    @FXML
-    private Label error;
+    private ToggleGroup user_type;
+
     private Map<String, String> element;
     private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
     @FXML
     public void add() {
+        if(selected.equals("HR")){
+            Department_name=null;
+
+        }
+        else {
+            Department_name=Department.getSelectionModel().getSelectedItem();
+        }
+        System.out.println(Department_name+ "\t"+selected);
+        String type = "";
         String username = tusername.getText();
         String password = tpassword.getText();
         String phone = tphone.getText();
         String email = temail.getText();
         String ssn =   tssn.getText();
-        boolean admins=admin.isSelected();
+
+        boolean admins=selected.equals("HR");;
+
+
+
         String emaill ="select email from users";
         String usernamee="select username from users";
         String ssnn="select ssn from users";
@@ -155,7 +205,7 @@ public class CreateuserConroller implements Initializable {
             tssn.setBorder(Border.stroke(Paint.valueOf("red")));
             return;
         }
-        if(admins){
+        if(selected.equals("HR")){
 
             try {
 
@@ -168,6 +218,13 @@ public class CreateuserConroller implements Initializable {
                 System.out.println(e.getMessage());
             }
         }
+       else if(Department_name==null){
+
+            error.setText("You must select department");
+            error.setTextFill(Paint.valueOf("red"));
+            Department.setBorder(Border.stroke(Paint.valueOf("red")));
+            return;
+        }
 
         DataBaseConnection dataBaseConnections = new DataBaseConnection(dbPath);
         List<Map<String,String>> SSN= dataBaseConnections.select("SELECT * FROM users where SSN ='"+ssn+"' ");
@@ -176,7 +233,11 @@ public class CreateuserConroller implements Initializable {
             error.setTextFill(Paint.valueOf("red"));
         }
 
-        String query = "insert into users(username, password, phone, email, SSN, is_super_user) values ('" + username + "', '" + password + "', '" + phone + "', '" + email + "', '" + ssn + "','" + admins + "')";
+
+
+        String query = "INSERT INTO users(username, password, phone, email, SSN, is_super_user, type, Department) " +
+                "VALUES ('" + username + "', '" + password + "', '" + phone + "', '" + email + "', '" +
+                ssn + "', '" + admins + "', '" + selected + "', '" + Department_name + "')";
 
 
         try {
@@ -195,10 +256,37 @@ public class CreateuserConroller implements Initializable {
             error.setText("SQL Error: " + e.getMessage());
             error.setTextFill(Paint.valueOf("red"));
         }
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Department_names departmentDAO = new Department_names();
+
+        List<String> departmentNames = departmentDAO.getDepartmentNames();
+
+        Department.setItems(FXCollections.observableArrayList(departmentNames));
+
+
+     //   Department.getSelectionModel().selectFirst();
+        System.out.println(Department.getSelectionModel().getSelectedItem());
+
+        user_type.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                RadioButton selectedRadioButton = (RadioButton) newValue;
+                System.out.println("Selected: " + selectedRadioButton.getText());
+            selected=selectedRadioButton.getText();
+                Department.setVisible(!selected.equals("HR"));
+           }
+        });
+        if(selected.equals("HR")){
+           Department_name="HR";
+Department.getSelectionModel().select(null);
+        }
+        else {
+            Department_name=Department.getSelectionModel().getSelectedItem();
+        }
+
         try {
             DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
             List<Map<String, String>> users = dataBaseConnection.select("SELECT * FROM users");

@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import app.Stores.Index.*;
 import javafx.stage.Stage;
@@ -23,6 +24,10 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SideBarController implements Initializable {
+    @FXML
+    private Label name;
+    @FXML
+    private HBox HR;
 
     @FXML
     HBox OverView;
@@ -134,7 +139,12 @@ public class SideBarController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Authentication authentication = new Authentication();
-
+//        if(!authentication.getUser().get("type").equals("HR")){
+//            HR.setVisible(false);
+//
+//        }
+        System.out.println("TYPE =  "+authentication.getUser().get("type"));
+        name.setText("Hello, "+authentication.getUser().get("username"));
         if (authentication.getUser().get("is_super_user").equals("false")){
             System.out.println("Equal");
             UsersNav.setVisible(false);

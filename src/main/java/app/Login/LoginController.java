@@ -5,26 +5,27 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import app.Classes.DataBaseConnection;
 import app.Classes.Authentication;
+import javafx.scene.layout.Border;
 import javafx.scene.paint.Paint;
 import app.Index.IndexApplication;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 public class LoginController {
 
 
 
     public LoginController(){
-        System.out.println("Logincontroller Runder");
+        System.out.println("Login controller Render");
     }
     @FXML
     protected Label errorMsg;
     @FXML
     protected TextField username;
 
-    @FXML
-    private CheckBox isAdmin;
 
     @FXML
     protected PasswordField password;
@@ -33,25 +34,24 @@ public class LoginController {
     protected Button loginBtn;
     @FXML
     protected void LoginEvent() {
+
+          String dbPath1 = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+
+        DataBaseConnection dataBaseConnectionss=new DataBaseConnection(dbPath1);
+
         String user = (String) this.username.getText();
         String pass = (String) this.password.getText();
-        if(isAdmin.isSelected()){
-            System.out.println("Admin");
-            try {
+        String mytype="select type from users where username='"+user+"'";
+        List<Map<String,String>> maps3p= dataBaseConnectionss.select(mytype);
+        try{
+if(maps3p.getFirst().get("type").equals(("HR"))){
+    pass= SecureAES.encrypt(pass);
 
-                pass= SecureAES.encrypt(pass);
-                System.out.println("Encrypted: " + password);
+}
+        }catch (Exception e){System.out.println(e.getMessage());}
 
-                String decrypted = SecureAES.decrypt(pass);
-                System.out.println("Decrypted: " + decrypted);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        else{
 
-            System.out.println("Regular User");
-        }
+
         String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
 
         System.out.println("login data");
