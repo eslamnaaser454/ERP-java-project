@@ -4,6 +4,7 @@ import app.Classes.Authentication;
 import app.HR.index.HRIndexApplication;
 import app.Index.IndexApplication;
 import app.Login.LoginApplication;
+import app.Market.MarketApplication;
 import app.Sales.SalesApplication;
 import app.Suppliers.SuppliersApplication;
 import app.usermanagment.usermanagmentapp;
@@ -40,7 +41,16 @@ public class SideBarController implements Initializable {
         }
 
     }
-
+    @FXML
+    private void GoToMarket(){
+        MarketApplication marketApplication = new MarketApplication();
+        Stage stage = (Stage) OverView.getScene().getWindow();
+        try {
+            marketApplication.start(stage);
+        }catch (IOException e){
+            System.out.println("exception: "+e.getMessage());
+        }
+    }
     @FXML
     public void GoToSuppliers(){
         Stage stage = (Stage) OverView.getScene().getWindow();

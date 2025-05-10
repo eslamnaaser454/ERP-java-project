@@ -8,6 +8,7 @@ module app {
 
     opens app.Login to javafx.fxml;
     opens app.Index to javafx.fxml;
+    opens app.Market to javafx.fxml;
     opens app.Stores.Index to javafx.fxml;
     opens app.Stores.Manage to javafx.fxml;
     opens app.Stores.Manage.Create to javafx.fxml;
@@ -39,6 +40,7 @@ module app {
 
     exports app.Index;
     exports app.Login;
+    exports app.Market;
     exports app.Stores.Index;
     exports app.Stores.Manage;
     exports app.Stores.Manage.Create;

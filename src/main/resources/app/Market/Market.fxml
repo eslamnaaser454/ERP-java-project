@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Market.MarketController"
+            prefHeight="579.0" prefWidth="1058.0">
+    <left>
+
+         <fx:include source="./../Layouts/side-bar-view.fxml" />
+    </left>
+    <center>
+        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+            <content>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <VBox layoutX="30.0" layoutY="30.0" prefWidth="998.0" style="-fx-background-color: white; -fx-padding: 5;">
+                            <children>
+                                <HBox alignment="CENTER" style="-fx-border-color: rgb(203,203,203);" />
+                                <HBox spacing="5.0" style="-fx-padding: 0;">
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <AnchorPane VBox.vgrow="ALWAYS">
+                                    <children>
+                                        <TextField layoutX="14.0" layoutY="15.0" prefHeight="31.0" prefWidth="207.0"
+                                                   promptText="Search..." style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+                                        <Button layoutX="256.0" layoutY="19.0" mnemonicParsing="false" prefHeight="28.0"
+                                                prefWidth="79.0" style="-fx-background-color: blue;" text="Search" textFill="WHITE" />
+                                        <Button layoutX="645.0" layoutY="17.0" mnemonicParsing="false"
+                                                prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: blue;"
+                                                text="Refresh" textFill="WHITE" />
+                                        <!-- Uncomment this if the method exists in controller -->
+                                        <!-- onAction="#setData" -->
+                                    </children>
+                                    <padding>
+                                        <Insets top="10.0" bottom="10.0" />
+                                    </padding>
+                                </AnchorPane>
+                                <VBox fx:id="supplyContainer" spacing="10.0">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" style="-fx-background-color: rgba(203,203,203,0.4);">
+                                            <children>
+                                                <ImageView fitHeight="231.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true">
+<!--                                                    <image>-->
+<!--                                                        <Image url="@/app/images/imgs/download.jpg" />-->
+<!--                                                    </image>-->
+                                                </ImageView>
+                                                <VBox spacing="5.0" style="-fx-padding: 10;">
+                                                    <children>
+                                                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                            <children>
+                                                                <Label text="Product Name : ">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label text="Black Man From Nigeria">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0" />
+                                                                    </font>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                            <children>
+                                                                <Label text="Qnt : ">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label text="30">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0" />
+                                                                    </font>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                            <children>
+                                                                <Label text="Unit Price : ">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label text="20$">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0" />
+                                                                    </font>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                            <children>
+                                                                <Label text="Additional Fees : ">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label text="5$">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0" />
+                                                                    </font>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                            <children>
+                                                                <Label text="Supplier : ">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Hyperlink text="Mohamed Saif" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                            <children>
+                                                                <Label text="Stock :">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Hyperlink text="Aswan Store" />
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" spacing="10.0" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
