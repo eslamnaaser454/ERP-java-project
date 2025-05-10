@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="579.0" prefWidth="1058.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Suppliers.Preview.PreviewSupply.PreviewSupplyController">
+   <left>
+      <fx:include source="../../../Layouts/side-bar-view.fxml" />
+
+   </left>
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" pannable="true" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+         <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <VBox prefWidth="100.0" style="-fx-background-color: white; -fx-padding: 5;" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="51.0">
+                     <children>
+                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" style="-fx-border-color: rgb(203,203,203);">
+                           <children>
+                              <ImageView fx:id="image" fitHeight="297.0" fitWidth="311.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                                 <image>
+                                    <Image url="@../../../images/icons/userIcon.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-padding: 10;" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefWidth="200.0" style="-fx-padding: 0;">
+                                       <children>
+                                          <Label text="Name: " textFill="#989898">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="nameLable">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefWidth="200.0" style="-fx-padding: 0;">
+                                       <children>
+                                          <Label text="Price : " textFill="#989898">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="priceLable">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefWidth="200.0" style="-fx-padding: 0;">
+                                       <children>
+                                          <Label text="Additional Fees : " textFill="#989898">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="feesLable">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefWidth="200.0" style="-fx-padding: 0;">
+                                       <children>
+                                          <Label text="Selling Price" textFill="#989898">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="sellLable">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefWidth="200.0" style="-fx-padding: 0;">
+                                       <children>
+                                          <Label text="Quantaty : " textFill="#989898">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="qntLable">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefWidth="200.0" style="-fx-padding: 0;">
+                                       <children>
+                                          <Label text="Supplier : " textFill="#989898">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="supplierLable">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefWidth="200.0" style="-fx-padding: 0;">
+                                       <children>
+                                          <Label text="Stock :  " textFill="#989898">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="stockLable">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Button mnemonicParsing="false" onAction="#goToEdit" prefHeight="25.0" prefWidth="51.0" style="-fx-background-color: blue;" text="Edite" textFill="WHITE" />
+                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="51.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <AnchorPane maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                           <children>
+                              <TextField fx:id="searchField" layoutX="14.0" layoutY="15.0" prefHeight="31.0" prefWidth="207.0" promptText="Search..." style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" AnchorPane.leftAnchor="14.0" />
+                              <Button layoutX="255.0" layoutY="17.0" mnemonicParsing="false" onAction="#search" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: blue;" text="Search" textFill="WHITE" AnchorPane.leftAnchor="255.0" />
+                              <Button layoutX="360.0" layoutY="17.0" mnemonicParsing="false" onAction="#refreash" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: blue;" text="Refresh" textFill="WHITE" AnchorPane.leftAnchor="360.0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </AnchorPane>
+                        <Label text="Add Sale">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <AnchorPane maxWidth="1.7976931348623157E308">
+                           <children>
+                              <!-- onAction="#addSales"-->
+                              <TextField fx:id="customerPhoneField" layoutX="180.0" layoutY="19.0" prefHeight="18.0" prefWidth="152.0" promptText="Customer Phone" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" AnchorPane.leftAnchor="180.0" />
+                              <Button layoutX="491.0" layoutY="19.0" mnemonicParsing="false" onAction="#addSales" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: blue;" text="Add" textFill="WHITE" AnchorPane.leftAnchor="491.0" />
+                              <TextField fx:id="customerNameField" layoutX="14.0" layoutY="19.0" prefHeight="18.0" prefWidth="152.0" promptText="Customer Name" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+                              <TextField fx:id="qntField" layoutX="340.0" layoutY="19.0" prefHeight="27.0" prefWidth="101.0" promptText="Quantaty" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203);" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </AnchorPane>
+                        <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0">
+                           <columns>
+                              <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+                              <TableColumn fx:id="customerCol" prefWidth="75.0" text="Customer" />
+                              <TableColumn fx:id="contactCol" prefWidth="75.0" text="Contact" />
+                              <TableColumn fx:id="qntCol" prefWidth="75.0" text="Quantity" />
+                              <TableColumn fx:id="priceCol" prefWidth="75.0" text="Unite Price" />
+                              <TableColumn fx:id="totalCol" prefWidth="75.0" text="Total Purch" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="-70.0" layoutY="-36.0" prefWidth="200.0" spacing="15.0" style="-fx-background-color: white; -fx-padding: 3;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fx:id="backIcon" fitHeight="36.0" fitWidth="31.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/icons/bakcIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Back">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

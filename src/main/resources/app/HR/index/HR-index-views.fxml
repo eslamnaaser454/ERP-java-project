@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.HR.index.HRIndexController">
+    <left>
+        <fx:include source="../../Layouts/side-bar-view.fxml" />
+
+    </left>
+    <center>
+        <VBox fx:id="Department" maxWidth="1.7976931348623157E308" prefHeight="576.0" prefWidth="1045.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" prefWidth="1021.0" spacing="90.0">
+                    <children>
+                        <VBox fx:id="manage" alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#GotoManageemployes" prefHeight="327.0" prefWidth="366.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 40;" styleClass="hbox-container" stylesheets="@../../Layouts/side-bar.css">                            <children>
+                                <ImageView fitHeight="151.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../images/icons/motivation.png" />
+                                    </image>
+                                </ImageView>
+                                <Label alignment="CENTER" prefHeight="35.0" prefWidth="226.0" text="Employees">
+                                    <font>
+                                        <Font name="System Bold" size="24.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.1599999964237213" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                        </VBox>
+                  <VBox alignment="CENTER" layoutX="377.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#GotoDepartment" prefHeight="327.0" prefWidth="366.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 40; -fx-padding: 20;" styleClass="hbox-container" stylesheets="@../../Layouts/side-bar.css">
+                     <children>
+                        <ImageView fitHeight="138.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icons/market.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="162.0" text="Departments">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.1599999964237213" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </VBox>
+                    </children>
+                    <padding>
+                        <Insets left="40.0" top="50.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="50.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

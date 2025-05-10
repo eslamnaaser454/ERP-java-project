@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="427.0" spacing="10.0" style="-fx-padding: 30; -fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Suppliers.Preview.CreateSupply.CreateSupplyController">
+   <children>
+      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Add Supply">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="ErrMsg" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="378.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <VBox prefWidth="100.0" spacing="5.0">
+         <children>
+            <Label text="Name : ">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nameFiled" prefHeight="41.0" prefWidth="301.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203); -fx-border-radius: 250;" />
+         </children>
+      </VBox>
+      <VBox prefWidth="100.0" spacing="5.0">
+         <children>
+            <Label text="Image (Optional)">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox prefWidth="200.0" spacing="5.0">
+               <children>
+                  <TextField fx:id="imageFiled" prefHeight="41.0" prefWidth="301.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203); -fx-border-radius: 250;" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="imageBtn" mnemonicParsing="false" onAction="#chooseImage" prefHeight="41.0" prefWidth="67.0" style="-fx-background-radius: 250; -fx-background-color: #021B2A;" text="Choose" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox prefWidth="200.0" spacing="5.0">
+         <children>
+            <VBox prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Quantity : ">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="qntFiled" prefHeight="41.0" prefWidth="301.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203); -fx-border-radius: 250;" />
+               </children>
+            </VBox>
+            <VBox prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Unite Price : ">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="priceFiled" prefHeight="41.0" prefWidth="301.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203); -fx-border-radius: 250;" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox prefWidth="200.0" spacing="5.0">
+         <children>
+            <VBox prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="additional fees (Optional): ">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="feesFiled" prefHeight="41.0" prefWidth="301.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203); -fx-border-radius: 250;" />
+               </children>
+            </VBox>
+            <VBox prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Sell Price (Unite) : ">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="sellPriceFiled" prefHeight="41.0" prefWidth="301.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203); -fx-border-radius: 250;" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <VBox prefWidth="100.0" spacing="5.0">
+         <children>
+            <Label text="Stock">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="stockCombo" maxWidth="1.7976931348623157E308" prefHeight="41.0" prefWidth="367.0" style="-fx-background-color: none; -fx-border-color: rgb(203,203,203); -fx-border-radius: 250;" />
+         </children>
+      </VBox>
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#submit" prefHeight="41.0" prefWidth="367.0" style="-fx-background-color: #021B2A; -fx-background-radius: 250;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>
