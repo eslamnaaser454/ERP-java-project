@@ -1,18 +1,19 @@
 package app.Market;
 
 import app.Classes.DataBaseConnection;
+import app.Market.Cart.CartApplication;
+import app.Market.Cart.CartController;
+import app.Market.Cart.CartItem;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -22,156 +23,171 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class MarketController implements Initializable {
+
     private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
     private DataBaseConnection dataBaseConnection;
 
-    @FXML
-    private VBox supplyContainer;
-
-    @FXML
-    private TextField customerNameField;
-    @FXML
-    private TextField customerPhoneField;
+    @FXML private VBox supplyContainer;
+    @FXML private TextField searchField;
+    @FXML private Label cartBadge;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dataBaseConnection = new DataBaseConnection(dbPath);
         loadSupplies();
+        updateCartBadge();
     }
 
-    public void loadSupplies() {
-        dataBaseConnection = new DataBaseConnection(dbPath);
-        List<Map<String, String>> supplies = dataBaseConnection.select("SELECT * FROM supply;");
+    private void loadSupplies() {
         supplyContainer.getChildren().clear();
+        List<Map<String, String>> supplies = dataBaseConnection.select("SELECT * FROM supply WHERE qnt > 0;");
+        supplies.forEach(supply -> supplyContainer.getChildren().add(createProductCard(supply)));
+    }
 
-        for (Map<String, String> supply : supplies) {
+    private HBox createProductCard(Map<String, String> supply) {
+        HBox card = new HBox(15);
+        card.setPadding(new Insets(5, 15, 5, 15));
+        card.setAlignment(Pos.CENTER_LEFT);
+
+        // Product Image
+        ImageView imageView = new ImageView();
+        try {
             File file = new File(System.getProperty("user.dir") + supply.get("image"));
             if (!file.exists()) {
                 file = new File(System.getProperty("user.dir") + "\\src\\main\\resources\\app\\images\\defaultImages\\NoneImage.jpg");
             }
+            imageView.setImage(new Image(file.toURI().toURL().toString()));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        imageView.setFitHeight(120);
+        imageView.setFitWidth(120);
+        imageView.setPreserveRatio(true);
 
-            ImageView imageView;
-            try {
-                imageView = new ImageView(new Image(file.toURI().toURL().toString()));
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
-            }
-            imageView.setFitHeight(150);
-            imageView.setFitWidth(150);
+        // Product Details
+        VBox details = new VBox(8);
+        details.getChildren().addAll(
+                createDetailRow("Product:", supply.get("name")),
+                createDetailRow("Price:", "$" + supply.get("sell_price")),
+                createDetailRow("Stock:", supply.get("qnt")),
+                createDetailRow("Supplier:", getSupplierName(supply.get("supplier_id"))),
+                createDetailRow("Location:", getStockLocation(supply.get("stock_id")))
+        );
+        details.setPrefWidth(350);
 
-            // Retrieve specific supplier and stock based on IDs
-            Map<String, String> supplier = dataBaseConnection.select("SELECT * FROM supplier WHERE id = " + supply.get("supplier_id") + ";").get(0);
-            Map<String, String> stock = dataBaseConnection.select("SELECT * FROM stock WHERE id = " + supply.get("stock_id") + ";").get(0);
+        // Cart Controls
+        Spinner<Integer> spinner = new Spinner<>(1, Integer.parseInt(supply.get("qnt")), 1);
+        spinner.setEditable(true);
+        spinner.setPrefWidth(80);
+        spinner.getEditor().setTextFormatter(new TextFormatter<>(c -> {
+            if (c.getControlNewText().matches("\\d*")) return c;
+            return null;
+        }));
 
-            // Labels
-            Label productNameLabel = new Label("Product Name: ");
-            Label productNameValueLabel = new Label(supply.get("name"));
-            HBox nameHbox = new HBox(productNameLabel, productNameValueLabel);
+        Button addButton = new Button("Add to Cart");
+        addButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;");
+        addButton.setOnAction(e -> handleAddToCart(supply, spinner.getValue()));
 
-            Label quantityLabel = new Label("Quantity: ");
-            Label quantityValueLabel = new Label(supply.get("qnt"));
-            HBox qntHbox = new HBox(quantityLabel, quantityValueLabel);
+        VBox controlsContainer = new VBox(10, addButton, spinner);
+        controlsContainer.setAlignment(Pos.CENTER_RIGHT);
 
-            Label unitPriceLabel = new Label("Unit Price: ");
-            Label unitPriceValueLabel = new Label(supply.get("unite_price"));
-            HBox unitPriceHbox = new HBox(unitPriceLabel, unitPriceValueLabel);
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
 
-            Label additionalFeesLabel = new Label("Additional Fees: ");
-            Label additionalFeesValueLabel = new Label(supply.get("additional_fees"));
-            HBox additionalFeesHbox = new HBox(additionalFeesLabel, additionalFeesValueLabel);
+        card.getChildren().addAll(imageView, details, spacer, controlsContainer);
+        return card;
+    }
 
-            Label sellingPriceLabel = new Label("Selling Price: ");
-            Label sellingPriceValueLabel = new Label(supply.get("sell_price"));
-            HBox sellingPriceHbox = new HBox(sellingPriceLabel, sellingPriceValueLabel);
+    private String getSupplierName(String supplierId) {
+        List<Map<String, String>> supplier = dataBaseConnection.select(
+                "SELECT name FROM supplier WHERE id = " + supplierId);
+        return supplier.isEmpty() ? "N/A" : supplier.get(0).get("name");
+    }
 
-            Label supplierLabel = new Label("Supplier: ");
-            Hyperlink supplierHyperlink = new Hyperlink(supplier.get("name"));
-            HBox supplierHbox = new HBox(supplierLabel, supplierHyperlink);
+    private String getStockLocation(String stockId) {
+        List<Map<String, String>> stock = dataBaseConnection.select(
+                "SELECT name FROM stock WHERE id = " + stockId);
+        return stock.isEmpty() ? "N/A" : stock.get(0).get("name");
+    }
 
-            Label stockLabel = new Label("Stock: ");
-            Hyperlink stockHyperlink = new Hyperlink(stock.get("name"));
-            HBox stockHbox = new HBox(stockLabel, stockHyperlink);
+    private HBox createDetailRow(String label, String value) {
+        Label lbl = new Label(label);
+        lbl.setFont(Font.font("System", FontWeight.BOLD, 12));
+        Label val = new Label(value);
+        return new HBox(5, lbl, val);
+    }
 
-            // Sell Button
-            Button sellButton = new Button("Sell");
-            sellButton.setStyle("-fx-background-color: green; -fx-text-fill: white;");
-            sellButton.setPadding(new Insets(5, 15, 5, 15));
-            sellButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    String customerName = customerNameField.getText();
-                    String customerPhone = customerPhoneField.getText();
-                    TextInputDialog quantityDialog = new TextInputDialog();
-                    quantityDialog.setTitle("Sell Product");
-                    quantityDialog.setHeaderText("Enter quantity to sell:");
-                    Optional<String> result = quantityDialog.showAndWait();
-                    result.ifPresent(quantityStr -> {
-                        try {
-                            int quantityToSell = Integer.parseInt(quantityStr);
-                            int currentQuantity = Integer.parseInt(supply.get("qnt"));
-                            if (quantityToSell <= 0 || quantityToSell > currentQuantity) {
-                                Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid quantity entered.");
-                                alert.show();
-                                return;
-                            }
+    private void handleAddToCart(Map<String, String> supply, int quantity) {
+        CartItem newItem = new CartItem(
+                Integer.parseInt(supply.get("id")),
+                supply.get("name"),
+                Double.parseDouble(supply.get("sell_price")),
+                quantity,
+                supply.get("image")
+        );
 
-                            // Update supply quantity
-                            int newQuantity = currentQuantity - quantityToSell;
-                            dataBaseConnection.excute("UPDATE supply SET qnt = " + newQuantity + " WHERE id = " + supply.get("id") + ";");
+        Optional<CartItem> existing = CartController.cartItems.stream()
+                .filter(item -> item.getSupplyId() == newItem.getSupplyId())
+                .findFirst();
 
-                            // Insert sale record
-                            double unitPrice = Double.parseDouble(supply.get("sell_price"));
-                            double totalPrice = unitPrice * quantityToSell;
-                            String insertSale = String.format("INSERT INTO sale (customer_name, customer_phone, supply_id, quantity, total_price) VALUES ('%s', '%s', %s, %d, %.2f);",
-                                    customerName, customerPhone, supply.get("id"), quantityToSell, totalPrice);
-                            dataBaseConnection.excute(insertSale);
+        if (existing.isPresent()) {
+            existing.get().setQuantity(existing.get().getQuantity() + quantity);
+        } else {
+            CartController.cartItems.add(newItem);
+        }
 
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Sale completed successfully.");
-                            alert.show();
+        updateCartBadge();
+        showAlert("Success", quantity + " × " + newItem.getName() + " added to cart");
+    }
 
-                            // Refresh the supplies list
-                            loadSupplies();
-                        } catch (NumberFormatException e) {
-                            Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter a valid number for quantity.");
-                            alert.show();
-                        }
-                    });
-                }
-            });
-
-            VBox detailsVBox = new VBox(nameHbox, qntHbox, unitPriceHbox, additionalFeesHbox, sellingPriceHbox, supplierHbox, stockHbox);
-            detailsVBox.setSpacing(5);
-            for (Node node : detailsVBox.getChildren()) {
-                if (node instanceof HBox) {
-                    for (Node l : ((HBox) node).getChildren()) {
-                        if (l instanceof Label) {
-                            ((Label) l).setFont(Font.font(Font.getDefault().getFamily(), FontWeight.BOLD, 12));
-                        }
-                    }
-                }
-            }
-
-            VBox buttonsBox = new VBox(sellButton);
-            buttonsBox.setAlignment(Pos.CENTER);
-            buttonsBox.setSpacing(10);
-
-            HBox mainBox = new HBox(imageView, detailsVBox, buttonsBox);
-            HBox.setHgrow(detailsVBox, Priority.ALWAYS);
-            mainBox.setPadding(new Insets(10));
-            mainBox.setSpacing(10);
-            mainBox.setAlignment(Pos.CENTER_LEFT);
-            mainBox.setStyle("-fx-background-color: rgba(203,203,203,0.4);");
-
-            supplyContainer.getChildren().add(mainBox);
+    private void updateCartBadge() {
+        if (cartBadge != null) {
+            int count = CartController.cartItems.stream()
+                    .mapToInt(CartItem::getQuantity)
+                    .sum();
+            cartBadge.setText(String.valueOf(count));
+            cartBadge.setVisible(count > 0);
         }
     }
 
-    // Implement the method for the button's action
-    public void setData(ActionEvent actionEvent) {
-        // You can trigger a refresh of the supplies or perform some other action here
-        loadSupplies(); // Example action: Reload all supplies
+    @FXML
+    private void handleSearch(ActionEvent event) {
+        String query = searchField.getText().trim();
+        List<Map<String, String>> results = dataBaseConnection.select(
+                "SELECT * FROM supply WHERE name LIKE '%" + query + "%' AND qnt > 0;"
+        );
+        supplyContainer.getChildren().clear();
+        results.forEach(supply -> supplyContainer.getChildren().add(createProductCard(supply)));
+    }
+
+    @FXML
+    private void handleRefresh(ActionEvent event) {
+        loadSupplies();
+        searchField.clear();
+    }
+
+    @FXML
+    private void GoToCart(MouseEvent event) {
+        CartApplication cartApp = new CartApplication();
+        Stage stage = (Stage) supplyContainer.getScene().getWindow();
+        try {
+            cartApp.start(stage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
