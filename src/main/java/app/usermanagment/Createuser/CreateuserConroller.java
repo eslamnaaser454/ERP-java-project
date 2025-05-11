@@ -233,9 +233,9 @@ String Department_name="HR";
 
 
 
-        String query = "INSERT INTO users(username, password, phone, email, SSN, is_super_user, type, Department) " +
+        String query = "INSERT INTO users(username, password, phone, email, SSN, is_super_user, type, Department,is_active) " +
                 "VALUES ('" + username + "', '" + password + "', '" + phone + "', '" + email + "', '" +
-                ssn + "', '" + admins + "', '" + selected + "', '" + Department_name + "')";
+                ssn + "', '" + admins + "', '" + selected + "', '" + Department_name +"', '"+false+ "')";
 
 
         try {
@@ -243,6 +243,7 @@ String Department_name="HR";
             boolean result = dataBaseConnection.excute(query);
 
             if (result) {
+
                 System.out.println(admins);
                 error.setText("user add successfully");
                 error.setTextFill(Paint.valueOf("green"));
