@@ -1,14 +1,13 @@
 package app.usermanagment.Createuser;
 
 import app.Classes.DataBaseConnection;
+import app.Classes.Logging;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.Border;
-import javafx.scene.paint.Paint;
-import org.openxmlformats.schemas.drawingml.x2006.diagram.STOutputShapeType;
-//java new
+import javafx.scene.paint.Paint;//java new
 
 import java.net.URL;
 import java.util.*;
@@ -30,7 +29,8 @@ String Department_name="HR";
 
     @FXML
     private Label error;
-
+    @FXML
+    TextField tusername;
     @FXML
     private Label lemail;
 
@@ -58,8 +58,6 @@ String Department_name="HR";
     @FXML
     private TextField tssn;
 
-    @FXML
-    private TextField tusername;
 
     @FXML
     private RadioButton user;
@@ -85,15 +83,15 @@ String Department_name="HR";
         String phone = tphone.getText();
         String email = temail.getText();
         String ssn =   tssn.getText();
-
+        String usernameT = tusername.getText();
         boolean admins=selected.equals("HR");;
-
 
 
         String emaill ="select email from users";
         String usernamee="select username from users";
         String ssnn="select ssn from users";
         String phonee="select phone from users";
+        tusername.setText("");
         DataBaseConnection dataBaseConnectionss=new DataBaseConnection(dbPath);
         List <Map<String,String>>maps= dataBaseConnectionss.select(emaill);
         List <Map<String,String>>maps1p= dataBaseConnectionss.select(usernamee);
@@ -256,6 +254,8 @@ String Department_name="HR";
             error.setText("SQL Error: " + e.getMessage());
             error.setTextFill(Paint.valueOf("red"));
         }
+        Logging logging = new Logging() ;
+        logging.addLog("User with name "+usernameT+" has been Added to the system");
 
     }
 
