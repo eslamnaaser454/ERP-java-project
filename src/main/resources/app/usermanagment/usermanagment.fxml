@@ -78,10 +78,10 @@
                   <TableView fx:id="tabel" prefHeight="356.0" prefWidth="999.0" stylesheets="@../HR/Manage/ManageEmployess.css" VBox.vgrow="ALWAYS">
                      <columns>
                         <TableColumn fx:id="userCol" prefWidth="128.8000060915947" text="UserName" />
-                        <TableColumn fx:id="emailCol" prefWidth="101.60003662109375" text="email" />
+                        <TableColumn fx:id="emailCol" prefWidth="101.60003662109375" text="emaActiveil" />
                         <TableColumn fx:id="phoneCol" prefWidth="94.40003967285156" text="phone" />
                         <TableColumn fx:id="ssnCol" prefWidth="119.20001220703125" text="SSN" />
-                        <TableColumn fx:id="activeCol" prefWidth="136.79995727539062" text="Active" />
+                        <TableColumn fx:id="activeCol" prefWidth="136.79995727539062" text="Department" />
                         <TableColumn fx:id="typeCol" prefWidth="136.800048828125" text="type" />
                         <TableColumn fx:id="action" minWidth="20.0" prefWidth="85.0" text="action" />
                      </columns>

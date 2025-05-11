@@ -120,20 +120,24 @@ public class SideBarController implements Initializable {
     }
     @FXML
     private void GoToLogin(){
+
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setContentText("Are you sure you want to logout?");
+try {
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.get() == ButtonType.OK) {
+        LoginApplication loginApplication = new LoginApplication();
+        Stage stage = (Stage) OverView.getScene().getWindow();
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            LoginApplication loginApplication = new LoginApplication();
-            Stage stage = (Stage) OverView.getScene().getWindow();
-            try {
-                loginApplication.start(stage);
-            }
-            catch (IOException e){
-                System.out.println(e.getCause());
-            }
-        }
+            loginApplication.start(stage);
+
+    }
+
+}
+catch (Exception e) {
+    System.out.println(e.getMessage());
+
+}
     }
 
     @Override

@@ -91,8 +91,8 @@ public class usermangmentcontroller implements Initializable
                     map.get("email"),
                     map.get("phone"),
                     map.get("SSN"),
-                    map.get("is_active"),
-                    map.get("is_super_user"),
+                    map.get("Department"),
+                    map.get("type"),
                     map.get("id"),
                     this
             ));
@@ -147,7 +147,7 @@ public class usermangmentcontroller implements Initializable
             delete.setStyle("-fx-background-radius: 5;-fx-background-color: red");
 
             // Check if user is admin
-            boolean isAdmin = "1".equals(type) || "true".equalsIgnoreCase(type);
+            boolean isAdmin = "HR".equals(type) || "true".equalsIgnoreCase(type);
             // Edit action
             edit.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
