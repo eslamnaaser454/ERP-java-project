@@ -1,6 +1,7 @@
 package app.PublicControllers;
 
 import app.Classes.Authentication;
+import app.Classes.DataBaseConnection;
 import app.HR.index.HRIndexApplication;
 import app.Index.IndexApplication;
 import app.Login.LoginApplication;
@@ -121,11 +122,23 @@ public class SideBarController implements Initializable {
     @FXML
     private void GoToLogin(){
 
+
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setContentText("Are you sure you want to logout?");
 try {
     Optional<ButtonType> result = alert.showAndWait();
     if (result.get() == ButtonType.OK) {
+        String dbPath1 = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+        Authentication authentication = new Authentication();
+
+        DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath1);
+String user=authentication.getUser().get("username");
+        boolean username = false; // Replace "name" with the actual username
+        System.out.println("USERNAME NOW = "  + user);
+        String query = "UPDATE users SET is_active = '" + username + "' WHERE username = '" + user + "';";
+        boolean result1 = dataBaseConnection.excute(query);
+        System.out.println(result1);
+
         LoginApplication loginApplication = new LoginApplication();
         Stage stage = (Stage) OverView.getScene().getWindow();
 

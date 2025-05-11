@@ -63,6 +63,21 @@ if(maps3p.getFirst().get("type").equals(("HR"))){
         System.out.println("here");
         System.out.println(pass);
         if (authentication.check()){
+
+            String pre_query = "SELECT is_active FROM users WHERE username = '" + user + "';";
+            boolean pre_result = dataBaseConnection.excute(pre_query);
+            String myresult=dataBaseConnectionss.select(pre_query).getFirst().get("is_active");
+            System.out.println("myresult = "+ myresult);
+            if(myresult.equals("true")|| myresult.equals("1")){
+                errorMsg.setText("User Already Logged In");
+                errorMsg.setTextFill(Paint.valueOf("red"));
+                return;
+            }
+            boolean username = true; // Replace "name" with the actual username
+
+            String query = "UPDATE users SET is_active = '" + username + "' WHERE username = '" + user + "';";
+            boolean result = dataBaseConnection.excute(query);
+            System.out.println(result);
             IndexApplication indexApplication = new IndexApplication();
 
             Stage stage = (Stage) errorMsg.getScene().getWindow();
