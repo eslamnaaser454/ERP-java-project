@@ -85,7 +85,7 @@
             <children>
                 <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/icons/user-setting.png" />
+                        <Image url="@../images/icons/recycle.png" />
                     </image>
                 </ImageView>
                 <Label prefHeight="16.0" prefWidth="140.0" text="Suppliers" textFill="WHITE">
