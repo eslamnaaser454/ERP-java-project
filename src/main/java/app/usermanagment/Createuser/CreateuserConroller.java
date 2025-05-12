@@ -91,7 +91,6 @@ String Department_name="HR";
         String usernamee="select username from users";
         String ssnn="select ssn from users";
         String phonee="select phone from users";
-        tusername.setText("");
         DataBaseConnection dataBaseConnectionss=new DataBaseConnection(dbPath);
         List <Map<String,String>>maps= dataBaseConnectionss.select(emaill);
         List <Map<String,String>>maps1p= dataBaseConnectionss.select(usernamee);
