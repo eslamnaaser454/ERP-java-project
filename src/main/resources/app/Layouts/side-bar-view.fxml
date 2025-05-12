@@ -88,7 +88,7 @@
                         <Image url="@../images/icons/user-setting.png" />
                     </image>
                 </ImageView>
-                <Label text="HR Managment" textFill="WHITE">
+                <Label prefHeight="16.0" prefWidth="140.0" text="Suppliers" textFill="WHITE">
                     <font>
                         <Font name="Trebuchet MS Bold" size="16.0" />
                     </font>
