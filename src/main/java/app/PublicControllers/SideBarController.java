@@ -156,10 +156,20 @@ catch (Exception e) {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Authentication authentication = new Authentication();
-//        if(!authentication.getUser().get("type").equals("HR")){
-//            HR.setVisible(false);
-//
-//        }
+        if(authentication.getUser().get("type").equals("HR")){
+            StoresHBox.setVisible(false);
+            MarketHBox.setVisible(false);
+            SuppliersHBox.setVisible(false);
+            SalesHbox.setVisible(false);
+
+        }else {
+            HR.setVisible(false);
+            UsersNav.setVisible(false);
+            StoresHBox.setVisible(true);
+            SuppliersHBox.setVisible(true);
+            SalesHbox.setVisible(true);
+            MarketHBox.setVisible(true);
+        }
         System.out.println("TYPE =  "+authentication.getUser().get("type"));
         name.setText("Hello, "+authentication.getUser().get("username"));
         if (authentication.getUser().get("is_super_user").equals("false")){
