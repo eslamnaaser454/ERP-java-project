@@ -119,7 +119,7 @@
             <children>
                 <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/icons/business.png" />
+                        <Image url="@../images/icons/user-setting.png" />
                     </image>
                 </ImageView>
                 <Label text="HR Managment" textFill="WHITE">
