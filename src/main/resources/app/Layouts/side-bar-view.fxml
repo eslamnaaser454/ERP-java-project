@@ -122,7 +122,7 @@
                         <Image url="@../images/icons/business.png" />
                     </image>
                 </ImageView>
-                <Label text="Sales" textFill="WHITE">
+                <Label text="HR Managment" textFill="WHITE">
                     <font>
                         <Font name="Trebuchet MS Bold" size="16.0" />
                     </font>
