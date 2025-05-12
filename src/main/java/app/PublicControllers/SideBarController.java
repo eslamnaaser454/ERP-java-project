@@ -35,6 +35,17 @@ public class SideBarController implements Initializable {
 
     @FXML
     HBox UsersNav;
+    @FXML
+    HBox SalesHbox;
+    @FXML
+    HBox MarketHBox;
+    @FXML
+    HBox SuppliersHBox;
+    @FXML
+    HBox  StoresHBox;
+
+
+
 
     @FXML
     public void GoToOverView(){
