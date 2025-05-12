@@ -20,6 +20,9 @@ import java.util.*;
 
 public class ProductsController implements Initializable {
 
+    private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+
+
     @FXML
     private TableView<Product> table;
     @FXML
@@ -39,7 +42,7 @@ public class ProductsController implements Initializable {
 
 
     public ObservableList<Product> observableList(){
-        DataBaseConnection dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
         ObservableList<Product> observableList = FXCollections.observableArrayList();
         List<Map<String ,String >> list = dataBaseConnection.select("select * from supply;");
         for (Map<String ,String > map:list){
@@ -50,7 +53,7 @@ public class ProductsController implements Initializable {
     }
 
     public ObservableList<Product> observableList(String value){
-        DataBaseConnection dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
         ObservableList<Product> observableList = FXCollections.observableArrayList();
         List<Map<String ,String >> list = dataBaseConnection.select("select * from supply where name like '"+value+"%';");
         for (Map<String ,String > map:list){
@@ -87,7 +90,7 @@ public class ProductsController implements Initializable {
 //            System.out.println("Chosen directory: " + chosenDirectoryPath+"\\Invoice-Report-("+date.toString()+").xlsx");
             ExcelSheet excelSheet = new ExcelSheet(chosenDirectoryPath,"Supplies-Report");
 
-            DataBaseConnection dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+            DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
             List<Map<String,String>> list = dataBaseConnection.select("select * from supply;");
             List<Map<Integer,String>> list1 = new ArrayList<>();
             Map<Integer,String> header = new HashMap<>();
@@ -153,7 +156,7 @@ public class ProductsController implements Initializable {
             this.qnt = qnt;
             this.price = price;
             this.sell = sell;
-            DataBaseConnection dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+            DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
             this.stock = dataBaseConnection.select("select * from stock where id = "+stock+";").getFirst().get("name");
 
         }

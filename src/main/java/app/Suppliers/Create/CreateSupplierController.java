@@ -55,7 +55,7 @@ public class CreateSupplierController {
             ErrMsg.setTextFill(Paint.valueOf("red"));
         }else {
             DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
-            dataBaseConnection.excute("insert into supplier(name,phone,email,company,rate) values('"+ name +"','"+ phone +"','"+email+"','"+company+"',0.0);");
+            dataBaseConnection.execute("insert into supplier(name,phone,email,company,rate) values('"+ name +"','"+ phone +"','"+email+"','"+company+"',0.0);");
             ErrMsg.setText("Supplier Added Successfuly");
             ErrMsg.setTextFill(Paint.valueOf("green"));
             nameField.setText("");

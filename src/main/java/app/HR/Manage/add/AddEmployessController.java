@@ -161,7 +161,7 @@ public class AddEmployessController implements Initializable {
         dataBaseConnection = new DataBaseConnection(dbPath);
         String query = "insert into staff (first_name,last_name,phone,email,salary,ssn,department_id,mail,femail,address) values ('" + fname + "','" + lname + "','" + phone + "','" + email + "','" + salary + "','" + ssn + "','" + departmentId + "','" + isMaleSelected + "','" + isFemaleSelected + "','" + address + "');";
         System.out.printf("Query is" + query);
-        dataBaseConnection.excute(query);
+        dataBaseConnection.execute(query);
         ErrMsg.setText("Employee Added Successfully");
         ErrMsg.setTextFill(Paint.valueOf("green"));
         fnameField.setText("");

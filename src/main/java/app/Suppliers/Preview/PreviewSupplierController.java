@@ -190,7 +190,7 @@ public class PreviewSupplierController implements Initializable {
                     if (result.isPresent() && result.get() == okButton) {
                         String query = "delete from supply  where id=" + map.get("id") + ";";
                         System.out.println(query);
-                        dataBaseConnection.excute(query);
+                        dataBaseConnection.execute(query);
                         setData();
 
                     }

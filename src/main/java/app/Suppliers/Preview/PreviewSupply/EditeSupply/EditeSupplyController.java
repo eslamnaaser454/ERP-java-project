@@ -17,9 +17,10 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class EditeSupplyController implements Initializable {
-    DataBaseConnection dataBaseConnection;
     private String id;
     private PreviewSupplyController previewSupplyController;
+    private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+
 
     public void setId(String id) {
         this.id = id;
@@ -47,7 +48,7 @@ public class EditeSupplyController implements Initializable {
 
 
     private Map<String,String> getSupply(){
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        DataBaseConnection  dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String ,String>> list = dataBaseConnection.select("select * from supply where id="+id+";");
         if (!list.isEmpty()){
             Map<String,String> map = list.getFirst();
@@ -56,7 +57,7 @@ public class EditeSupplyController implements Initializable {
             return null;
     }
     public void setData(){
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        DataBaseConnection  dataBaseConnection = new DataBaseConnection(dbPath);
         String stockName = null;
 
         List<Map<String ,String>> list = dataBaseConnection.select("select * from supply where id="+id+";");
@@ -88,7 +89,7 @@ public class EditeSupplyController implements Initializable {
         String stock = stockCombo.getValue();
 
         String stockId;
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
 
         List<Map<String,String>> getStockes = dataBaseConnection.select("select * from stock where name='"+stock+"'");
 
@@ -176,11 +177,11 @@ public class EditeSupplyController implements Initializable {
         }else {
             stockId = getStockes.getFirst().get("id");
         }
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
         String NoneImagePath = "\\src\\main\\resources\\images\\defulteImages\\NoneImage.jpg";
         String query = "update supply set  name = '"+name +"' , qnt = "+qnt+" , unite_price = "+price+" , sell_price = "+sellPrice+", additional_fees = "+fees+", stock_id = "+stockId+" where id = "+id+";";
         System.out.println("Query is : "+query);
-        dataBaseConnection.excute(query);
+        dataBaseConnection.execute(query);
         ErrMsg.setText("Supply Edited SuccessFuly");
         ErrMsg.setTextFill(Paint.valueOf("green"));
         setData();

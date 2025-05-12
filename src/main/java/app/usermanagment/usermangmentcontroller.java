@@ -183,7 +183,7 @@ public class usermangmentcontroller implements Initializable
                         if (result.isPresent() && result.get() == buttonTypeDelete) {
                             String query = "delete from users where id = " + id + ";";
                             DataBaseConnection dataBaseConnection = new DataBaseConnection(usermangmentcontroller.dbPath);
-                            dataBaseConnection.excute(query);
+                            dataBaseConnection.execute(query);
                             usermangmentcontroller.refresh();
                         }
                     } catch (Exception e) {

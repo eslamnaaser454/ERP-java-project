@@ -136,7 +136,7 @@ String user=authentication.getUser().get("username");
         boolean username = false; // Replace "name" with the actual username
         System.out.println("USERNAME NOW = "  + user);
         String query = "UPDATE users SET is_active = '" + username + "' WHERE username = '" + user + "';";
-        boolean result1 = dataBaseConnection.excute(query);
+        boolean result1 = dataBaseConnection.execute(query);
         System.out.println(result1);
 
         LoginApplication loginApplication = new LoginApplication();

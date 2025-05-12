@@ -63,7 +63,7 @@ public void submit() {
     }
     String query = "update department set name='" + name + "' where id=" + id + ";";
     dataBaseConnection= new DataBaseConnection(dbPath);
-    dataBaseConnection.excute(query);
+    dataBaseConnection.execute(query);
     ErrMsg.setText("Department updated successfully");
     ErrMsg.setTextFill(Paint.valueOf("green"));
         departmentcontroller.refresh();

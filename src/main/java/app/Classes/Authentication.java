@@ -8,6 +8,8 @@ public class Authentication {
     DataBaseConnection dataBaseConnection;
     private String username;
     private String password;
+    private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+
 
     public Authentication(Authentication authentication){
         setDataBaseConnection(authentication.getDataBaseConnection());
@@ -32,7 +34,7 @@ public class Authentication {
 
 
     public Map<String,String> getSession(){
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String,String>> list = dataBaseConnection.select("select * from session;");
         if (list == null || list.isEmpty()){
             return null;
@@ -45,22 +47,22 @@ public class Authentication {
     }
 
     public void createSession(){
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String,String>> list = dataBaseConnection.select("select * from session;");
         if (list == null || list.isEmpty()){
-            dataBaseConnection.excute("insert into session(username,password ) values ('"+getUsername()+"','"+getPassword()+"');");
+            dataBaseConnection.execute("insert into session(username,password ) values ('"+getUsername()+"','"+getPassword()+"');");
             System.out.println("Created a new session");
         }else {
             Map<String,String> map = list.getFirst();
-            dataBaseConnection.excute("update session set username='"+getUsername()+"',password='"+getPassword()+"', where id = "+map.get("id")+";");
+            dataBaseConnection.execute("update session set username='"+getUsername()+"',password='"+getPassword()+"', where id = "+map.get("id")+";");
             System.out.println("Updated a session");
 
         }
     }
 
     public void clearSesions(){
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
-        dataBaseConnection.excute("delete from session;");
+        dataBaseConnection = new DataBaseConnection(dbPath);
+        dataBaseConnection.execute("delete from session;");
         System.out.println("sessions cleared");
     }
 

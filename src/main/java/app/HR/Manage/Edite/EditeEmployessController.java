@@ -197,7 +197,7 @@ public class EditeEmployessController implements Initializable {
         }
         String query = "update staff set first_name='" + fname + "',last_name='" + lname + "',email='" + email + "',phone='" + phone + "',address='" + address + "',salary='" + salary + "',ssn='" + ssn + "',department_id='" + department_id + "',mail='" + Malerad.isSelected() + "',femail='" + Femalerad.isSelected() + "' where id=" + id + ";";
         ErrMsg.setText("Employee Added Successfully");
-        boolean result = new DataBaseConnection(dbPath).excute(query);
+        boolean result = new DataBaseConnection(dbPath).execute(query);
         if (result) {
             Stage stage = (Stage) ErrMsg.getScene().getWindow();
             stage.close();

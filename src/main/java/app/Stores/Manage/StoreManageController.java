@@ -70,10 +70,10 @@ public class StoreManageController implements Initializable {
         }
         query+=";";
         List<Map<String,String>> list = dataBaseConnection.select(query);
-       // System.out.println(query);
+        // System.out.println(query);
 
         for (Map<String,String > map:list){
-          //  System.out.println(map.get("name"));
+            //  System.out.println(map.get("name"));
             observableList.add(new store(map.get("id"),map.get("name"),map.get("location"),this));
         }
 
@@ -110,7 +110,7 @@ public class StoreManageController implements Initializable {
         table.setItems(storeObservableList());
         System.out.printf("Table Refreshed\n");
     }
-@FXML
+    @FXML
     public void search(){
 
         String value = (String) searchField.getText();
@@ -191,7 +191,7 @@ public class StoreManageController implements Initializable {
                     if (result.isPresent() && result.get() == okButton) {
                         String query = "delete from stock where id=" + idCol + ";";
                         System.out.println(query);
-                        dataBaseConnection.excute(query);
+                        dataBaseConnection.execute(query);
                         storeManageController.refreshTable();
                     }
 

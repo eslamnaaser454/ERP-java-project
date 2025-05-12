@@ -1,172 +1,109 @@
 package app.Classes;
 
-
 import java.sql.*;
 import java.util.*;
 
 public class DataBaseConnection {
-    public static final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
 
-    private Connection connection;
-    private Statement statement;
-    private ResultSet resultSet;
+    private static final String SQLITE_DRIVER = "org.sqlite.JDBC";
+    private static final String MYSQL_DRIVER = "com.mysql.cj.jdbc.Driver";
 
-    private String host;
+    private final String dbUrl;
+    private final String driver;
+    private final String user;
+    private final String password;
 
-    private String db;
-    private String user;
-    private String password;
-
-    private String jar;
-
-    public DataBaseConnection(String host, String db, String user, String password) {
-
-        setHost(host);
-        setDb("jdbc:sqlite:"+db);
-        setUser(user);
-        setPassword(password);
-        this.jar = "com.mysql.cj.jdbc.Driver";
-
+    // Constructor for SQLite
+    public DataBaseConnection(String dbPath) {
+        this.dbUrl = "jdbc:sqlite:" + dbPath;
+        this.driver = SQLITE_DRIVER;
+        this.user = "";
+        this.password = "";
     }
 
-    public DataBaseConnection(String db) {
-
-        setHost("");
-        setDb("jdbc:sqlite:"+db);
-        setUser("");
-        setPassword("");
-        this.jar = "org.sqlite.JDBC";
-
-    }
-
-
-    public boolean excute(String query){
-        try {
-
-            Class.forName(this.jar);
-        }catch (ClassNotFoundException e){
-            System.out.println("Class Not found exption");
-
-            return false;
-        }
-
-        try {
-
-            if (jar.equals("org.sqlite.JDBC")){
-                connection = DriverManager.getConnection(getDb());
-
-            }else {
-                connection = DriverManager.getConnection(getHost()+getDb(),getUser(),getPassword());
-
-            }
-
-            //  connection = DriverManager.getConnection(getHost(),getUser(),getPassword());
-            statement = connection.createStatement();
-            statement.execute(query);
-            connection.close();
-            return true;
-        }catch (SQLException e){
-            System.out.println("sql exption");
-            System.out.println("Database Src : "+getDb());
-            System.out.println("Driver : "+this.jar);
-            System.out.println(e.toString());
-
-            return false;
-        }
-
-    }
-
-    public List<Map<String,String>> select(String query){
-        try {
-
-            Class.forName(this.jar);
-        }catch (ClassNotFoundException e){
-            System.out.println("Class Not found exption");
-            return null;
-        }
-
-        try {
-            connection = DriverManager.getConnection(getDb());
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-            ResultSetMetaData metaData = resultSet.getMetaData();
-            int columnCount = metaData.getColumnCount();
-            String value;
-            List<Map<String,String>> list = new ArrayList<>();
-            while (resultSet.next()){
-                Map<String,String> map = new HashMap<>();
-                String coumnName ;
-                for (int i = 1; i <= columnCount; i++) {
-                    coumnName = metaData.getColumnName(i);
-                    value = resultSet.getString(i);
-                    map.put(coumnName,value);
-                }
-                list.add(map);
-            }
-
-            connection.close();
-            return list;
-
-        }catch (SQLException e){
-            System.out.println("sql exption");
-            System.out.println(e.getMessage());
-            System.out.println(getDb());
-
-
-            return null;
-        }
-
-    }
-
-    public int insert(String query) {
-        int generatedId = -1;
-        try {
-            Class.forName(this.jar);
-            connection = DriverManager.getConnection(getDb());
-            statement = connection.createStatement();
-            statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-            ResultSet generatedKeys = statement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                generatedId = generatedKeys.getInt(1);
-            }
-            connection.close();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-        return generatedId;
-    }
-
-
-
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public String getDb() {
-        return db;
-    }
-
-    public void setDb(String db) {
-        this.db = db;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
+    // Constructor for MySQL
+    public DataBaseConnection(String host, String dbName, String user, String password) {
+        this.dbUrl = host + dbName;
+        this.driver = MYSQL_DRIVER;
         this.user = user;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
+    }
+
+    // Generic execute (INSERT/UPDATE/DELETE)
+    public boolean execute(String query, Object... params) {
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            setParameters(stmt, params);
+            stmt.execute();
+            return true;
+
+        } catch (SQLException | ClassNotFoundException e) {
+            logError("Execute failed", query, e);
+            return false;
+        }
+    }
+
+    // SELECT with parameters
+    public List<Map<String, String>> select(String query, Object... params) {
+        List<Map<String, String>> results = new ArrayList<>();
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            setParameters(stmt, params);
+            ResultSet rs = stmt.executeQuery();
+            ResultSetMetaData meta = rs.getMetaData();
+
+            while (rs.next()) {
+                Map<String, String> row = new HashMap<>();
+                for (int i = 1; i <= meta.getColumnCount(); i++) {
+                    row.put(meta.getColumnName(i), rs.getString(i));
+                }
+                results.add(row);
+            }
+
+        } catch (SQLException | ClassNotFoundException e) {
+            logError("Select failed", query, e);
+        }
+        return results;
+    }
+
+    // INSERT with generated keys
+    public int insert(String query, Object... params) {
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
+            setParameters(stmt, params);
+            stmt.executeUpdate();
+
+            try (ResultSet keys = stmt.getGeneratedKeys()) {
+                return keys.next() ? keys.getInt(1) : -1;
+            }
+
+        } catch (SQLException | ClassNotFoundException e) {
+            logError("Insert failed", query, e);
+            return -1;
+        }
+    }
+
+    // --- Helper Methods ---
+    private Connection getConnection() throws SQLException, ClassNotFoundException {
+        Class.forName(driver);
+        return user.isEmpty() ?
+                DriverManager.getConnection(dbUrl) :
+                DriverManager.getConnection(dbUrl, user, password);
+    }
+
+    private void setParameters(PreparedStatement stmt, Object... params) throws SQLException {
+        for (int i = 0; i < params.length; i++) {
+            stmt.setObject(i + 1, params[i]);
+        }
+    }
+
+    private void logError(String action, String query, Exception e) {
+        System.err.println(action + " | Query: " + query);
+        System.err.println("Error: " + e.getMessage());
+        e.printStackTrace();
     }
 }

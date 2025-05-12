@@ -35,29 +35,32 @@ public class IndexController implements Initializable {
 
     private DataBaseConnection dataBaseConnection;
 
+    private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+
+
     private void updateEmployeeCount() {
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String, String>> result = dataBaseConnection.select("SELECT * FROM staff;");
         if (result != null) {
             empCount.setText(String.valueOf(result.size()));
         }
     }
     private void updatesale() {
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String, String>> result = dataBaseConnection.select("SELECT * FROM sale;");
         if (result != null) {
             salescont.setText(String.valueOf(result.size()));
         }
     }
     private void updatestock() {
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String, String>> result = dataBaseConnection.select("SELECT * FROM stock;");
         if (result != null) {
             stockscont.setText(String.valueOf(result.size()));
         }
     }
     private void updateproducts() {
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String, String>> result = dataBaseConnection.select("SELECT * FROM supply;");
         if (result != null) {
             productscont.setText(String.valueOf(result.size()));
