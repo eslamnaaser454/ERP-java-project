@@ -105,7 +105,7 @@
                         <Image url="@../images/icons/recycle.png" />
                     </image>
                 </ImageView>
-                <Label prefHeight="16.0" prefWidth="140.0" text="Suppliers" textFill="WHITE">
+                <Label text="Sales" textFill="WHITE">
                     <font>
                         <Font name="Trebuchet MS Bold" size="16.0" />
                     </font>
