@@ -68,5 +68,7 @@ module app {
     exports app.usermanagment.Createuser;
     exports app.usermanagment.EditeUserManagment;
     exports app.Log;
+    exports app.Market.Factory;
+    opens app.Market.Factory to javafx.fxml;
 
 }
