@@ -22,6 +22,9 @@ public class LogController {
     @FXML
     private DatePicker dateField;
 
+    private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+
+
 
 
 
@@ -70,7 +73,7 @@ public class LogController {
 
     public void load_cards(){
         cardsContainer.getChildren().clear();
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String,String>> list = dataBaseConnection.select("select * from log ORDER BY date DESC;");
         for (Map<String,String> log:list){
             cardsContainer.getChildren().add(GetLogCart(log));
@@ -80,7 +83,7 @@ public class LogController {
   @FXML
 public void filter(){
     cardsContainer.getChildren().clear();
-    dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+    dataBaseConnection = new DataBaseConnection(dbPath);
     LocalDate localDate = dateField.getValue();
     if (localDate != null) {
         String formattedDate = localDate.toString(); // This already formats to YYYY-MM-DD

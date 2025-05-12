@@ -35,11 +35,11 @@ public class CreateStoreFormController {
         String name = (String) NameField.getText();
         String location = (String) LocationField.getText();
         if ((name.isEmpty() || name == null) ){
-           ErrorMsg.setTextFill(Paint.valueOf("red"));
-           ErrorMsg.setText("Name Field Is Empty");
-           NameField.setBorder(Border.stroke(Paint.valueOf("red")));
+            ErrorMsg.setTextFill(Paint.valueOf("red"));
+            ErrorMsg.setText("Name Field Is Empty");
+            NameField.setBorder(Border.stroke(Paint.valueOf("red")));
 
-           return;
+            return;
         }
         if ((location.isEmpty() || location == null)){
             ErrorMsg.setTextFill(Paint.valueOf("red"));
@@ -52,7 +52,7 @@ public class CreateStoreFormController {
 
         String query = "insert into stock(name,location) values('"+name+"','"+location+"');";
         DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
-        boolean result = dataBaseConnection.excute(query);
+        boolean result = dataBaseConnection.execute(query);
         if (result){
             ErrorMsg.setText("Store Created Successfully");
             ErrorMsg.setTextFill(Paint.valueOf("green"));

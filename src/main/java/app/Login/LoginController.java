@@ -62,7 +62,7 @@ if(maps3p.getFirst().get("type").equals(("HR"))){
         if (authentication.check()){
 
             String pre_query = "SELECT is_active FROM users WHERE username = '" + user + "';";
-            boolean pre_result = dataBaseConnection.excute(pre_query);
+            boolean pre_result = dataBaseConnection.execute(pre_query);
             String myresult=dataBaseConnectionss.select(pre_query).getFirst().get("is_active");
 
             if(myresult.equals("true")|| myresult.equals("1")){
@@ -73,7 +73,7 @@ if(maps3p.getFirst().get("type").equals(("HR"))){
             boolean username = true; // Replace "name" with the actual username
 
             String query = "UPDATE users SET is_active = '" + username + "' WHERE username = '" + user + "';";
-            boolean result = dataBaseConnection.excute(query);
+            boolean result = dataBaseConnection.execute(query);
 
             IndexApplication indexApplication = new IndexApplication();
 

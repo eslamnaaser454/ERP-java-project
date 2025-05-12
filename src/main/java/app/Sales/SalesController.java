@@ -30,6 +30,8 @@ import java.util.*;
 public class SalesController implements Initializable {
 
     private DataBaseConnection dataBaseConnection;
+    private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+
 
     @FXML
     private TextField searchField;
@@ -65,7 +67,7 @@ public class SalesController implements Initializable {
 
 
     ObservableList<Sale> observableList(){
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String,String>> list = dataBaseConnection.select("select * from invoice ;");
         ObservableList<Sale> observableList = FXCollections.observableArrayList();
         if (!list.isEmpty() || list != null) {
@@ -78,7 +80,7 @@ public class SalesController implements Initializable {
     }
 
     ObservableList<Sale> observableList(String search){
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String,String>> list = new ArrayList<>();
 
         try {
@@ -128,7 +130,7 @@ public class SalesController implements Initializable {
 //            System.out.println("Chosen directory: " + chosenDirectoryPath+"\\Invoice-Report-("+date.toString()+").xlsx");
             ExcelSheet excelSheet = new ExcelSheet(chosenDirectoryPath,"Invoice-Report");
 
-            dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+            dataBaseConnection = new DataBaseConnection(dbPath);
             List<Map<String,String>> list = dataBaseConnection.select("select * from invoice;");
             List<Map<Integer,String>> list1 = new ArrayList<>();
             Map<Integer,String> header = new HashMap<>();
@@ -205,7 +207,7 @@ public class SalesController implements Initializable {
             this.customer = customer;
             this.contact = contact;
 
-            dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+            dataBaseConnection = new DataBaseConnection(dbPath);
             List<Map<String ,String>> sales = dataBaseConnection.select("select * from sale where invoice_id = "+this.id+";");
             double Total = 0;
             for (Map<String,String >map:sales){

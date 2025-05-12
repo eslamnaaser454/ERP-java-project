@@ -174,7 +174,7 @@ public class EditeUserController implements Initializable {
         }
         String query = "update users set username = '" +  username+ "', password = '" +password+ "', phone = '" +phone+ "', email= '" +email+ "', SSN = '" +ssn+ "'  where id = " + id + ";";
         DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
-        boolean result = dataBaseConnection.excute(query);
+        boolean result = dataBaseConnection.execute(query);
 
         if (result==true) {
             error.setText("User Updated Successfully");

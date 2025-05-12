@@ -51,7 +51,7 @@ public class IndexApplication extends Application {
                 DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
 
                 String query = "UPDATE users SET is_active = '" + username + "' WHERE username = '" + user + "';";
-                boolean result1 = dataBaseConnection.excute(query);
+                boolean result1 = dataBaseConnection.execute(query);
 
                 System.out.println(result1);
             } else {

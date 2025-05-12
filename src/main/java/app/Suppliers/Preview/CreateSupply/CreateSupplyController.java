@@ -197,7 +197,7 @@ public class CreateSupplyController implements Initializable {
             Image SavedImage = new Image(imagePath);
             String newPath = "\\src\\main\\resources\\app\\DataBaseImages\\SuppliesImages\\"+supplyId;
             SavedImage.SaveAt(System.getProperty("user.dir")+newPath+"\\");
-            dataBaseConnection.excute("update supply set image='"+newPath+"\\"+image.getName()+"' where id="+supplyId+";");
+            dataBaseConnection.execute("update supply set image='"+newPath+"\\"+image.getName()+"' where id="+supplyId+";");
         }
     }
     @Override

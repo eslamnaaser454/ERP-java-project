@@ -137,7 +137,7 @@ public class ManageEmplyessController implements Initializable {
 //            System.out.println("Chosen directory: " + chosenDirectoryPath+"\\Invoice-Report-("+date.toString()+").xlsx");
             ExcelSheet excelSheet = new ExcelSheet(chosenDirectoryPath,"Staff-report");
 
-            dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+            dataBaseConnection = new DataBaseConnection(dbPath);
             List<Map<String,String>> list = dataBaseConnection.select("select * from staff;");
             List<Map<Integer,String>> list1 = new ArrayList<>();
             Map<Integer,String> header = new HashMap<>();
@@ -340,7 +340,7 @@ public class ManageEmplyessController implements Initializable {
                     if (result.isPresent() && result.get() == okButton) {
                         String query = "delete from staff where id=" + idCol + ";";
                         System.out.println(query);
-                        dataBaseConnection.excute(query);
+                        dataBaseConnection.execute(query);
                         ManageEmplyessController.refreshTable();
                         Logging logging = new Logging() ;
                         logging.addLog("Employee with name "+firstNameCol+" "+lastNameCol+" has been deleted");

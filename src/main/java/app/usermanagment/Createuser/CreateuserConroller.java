@@ -240,7 +240,7 @@ String Department_name="HR";
 
         try {
             DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
-            boolean result = dataBaseConnection.excute(query);
+            boolean result = dataBaseConnection.execute(query);
 
             if (result) {
 

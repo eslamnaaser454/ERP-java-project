@@ -91,7 +91,7 @@ public class PreviewSupplyController implements Initializable {
 
     @FXML
     private void back(){
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
         Map<String,String> map = dataBaseConnection.select("select * from supply where id = "+id+";").getFirst();
         PreviewSupplierApplication page = new PreviewSupplierApplication(map.get("supplier_id"));
         Stage stage = (Stage) table.getScene().getWindow();
@@ -177,7 +177,7 @@ public class PreviewSupplyController implements Initializable {
 
             }
         }
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
 
         Map<String,String> map = dataBaseConnection.select("select * from supply where id="+id+";").getFirst();
 
@@ -190,7 +190,7 @@ public class PreviewSupplyController implements Initializable {
             int invoiceID = dataBaseConnection.insert(query);
 
             query = "insert into sale(product_name ,unitePrice ,qnt ,invoice_id ,supply_id ) values ('"+map.get("name")+"',"+map.get("sell_price")+","+qnt+","+invoiceID+","+map.get("id")+")";
-            dataBaseConnection.excute(query);
+            dataBaseConnection.execute(query);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Sale Added Successfully");
             alert.show();
@@ -198,7 +198,7 @@ public class PreviewSupplyController implements Initializable {
             customerPhoneField.setText("");
             qntField.setText("");
             int updatedQnt = Integer.parseInt(map.get("qnt")) - d;
-            dataBaseConnection.excute("update supply set qnt="+updatedQnt+" where id="+map.get("id")+";");
+            dataBaseConnection.execute("update supply set qnt="+updatedQnt+" where id="+map.get("id")+";");
             setData();
 
     }
@@ -280,7 +280,7 @@ public class PreviewSupplyController implements Initializable {
           this.id = id;
           this.invoice_id = invoice_id;
 
-          dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+          dataBaseConnection = new DataBaseConnection(dbPath);
           Map<String,String> map = dataBaseConnection.select("select * from invoice where id = "+invoice_id+";").getFirst();
           this.customer = map.get("customer_name");
           this.contact = map.get("customer_phone");

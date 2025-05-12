@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 
 public class InvoiceController implements Initializable {
     DataBaseConnection dataBaseConnection;
+    private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+
     private String id;
     @FXML
     private Label nameLable;
@@ -50,7 +52,7 @@ public class InvoiceController implements Initializable {
 
     private ObservableList<Sale> observableList(){
         ObservableList<Sale> observableList = FXCollections.observableArrayList();
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String,String>> list = dataBaseConnection.select("select * from sale where invoice_id = "+id+";");
         for (Map<String,String> map:list){
             int total = 0;
@@ -67,7 +69,7 @@ public class InvoiceController implements Initializable {
 
 
     public void setData(){
-        dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
+        dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String,String>> list = dataBaseConnection.select("select * from invoice where id = "+id+";");
         if (!list.isEmpty()){
             Map<String,String> map = list.getFirst();
