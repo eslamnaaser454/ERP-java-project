@@ -102,7 +102,7 @@
             <children>
                 <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/icons/recycle.png" />
+                        <Image url="@../images/icons/business.png" />
                     </image>
                 </ImageView>
                 <Label text="Sales" textFill="WHITE">
