@@ -154,22 +154,7 @@ public class PreviewSupplierController implements Initializable {
             Hyperlink stockHyperlink = new Hyperlink(stock.get("name"));
             HBox stockHbox = new HBox(stockLabel,stockHyperlink);
             // Buttons
-            Button previewButton = new Button("Preview");
-            previewButton.setStyle("-fx-background-color: #021B2A; -fx-text-fill: white; -fx-font-weight: bold;");
-            previewButton.setPadding(new Insets(5,15,5,15));
 
-            previewButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    PreviewSupplyApplication previewSupplyApplication = new PreviewSupplyApplication(map.get("id"));
-                    Stage stage = (Stage) supplyContainer.getScene().getWindow();
-                    try {
-                        previewSupplyApplication.start(stage);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
 
             Button removeButton = new Button("Remove");
             removeButton.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold");
@@ -220,7 +205,7 @@ public class PreviewSupplierController implements Initializable {
 
 
 
-            VBox buttonsBox = new VBox(previewButton, removeButton);
+            VBox buttonsBox = new VBox(removeButton);
             buttonsBox.setAlignment(Pos.CENTER);
             buttonsBox.setSpacing(10);
 
