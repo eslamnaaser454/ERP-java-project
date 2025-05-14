@@ -10,6 +10,10 @@ import java.io.IOException;
 public class PreviewSupplyApplication extends Application {
     private String id;
 
+    // Default constructor for JavaFX
+    public PreviewSupplyApplication() {
+    }
+
     public PreviewSupplyApplication(String id) {
         this.id = id;
     }
@@ -20,15 +24,14 @@ public class PreviewSupplyApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader =new FXMLLoader(PreviewSupplyApplication.class.getResource("supply-preview.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),1288, 579);
+        FXMLLoader fxmlLoader = new FXMLLoader(PreviewSupplyApplication.class.getResource("supply-preview.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1288, 579);
+        primaryStage.setTitle("Product Purchase History");
         primaryStage.setScene(scene);
         PreviewSupplyController previewSupplyController = fxmlLoader.getController();
         previewSupplyController.setId(id);
         previewSupplyController.setData();
 
         primaryStage.show();
-
-
     }
 }

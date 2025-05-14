@@ -1,13 +1,11 @@
 package app.Suppliers.Preview.PreviewSupply.EditeSupply;
 
-import app.Suppliers.Preview.PreviewSupply.PreviewSupplyApplication;
 import app.Suppliers.Preview.PreviewSupply.PreviewSupplyController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOError;
 import java.io.IOException;
 
 public class EditeSupplyApplication extends Application {

@@ -1,7 +1,7 @@
 package app.Suppliers.Preview.PreviewSupply;
 
 import app.Classes.DataBaseConnection;
-import app.Suppliers.Preview.PreviewSupplierApplication;
+import app.Market.MarketApplication;
 import app.Suppliers.Preview.PreviewSupply.EditeSupply.EditeSupplyApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,8 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Border;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -28,6 +26,8 @@ public class PreviewSupplyController implements Initializable {
 
     private DataBaseConnection dataBaseConnection;
     private String id;
+    private boolean fromMarket = false; // Flag to track if we came from Market page
+
     @FXML
     private ImageView image;
     @FXML
@@ -74,12 +74,9 @@ public class PreviewSupplyController implements Initializable {
 
 
 
-
     @FXML
     private TableColumn<Sale,String> totalCol;
 
-    @FXML
-    private ImageView backIcon;
 
 
 
@@ -88,20 +85,6 @@ public class PreviewSupplyController implements Initializable {
     public void setId(String id) {
         this.id = id;
     }
-
-    @FXML
-    private void back(){
-        dataBaseConnection = new DataBaseConnection(dbPath);
-        Map<String,String> map = dataBaseConnection.select("select * from supply where id = "+id+";").getFirst();
-        PreviewSupplierApplication page = new PreviewSupplierApplication(map.get("supplier_id"));
-        Stage stage = (Stage) table.getScene().getWindow();
-        try {
-            page.start(stage);
-        }catch (IOException e){
-            System.out.println(e.getCause());
-        }
-    }
-
     public void setData(){
         dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String,String>> list = dataBaseConnection.select("select * from supply where id="+id+";");
@@ -186,28 +169,28 @@ public class PreviewSupplyController implements Initializable {
             alert.show();
             return;
         }
-            String query = "insert into invoice(customer_name ,customer_phone ) values ('"+customerName+"','"+customerContact+"');";
-            int invoiceID = dataBaseConnection.insert(query);
+        String query = "insert into invoice(customer_name ,customer_phone ) values ('"+customerName+"','"+customerContact+"');";
+        int invoiceID = dataBaseConnection.insert(query);
 
-            query = "insert into sale(product_name ,unitePrice ,qnt ,invoice_id ,supply_id ) values ('"+map.get("name")+"',"+map.get("sell_price")+","+qnt+","+invoiceID+","+map.get("id")+")";
-            dataBaseConnection.execute(query);
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.setContentText("Sale Added Successfully");
-            alert.show();
-            customerNameField.setText("");
-            customerPhoneField.setText("");
-            qntField.setText("");
-            int updatedQnt = Integer.parseInt(map.get("qnt")) - d;
-            dataBaseConnection.execute("update supply set qnt="+updatedQnt+" where id="+map.get("id")+";");
-            setData();
+        query = "insert into sale(product_name ,unitePrice ,qnt ,invoice_id ,supply_id ) values ('"+map.get("name")+"',"+map.get("sell_price")+","+qnt+","+invoiceID+","+map.get("id")+")";
+        dataBaseConnection.execute(query);
+        alert.setAlertType(Alert.AlertType.INFORMATION);
+        alert.setContentText("Sale Added Successfully");
+        alert.show();
+        customerNameField.setText("");
+        customerPhoneField.setText("");
+        qntField.setText("");
+        int updatedQnt = Integer.parseInt(map.get("qnt")) - d;
+        dataBaseConnection.execute("update supply set qnt="+updatedQnt+" where id="+map.get("id")+";");
+        setData();
 
     }
 
 
     ObservableList<Sale> observableList(){
         dataBaseConnection = new DataBaseConnection(dbPath);
-            List<Map<String,String>> list = dataBaseConnection.select("select * from sale where supply_id ="+id+";");
-            ObservableList<Sale> observableList = FXCollections.observableArrayList();
+        List<Map<String,String>> list = dataBaseConnection.select("select * from sale where supply_id ="+id+";");
+        ObservableList<Sale> observableList = FXCollections.observableArrayList();
         for (Map<String,String> map:list){
             Sale sale = new Sale(map.get("id"),map.get("qnt"),map.get("unitePrice"),map.get("invoice_id"));
             System.out.println(map.get("id")+" "+map.get("qnt")+" "+map.get("unitePrice")+" "+map.get("invoice_id"));
@@ -227,7 +210,7 @@ public class PreviewSupplyController implements Initializable {
 //        public Sale(String id, String qnt, String price,String invoice_id) {
 
             Sale sale = new Sale(map.get("id"),map.get("qnt"),map.get("unitePrice"),map.get("invoice_id"));
-           observableList.add(sale);
+            observableList.add(sale);
         }
         return  observableList;
     }
@@ -267,85 +250,85 @@ public class PreviewSupplyController implements Initializable {
 
     }
 
-  public class Sale{
+    public class Sale{
         private String  id;
-      private String customer ="eslam";
-      private String contact = "01145954371";
-      private String qnt;
-      private String unitePrice ;
-      private String total ;
-      private String invoice_id;
+        private String customer ="eslam";
+        private String contact = "01145954371";
+        private String qnt;
+        private String unitePrice ;
+        private String total ;
+        private String invoice_id;
 
-      public Sale(String id, String qnt, String unitePrice, String invoice_id) {
-          this.id = id;
-          this.invoice_id = invoice_id;
+        public Sale(String id, String qnt, String unitePrice, String invoice_id) {
+            this.id = id;
+            this.invoice_id = invoice_id;
 
-          dataBaseConnection = new DataBaseConnection(dbPath);
-          Map<String,String> map = dataBaseConnection.select("select * from invoice where id = "+invoice_id+";").getFirst();
-          this.customer = map.get("customer_name");
-          this.contact = map.get("customer_phone");
-          this.qnt = qnt;
-          this.unitePrice = unitePrice;
-          this.total = ""+ Double.parseDouble(unitePrice)*Double.parseDouble(qnt);
+            dataBaseConnection = new DataBaseConnection(dbPath);
+            Map<String,String> map = dataBaseConnection.select("select * from invoice where id = "+invoice_id+";").getFirst();
+            this.customer = map.get("customer_name");
+            this.contact = map.get("customer_phone");
+            this.qnt = qnt;
+            this.unitePrice = unitePrice;
+            this.total = ""+ Double.parseDouble(unitePrice)*Double.parseDouble(qnt);
 
-      }
+        }
 
 
-      public String getId() {
-          return id;
-      }
+        public String getId() {
+            return id;
+        }
 
-      public void setId(String id) {
-          this.id = id;
-      }
+        public void setId(String id) {
+            this.id = id;
+        }
 
-      public String getCustomer() {
-          return customer;
-      }
+        public String getCustomer() {
+            return customer;
+        }
 
-      public void setCustomer(String customer) {
-          this.customer = customer;
-      }
+        public void setCustomer(String customer) {
+            this.customer = customer;
+        }
 
-      public String getContact() {
-          return contact;
-      }
+        public String getContact() {
+            return contact;
+        }
 
-      public void setContact(String contact) {
-          this.contact = contact;
-      }
+        public void setContact(String contact) {
+            this.contact = contact;
+        }
 
-      public String getQnt() {
-          return qnt;
-      }
+        public String getQnt() {
+            return qnt;
+        }
 
-      public void setQnt(String qnt) {
-          this.qnt = qnt;
-      }
+        public void setQnt(String qnt) {
+            this.qnt = qnt;
+        }
 
-      public String getUnitePrice() {
-          return unitePrice;
-      }
+        public String getUnitePrice() {
+            return unitePrice;
+        }
 
-      public void setUnitePrice(String unitePrice) {
-          this.unitePrice = unitePrice;
-      }
+        public void setUnitePrice(String unitePrice) {
+            this.unitePrice = unitePrice;
+        }
 
-      public String getTotal() {
-          return total;
-      }
+        public String getTotal() {
+            return total;
+        }
 
-      public void setTotal(String total) {
-          this.total = total;
-      }
+        public void setTotal(String total) {
+            this.total = total;
+        }
 
-      public String getInvoice_id() {
-          return invoice_id;
-      }
+        public String getInvoice_id() {
+            return invoice_id;
+        }
 
-      public void setInvoice_id(String invoice_id) {
-          this.invoice_id = invoice_id;
-      }
-  }
+        public void setInvoice_id(String invoice_id) {
+            this.invoice_id = invoice_id;
+        }
+    }
 
 }

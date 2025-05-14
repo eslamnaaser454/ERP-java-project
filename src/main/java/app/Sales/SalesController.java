@@ -4,7 +4,6 @@ package app.Sales;
 import app.Classes.DataBaseConnection;
 import app.Classes.ExcelSheet;
 import app.Sales.Invoice.InvoiceApplication;
-import app.Suppliers.Preview.PreviewSupply.PreviewSupplyController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,7 +18,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Background;
 import javafx.scene.paint.Paint;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;

@@ -1,27 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="565.0" prefWidth="1267.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Market.Cart.CartController">
+<BorderPane prefHeight="579.0" prefWidth="1288.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Market.Cart.CartController">
     <left>
         <fx:include source="../../Layouts/side-bar-view.fxml" />
     </left>
     <center>
-        <VBox spacing="20" style="-fx-padding: 20;">
-            <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
-                <VBox fx:id="cartContainer" spacing="10" />
-            </ScrollPane>
+        <BorderPane prefHeight="579.0" prefWidth="1024.0" style="-fx-background-color: white;">
+            <top>
+                <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1024.0" style="-fx-background-color: #f8f9fa;">
+                    <children>
+                        <Label text="Shopping Cart" textFill="#333333">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </top>
+            <center>
+                <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="460.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+                    <content>
+                        <VBox fx:id="cartContainer" prefWidth="1022.0" spacing="15.0">
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+            </center>
+            <bottom>
+                <VBox spacing="10.0" style="-fx-background-color: #f8f9fa;" BorderPane.alignment="CENTER">
+                    <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                    </padding>
+                    <children>
+                        <Label fx:id="totalLabel" style="-fx-font-size: 18; -fx-font-weight: bold;" text="Total: $0.00" />
 
-            <VBox spacing="10" style="-fx-padding: 20; -fx-background-color: #ffffff;">
-                <Label fx:id="totalLabel" style="-fx-font-size: 18; -fx-font-weight: bold;" text="Total: $0.00" />
-                <Button fx:id="checkoutButton" onAction="#handleCheckout"
-                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16;"
-                        text="Proceed to Checkout" />
-            </VBox>
-        </VBox>
+                        <!-- Customer Info Section -->
+                        <VBox spacing="5.0">
+                            <children>
+                                <Label text="Customer Information" style="-fx-font-weight: bold;">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+
+                                <!-- Existing Customer Selection -->
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Label text="Select Customer:" />
+                                        <ComboBox fx:id="customerComboBox" prefWidth="350.0" promptText="Select existing customer" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" />
+                                    </padding>
+                                </HBox>
+
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Label text="Name:" />
+                                        <TextField fx:id="customerNameField" promptText="Customer name" HBox.hgrow="ALWAYS" />
+                                    </children>
+                                </HBox>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Label text="Phone:" />
+                                        <TextField fx:id="customerPhoneField" promptText="Customer phone number" HBox.hgrow="ALWAYS" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+
+                        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                            <children>
+                                <Button fx:id="backToShoppingButton" mnemonicParsing="false" onAction="#goBackToShopping" style="-fx-background-color: #007bff; -fx-text-fill: white;" text="Back to Shopping" />
+                                <Button fx:id="checkoutButton" mnemonicParsing="false" onAction="#handleCheckout" style="-fx-background-color: #28a745; -fx-text-fill: white;" text="Checkout">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </bottom>
+        </BorderPane>
     </center>
 </BorderPane>

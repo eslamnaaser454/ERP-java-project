@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
 import javafx.scene.paint.Paint;
 
-import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
