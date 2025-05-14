@@ -1,7 +1,6 @@
 package app.Stores.Manage.Create;
 
 import app.Classes.DataBaseConnection;
-import app.Stores.Manage.StoreManageController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,13 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
 import javafx.scene.paint.Paint;
 
-import java.util.List;
-import java.util.Map;
-
 public class CreateStoreFormController {
     private String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
-
-
 
     @FXML
     TextField NameField;
@@ -29,6 +23,11 @@ public class CreateStoreFormController {
     @FXML
     Label ErrorMsg;
 
+    private Store connectionFactory;
+
+    public void initialize() {
+        this.connectionFactory = new ConcreteStore(dbPath);
+    }
 
     @FXML
     public void submit(){
@@ -38,20 +37,17 @@ public class CreateStoreFormController {
             ErrorMsg.setTextFill(Paint.valueOf("red"));
             ErrorMsg.setText("Name Field Is Empty");
             NameField.setBorder(Border.stroke(Paint.valueOf("red")));
-
             return;
         }
         if ((location.isEmpty() || location == null)){
             ErrorMsg.setTextFill(Paint.valueOf("red"));
             ErrorMsg.setText("Location Field Is Empty");
             LocationField.setBorder(Border.stroke(Paint.valueOf("red")));
-
             return;
-
         }
 
         String query = "insert into stock(name,location) values('"+name+"','"+location+"');";
-        DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
+        DataBaseConnection dataBaseConnection = connectionFactory.createConnection();
         boolean result = dataBaseConnection.execute(query);
         if (result){
             ErrorMsg.setText("Store Created Successfully");
@@ -59,6 +55,5 @@ public class CreateStoreFormController {
             NameField.setText("");
             LocationField.setText("");
         }
-
     }
 }
