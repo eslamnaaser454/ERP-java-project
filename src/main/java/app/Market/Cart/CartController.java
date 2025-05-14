@@ -253,6 +253,7 @@ public class CartController implements Initializable {
             }
 
             if (allSuccessful) {
+
                 showAlert(Alert.AlertType.INFORMATION, "Success", "Sale completed successfully!");
                 // Clear cart and fields after successful checkout
                 customerNameField.clear();
