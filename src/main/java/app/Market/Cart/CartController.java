@@ -82,20 +82,11 @@ public class CartController implements Initializable {
     private void handleCheckout() {
         cartItems.clear();
         refreshCartView();
-        showAlert("Success", "Checkout completed successfully!");
     }
 
     private Label createLabel(String text) {
         Label label = new Label(text);
         label.setStyle("-fx-font-size: 14;");
         return label;
-    }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

@@ -24,9 +24,6 @@
                             <children>
                                 <AnchorPane prefHeight="53.0" prefWidth="988.0">
                                     <children>
-                                        <!-- Cart Badge -->
-                                        <Label fx:id="cartBadge" layoutX="900.0" layoutY="15.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-padding: 2 5px; -fx-background-radius: 10;" visible="false" />
-
                                         <!-- Refresh Button -->
                                         <Button layoutX="353.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="32.0" prefWidth="107.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 50px; -fx-background-radius: 50px;" text=" Refresh">
                                             <font>
@@ -37,26 +34,29 @@
                                         <!-- Search Section -->
                                         <TextField fx:id="searchField" layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="222.0" promptText="Search here..." style="-fx-background-radius: 50px;" />
                                         <Button layoutX="243.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="30.0" prefWidth="94.0" style="-fx-background-color: #021B2A; -fx-background-radius: 50px;" text="Search" textFill="WHITE">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font></Button>
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font></Button>
 
-                                        <!-- Cart Button -->
+                                        <!-- Cart Button with Badge -->
                                         <Button layoutX="880.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#GoToCart" prefHeight="30.0" prefWidth="94.0" style="-fx-background-color: #00A1FF; -fx-background-radius: 50px;" text="Cart" textFill="WHITE">
                                             <font>
                                                 <Font name="System Bold" size="16.0" />
                                             </font>
                                         </Button>
-                              <ImageView fitHeight="14.0" fitWidth="28.0" layoutX="315.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/icons/search%20(9).png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="15.0" fitWidth="11.0" layoutX="440.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/icons/refresh-arrow.png" />
-                                 </image>
-                              </ImageView>
+                                        <!-- Cart Badge -->
+                                        <Label fx:id="cartBadge" alignment="CENTER" layoutX="953.0" layoutY="4.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-background-radius: 10px; -fx-padding: 2px 6px; -fx-font-weight: bold;" text="0" visible="false" />
+
+                                        <ImageView fitHeight="14.0" fitWidth="28.0" layoutX="315.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/icons/search%20(9).png" />
+                                            </image>
+                                        </ImageView>
+                                        <ImageView fitHeight="15.0" fitWidth="11.0" layoutX="440.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/icons/refresh-arrow.png" />
+                                            </image>
+                                        </ImageView>
                                     </children>
                                 </AnchorPane>
 

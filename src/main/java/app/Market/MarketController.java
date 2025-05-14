@@ -28,6 +28,10 @@ public class MarketController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DataBaseConnection dbConnection = new DataBaseConnection(System.getProperty("user.dir") + "\\src\\main\\resources\\database.db");
+
+        // Setup cart badge styling
+        cartBadge.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-background-radius: 10px; -fx-padding: 2px 6px; -fx-font-weight: bold;");
+
         marketService = new MarketService(dbConnection, cartBadge);
         productCardFactory = new SimpleProductCardFactory(marketService);
 

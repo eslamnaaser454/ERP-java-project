@@ -2,6 +2,9 @@ package app.Market.Factory;
 
 import app.Market.Cart.CartController;
 import app.Market.Cart.CartItem;
+import app.Suppliers.Preview.PreviewSupply.PreviewSupplyApplication;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -10,8 +13,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +63,8 @@ public class SimpleProductCard implements ProductCard {
         spinner.setEditable(true);
         spinner.setPrefWidth(80);
         spinner.getEditor().setTextFormatter(new TextFormatter<>(c -> c.getControlNewText().matches("\\d*") ? c : null));
+
+
 
         Button addButton = new Button("Add to Cart");
         addButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;");

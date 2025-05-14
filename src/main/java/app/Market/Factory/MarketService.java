@@ -13,10 +13,11 @@ import java.util.Optional;
 public class MarketService {
     private final DataBaseConnection dbConnection;
     private final Label cartBadge;
-
+    private int cartCount = 0;
     public MarketService(DataBaseConnection dbConnection, Label cartBadge) {
         this.dbConnection = dbConnection;
         this.cartBadge = cartBadge;
+        updateCartBadge(); // Initialize badge on startup
     }
 
     public String getSupplierName(String supplierId) {
@@ -47,23 +48,13 @@ public class MarketService {
         } else {
             CartController.cartItems.add(newItem);
         }
-
         updateCartBadge();
-        showAlert("Success", quantity + " × " + newItem.getName() + " added to cart");
     }
 
     private void updateCartBadge() {
         int count = CartController.cartItems.stream().mapToInt(CartItem::getQuantity).sum();
         cartBadge.setText(String.valueOf(count));
         cartBadge.setVisible(count > 0);
-    }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     public List<Map<String, String>> getSupplies() {
