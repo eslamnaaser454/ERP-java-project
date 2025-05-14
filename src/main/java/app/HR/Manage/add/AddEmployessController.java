@@ -155,6 +155,34 @@ public class AddEmployessController implements Initializable {
             return;
 
         }
+        // Check for duplicates
+        List<Map<String, String>> duplicates = dataBaseConnection.select(
+                "SELECT * FROM staff WHERE ssn = '" + ssn + "' OR email = '" + email + "' OR phone = '" + phone + "';"
+        );
+
+        if (!duplicates.isEmpty()) {
+            for (Map<String, String> entry : duplicates) {
+                if (ssn.equals(entry.get("ssn"))) {
+                    ErrMsg.setText("SSN already exists.");
+                    ErrMsg.setTextFill(Paint.valueOf("red"));
+                    SSNField.setBorder(Border.stroke(Paint.valueOf("red")));
+                    return;
+                }
+                if (email.equals(entry.get("email"))) {
+                    ErrMsg.setText("Email already exists.");
+                    ErrMsg.setTextFill(Paint.valueOf("red"));
+                    emailField.setBorder(Border.stroke(Paint.valueOf("red")));
+                    return;
+                }
+                if (phone.equals(entry.get("phone"))) {
+                    ErrMsg.setText("Phone number already exists.");
+                    ErrMsg.setTextFill(Paint.valueOf("red"));
+                    phoneField.setBorder(Border.stroke(Paint.valueOf("red")));
+                    return;
+                }
+            }
+        }
+
         Map<String, String> departmentV = getdepartment.getFirst();
         String departmentId = departmentV.get("id");
 
