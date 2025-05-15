@@ -43,6 +43,7 @@ public class StoreManageController implements Initializable {
     private TextField searchField;
 
     @FXML Button refreshBtn;
+    @FXML Button AddStoreButton;
 
 //    @FXML
 //    private TableColumn<store, String> editCol;
