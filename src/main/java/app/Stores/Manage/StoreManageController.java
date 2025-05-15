@@ -1,5 +1,6 @@
 package app.Stores.Manage;
 
+import app.Classes.Authentication;
 import app.Classes.DataBaseConnection;
 import app.Stores.Manage.Create.CreateStoreFormApplication;
 import app.Stores.Manage.Edite.EditeStoreFormApplication;
