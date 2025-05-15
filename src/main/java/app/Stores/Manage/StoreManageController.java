@@ -202,6 +202,16 @@ public class StoreManageController implements Initializable {
             actions.setPrefHeight(20);
             actions.setAlignment(javafx.geometry.Pos.CENTER);
             actions.getChildren().addAll(editBtn,deleteBtn);
+
+            Authentication authentication = new Authentication();
+            if(authentication.getUser().get("type").equals("User")){
+                AddStoreButton.setDisable(true);
+                deleteBtn.setDisable(true);
+                editBtn.setDisable(true);
+
+
+
+            }
         }
 
         public Button getDeleteBtn() {
