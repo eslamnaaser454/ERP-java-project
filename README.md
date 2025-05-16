@@ -16,3 +16,8 @@
 ![SingeltonUML](images/SingeltonInUser.PNG)
 
 ---
+## ✅ Abo Ashraf 🔥 : Supplier Db Connection handling using Proxy Pattern
+
+![ProxyUML](images/diagram.svg)
+
+---
