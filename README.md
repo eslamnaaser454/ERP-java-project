@@ -6,3 +6,13 @@
 ![FactoryPatternUML](images/FactoryForStores.PNG)
 
 ---
+## ✅ Martin Maged 🔥 : Refreshment of Database using Proxy Pattern
+
+![ProxyPatternUML](images/ProxyForRefresh.PNG)
+
+---
+## ✅ Martin Maged 🔥 : Session handling using Singelton Pattern
+
+![SingeltonUML](images/SingeltonInUser.PNG)
+
+---
