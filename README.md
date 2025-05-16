@@ -16,7 +16,7 @@
 ![SingeltonUML](images/SingeltonInUser.PNG)
 
 ---
-##  ✅ Abo Ashraf 🔥  : Supplier Db Connection handling using Proxy Pattern
+##  ✅ Abo Ashraf 🔥  : Lazy Initialization of Supplier DB Connections via Proxy Pattern
 
 ![ProxyUML](images/diagram.png)
 
