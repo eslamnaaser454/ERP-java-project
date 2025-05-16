@@ -1,5 +1,6 @@
 package app.Stores.Manage;
 
+import app.Classes.Authentication;
 import app.Classes.DataBaseConnection;
 import app.Stores.Manage.Create.CreateStoreFormApplication;
 import app.Stores.Manage.Edite.EditeStoreFormApplication;
@@ -43,6 +44,7 @@ public class StoreManageController implements Initializable {
     private TextField searchField;
 
     @FXML Button refreshBtn;
+    @FXML Button AddStoreButton;
 
 //    @FXML
 //    private TableColumn<store, String> editCol;
@@ -202,6 +204,16 @@ public class StoreManageController implements Initializable {
             actions.setPrefHeight(20);
             actions.setAlignment(javafx.geometry.Pos.CENTER);
             actions.getChildren().addAll(editBtn,deleteBtn);
+
+            Authentication authentication = new Authentication();
+            if(authentication.getUser().get("type").equals("User")){
+                AddStoreButton.setDisable(true);
+                deleteBtn.setDisable(true);
+                editBtn.setDisable(true);
+
+
+
+            }
         }
 
         public Button getDeleteBtn() {
