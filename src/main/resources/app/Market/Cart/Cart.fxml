@@ -79,10 +79,24 @@
                                         <TextField fx:id="customerPhoneField" promptText="Customer phone number" HBox.hgrow="ALWAYS" />
                                     </children>
                                 </HBox>
+
+                                <!-- Payment Method Section -->
+                                <HBox spacing="10.0">
+                                    <padding>
+                                        <Insets top="10.0" />
+                                    </padding>
+                                    <children>
+                                        <Label text="Payment Method:" />
+                                        <ComboBox fx:id="paymentMethodComboBox" prefWidth="200.0" promptText="Select payment method" />
+                                    </children>
+                                </HBox>
                             </children>
                         </VBox>
 
                         <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                            <padding>
+                                <Insets top="10.0" />
+                            </padding>
                             <children>
                                 <Button fx:id="backToShoppingButton" mnemonicParsing="false" onAction="#goBackToShopping" style="-fx-background-color: #007bff; -fx-text-fill: white;" text="Back to Shopping" />
                                 <Button fx:id="checkoutButton" mnemonicParsing="false" onAction="#handleCheckout" style="-fx-background-color: #28a745; -fx-text-fill: white;" text="Checkout">

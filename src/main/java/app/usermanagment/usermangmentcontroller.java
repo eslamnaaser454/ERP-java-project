@@ -4,6 +4,8 @@ import app.Classes.DataBaseConnection;
 import app.Log.LogApplication;
 import app.usermanagment.Createuser.CreateuserApplication;
 import app.usermanagment.EditeUserManagment.EditeUserApplication;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -70,6 +73,11 @@ public class usermangmentcontroller implements Initializable
 
 
         tabel.setItems(observableList());
+
+        // Set up automatic refresh every 10 seconds
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10), event -> refresh()));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
     private ObservableList<user> observableList()
@@ -287,11 +295,32 @@ public class usermangmentcontroller implements Initializable
             System.out.println("here");;
         }
     }
+
     @FXML
-    public void refresh()
-    {
-        tabel.getItems().clear();
-        tabel.setItems(observableList());
+    public void refresh() {
+        ObservableList<user> refreshedList = FXCollections.observableArrayList();
+        DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
+
+        String query = "SELECT * FROM users;";
+        List<Map<String, String>> list = dataBaseConnection.select(query);
+
+        if (list != null) {
+            for (Map<String, String> map : list) {
+                refreshedList.add(new user(
+                        map.get("username"),
+                        map.get("email"),
+                        map.get("phone"),
+                        map.get("SSN"),
+                        map.get("is_active"),
+                        map.get("is_super_user"),
+                        map.get("id"),
+                        this
+                ));
+            }
+        }
+
+        tabel.getItems().clear(); // Clear the table
+        tabel.setItems(refreshedList); // Set the refreshed list
     }
     private ObservableList<user> search_observableList(String search) {
         ObservableList<user> userObservableList = FXCollections.observableArrayList();
