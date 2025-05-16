@@ -81,7 +81,6 @@ public class PreviewSupplyController implements Initializable {
 
 
 
-
     public void setId(String id) {
         this.id = id;
     }
@@ -97,7 +96,7 @@ public class PreviewSupplyController implements Initializable {
             sellLable.setText(map.get("sell_price"));
             File file = new File(System.getProperty("user.dir")+map.get("image"));
             if (!file.exists()){
-                file = new File(System.getProperty("user.dir")+"\\src\\main\\resources\\app\\images\\defulteImages\\NoneImage.jpg");
+                file = new File(System.getProperty("user.dir")+"\\src\\main\\resources\\app\\images\\defaultImages\\NoneImage.jpg");
             }
 
             try {
@@ -105,14 +104,10 @@ public class PreviewSupplyController implements Initializable {
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
-
-
-
         }
 
         table.getItems().clear();
         table.setItems(observableList());
-
     }
 
 
@@ -192,12 +187,16 @@ public class PreviewSupplyController implements Initializable {
         List<Map<String,String>> list = dataBaseConnection.select("select * from sale where supply_id ="+id+";");
         ObservableList<Sale> observableList = FXCollections.observableArrayList();
         for (Map<String,String> map:list){
-            Sale sale = new Sale(map.get("id"),map.get("qnt"),map.get("unitePrice"),map.get("invoice_id"));
-            System.out.println(map.get("id")+" "+map.get("qnt")+" "+map.get("unitePrice")+" "+map.get("invoice_id"));
-
-            observableList.add(sale);
+            try {
+                Sale sale = new Sale(map.get("id"),map.get("qnt"),map.get("unitePrice"),map.get("invoice_id"));
+                System.out.println(map.get("id")+" "+map.get("qnt")+" "+map.get("unitePrice")+" "+map.get("invoice_id"));
+                observableList.add(sale);
+            } catch (Exception e) {
+                System.err.println("Error creating Sale object: " + e.getMessage());
+                // Continue to the next item if there's an error with the current one
+            }
         }
-        return  observableList;
+        return observableList;
     }
 
 
@@ -207,12 +206,15 @@ public class PreviewSupplyController implements Initializable {
         List<Map<String,String>> list = dataBaseConnection.select("select * from sale where supply_id="+id+" ;");
         ObservableList<Sale> observableList = FXCollections.observableArrayList();
         for (Map<String,String> map:list){
-//        public Sale(String id, String qnt, String price,String invoice_id) {
-
-            Sale sale = new Sale(map.get("id"),map.get("qnt"),map.get("unitePrice"),map.get("invoice_id"));
-            observableList.add(sale);
+            try {
+                Sale sale = new Sale(map.get("id"),map.get("qnt"),map.get("unitePrice"),map.get("invoice_id"));
+                observableList.add(sale);
+            } catch (Exception e) {
+                System.err.println("Error creating Sale object: " + e.getMessage());
+                // Continue to the next item if there's an error with the current one
+            }
         }
-        return  observableList;
+        return observableList;
     }
 
 
@@ -244,19 +246,16 @@ public class PreviewSupplyController implements Initializable {
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
         qntCol.setCellValueFactory(new PropertyValueFactory<>("qnt"));
         priceCol.setCellValueFactory(new PropertyValueFactory<>("unitePrice"));
-
         totalCol.setCellValueFactory(new PropertyValueFactory<>("total"));
-
-
     }
 
     public class Sale{
-        private String  id;
-        private String customer ="eslam";
+        private String id;
+        private String customer = "eslam";
         private String contact = "01145954371";
         private String qnt;
-        private String unitePrice ;
-        private String total ;
+        private String unitePrice;
+        private String total;
         private String invoice_id;
 
         public Sale(String id, String qnt, String unitePrice, String invoice_id) {
@@ -264,15 +263,28 @@ public class PreviewSupplyController implements Initializable {
             this.invoice_id = invoice_id;
 
             dataBaseConnection = new DataBaseConnection(dbPath);
-            Map<String,String> map = dataBaseConnection.select("select * from invoice where id = "+invoice_id+";").getFirst();
-            this.customer = map.get("customer_name");
-            this.contact = map.get("customer_phone");
+            List<Map<String,String>> invoiceData = dataBaseConnection.select("select * from invoice where id = "+invoice_id+";");
+
+            // Check if we have invoice data before accessing it
+            if (!invoiceData.isEmpty()) {
+                Map<String,String> map = invoiceData.getFirst();
+                this.customer = map.get("customer_name");
+                this.contact = map.get("customer_phone");
+            } else {
+                // Set default values if no invoice data found
+                this.customer = "Unknown Customer";
+                this.contact = "No Contact";
+            }
+
             this.qnt = qnt;
             this.unitePrice = unitePrice;
-            this.total = ""+ Double.parseDouble(unitePrice)*Double.parseDouble(qnt);
 
+            try {
+                this.total = "" + Double.parseDouble(unitePrice) * Double.parseDouble(qnt);
+            } catch (NumberFormatException e) {
+                this.total = "0.0"; // Default value if calculation fails
+            }
         }
-
 
         public String getId() {
             return id;
