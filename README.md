@@ -18,6 +18,6 @@
 ---
 ## ✅ Abo Ashraf 🔥 : Supplier Db Connection handling using Proxy Pattern
 
-![ProxyUML](images/diagram.PNG)
+![ProxyUML](images/diagram.png)
 
 ---
