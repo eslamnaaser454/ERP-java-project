@@ -4,6 +4,8 @@ import app.Classes.DataBaseConnection;
 import app.Suppliers.Create.CreateSupplierApplication;
 import app.Suppliers.Preview.PreviewSupplierApplication;
 import app.Suppliers.Preview.PreviewSupplierController;
+import app.Suppliers.Proxy.SupplierProxy;
+import app.Suppliers.Proxy.SupplierService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,8 +27,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class SuppliersController implements Initializable {
-    private DataBaseConnection dataBaseConnection;
     private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+    private final SupplierService supplierService = new SupplierProxy(dbPath);
     @FXML
     private FlowPane cardsContainer;
 
@@ -64,8 +66,8 @@ public class SuppliersController implements Initializable {
     }
 
     private void LoadCards(){
-        dataBaseConnection = new DataBaseConnection(dbPath);
-        List<Map<String,String>> list = dataBaseConnection.select("select * from supplier;");
+        SupplierService supplierService = new SupplierProxy(dbPath);
+        List<Map<String, String>> list = supplierService.getSuppliers();
         if (list != null){
             cardsContainer.getChildren().clear();
             for (Map<String,String> map:list){
@@ -131,8 +133,7 @@ public class SuppliersController implements Initializable {
     }
 
     private void LoadCards(String search){
-        dataBaseConnection = new DataBaseConnection(dbPath);
-        List<Map<String,String>> list = dataBaseConnection.select("select * from supplier where name like '"+search+"%';");
+        List<Map<String,String>> list = supplierService.searchSuppliers(search);
         if (list != null){
             cardsContainer.getChildren().clear();
             for (Map<String,String> map:list){
