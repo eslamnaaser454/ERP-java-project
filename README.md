@@ -16,8 +16,11 @@
 ![SingeltonUML](images/SingeltonInUser.PNG)
 
 ---
-##  ✅ Abo Ashraf 🔥  : Lazy Initialization of Supplier DB Connections via Proxy Pattern
+##  ✅ Abo Ashraf 🔥  : Lazy Initialization of Supplier DB Connections via Proxy Pattern & ✅ Applied Factory Method Pattern for Login User Type Handling
 
 ![ProxyUML](images/diagram.png)
+
+![ProxyUML](images/d2.png)
+
 
 ---
