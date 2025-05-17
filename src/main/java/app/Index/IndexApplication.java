@@ -22,16 +22,34 @@ public class IndexApplication extends Application {
     public static boolean isMaximized = false;
 
     public void start(Stage stage)  throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(IndexApplication.class.getResource("Index-view.fxml"));
-        Scene scene =  scene = new Scene(fxmlLoader.load() ,1288, 579);
 
-        stage.setTitle("ERP!");
-        stage.setResizable(true);
-        stage.setScene(scene);
-        IndexController indexController =  fxmlLoader.getController();
+        Authentication auth = new Authentication();
+        if(!auth.getUser().get("type").equals("HR")){
+            FXMLLoader fxmlLoader = new FXMLLoader(IndexApplication.class.getResource("Index-view.fxml"));
+            Scene scene =  scene = new Scene(fxmlLoader.load() ,1288, 579);
 
-        stage.centerOnScreen();
-        stage.show();
+            stage.setTitle("ERP!");
+            stage.setResizable(true);
+            stage.setScene(scene);
+            IndexController indexController =  fxmlLoader.getController();
+
+            stage.centerOnScreen();
+            stage.show();
+
+        }else{
+            FXMLLoader fxmlLoader = new FXMLLoader(IndexApplication.class.getResource("indexHr.fxml"));
+            Scene scene =  scene = new Scene(fxmlLoader.load() ,1288, 579);
+
+            stage.setTitle("ERP!");
+            stage.setResizable(true);
+            stage.setScene(scene);
+            IndexController indexController =  fxmlLoader.getController();
+
+            stage.centerOnScreen();
+            stage.show();
+
+        }
+
         Authentication authentication = new Authentication();
         System.out.println("Username : "+ authentication.getUsername());
         stage.setOnCloseRequest(event -> {

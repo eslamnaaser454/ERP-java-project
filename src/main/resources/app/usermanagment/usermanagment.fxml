@@ -20,7 +20,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="1267.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.usermanagment.usermangmentcontroller">
 
    <left>
-      <fx:include source="../Layouts/side-bar-view.fxml" />
+      <fx:include source="../Layouts/HrSideBar.fxml" />
    </left>
    <center>
       <ScrollPane hbarPolicy="NEVER" pannable="true" prefHeight="599.0" prefWidth="1022.0" style="-fx-background-color: white; -fx-background-color: white;" BorderPane.alignment="CENTER">

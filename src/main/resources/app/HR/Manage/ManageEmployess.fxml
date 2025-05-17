@@ -20,7 +20,7 @@
 <BorderPane prefHeight="579.0" prefWidth="1288.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.HR.Manage.ManageEmplyessController">
     <left>
         <!-- Assuming your side-bar-view.fxml is responsive -->
-        <fx:include source="../../Layouts/side-bar-view.fxml" />
+        <fx:include source="../../Layouts/HrSideBar.fxml" />
     </left>
     <center>
         <VBox prefHeight="551.0" prefWidth="906.0" style="-fx-background-color: white;" BorderPane.alignment="TOP_CENTER">

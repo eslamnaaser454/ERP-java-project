@@ -90,14 +90,7 @@ public class AddEmployessController implements Initializable {
         dataBaseConnection = new DataBaseConnection(dbPath);
         List<Map<String, String>> getdepartment = dataBaseConnection.select("select * from department where name = '" + department + "';");
 
-//        if (getdepartment.isEmpty()) {
-//            ErrMsg.setText("Please Select Department");
-//            ErrMsg.setTextFill(Paint.valueOf("red"));
-//            return;
-//        } else {
-//            String departmentId = getdepartment.getFirst().get("id");
-//
-//        }
+
         if (fname.isEmpty()) {
             ErrMsg.setText("Please Enter First Name");
             ErrMsg.setTextFill(Paint.valueOf("red"));

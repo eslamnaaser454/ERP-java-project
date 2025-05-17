@@ -103,7 +103,6 @@ public class StoreManageController implements Initializable {
         actionCol.setCellValueFactory(new PropertyValueFactory<>("actions"));
 
 
-//        table.setItems(storeObservableList());
     }
 
     @FXML

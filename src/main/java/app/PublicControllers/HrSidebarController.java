@@ -26,7 +26,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class SideBarController implements Initializable {
+public class HrSidebarController implements Initializable {
     @FXML
     private Label name;
     @FXML
@@ -63,40 +63,6 @@ public class SideBarController implements Initializable {
         }
 
     }
-    @FXML
-    private void GoToMarket(){
-        MarketApplication marketApplication = new MarketApplication();
-        Stage stage = (Stage) OverView.getScene().getWindow();
-        try {
-            marketApplication.start(stage);
-        }catch (IOException e){
-            System.out.println("exception: "+e.getMessage());
-        }
-    }
-    @FXML
-    public void GoToSuppliers(){
-        Stage stage = (Stage) OverView.getScene().getWindow();
-        SuppliersApplication nextPage = new SuppliersApplication();
-        try {
-            nextPage.start(stage);
-        }catch (IOException e){
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    @FXML
-    private void GoToStoresIndex(){
-        StoreIndexApplication storeIndexApplication = new StoreIndexApplication();
-        Stage stage = (Stage) OverView.getScene().getWindow();
-        try {
-            storeIndexApplication.start(stage);
-
-        }catch (IOException e){
-            System.out.println(e.getCause());
-        }
-    }
-
 
     @FXML
     public void GotoHR(){
@@ -105,18 +71,6 @@ public class SideBarController implements Initializable {
         stage.setResizable(true);
         try {
             HRIndexApplication.start(stage);
-
-        }catch (IOException e){
-            System.out.println(e.getCause());
-        }
-    }
-
-    @FXML
-    private void GoToSales(){
-        SalesApplication salesApplication = new SalesApplication();
-        Stage stage = (Stage) OverView.getScene().getWindow();
-        try {
-            salesApplication.start(stage);
 
         }catch (IOException e){
             System.out.println(e.getCause());
@@ -141,37 +95,38 @@ public class SideBarController implements Initializable {
 
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setContentText("Are you sure you want to logout?");
-try {
-    Optional<ButtonType> result = alert.showAndWait();
-    if (result.get() == ButtonType.OK) {
-        String dbPath1 = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
-        Authentication authentication = new Authentication();
+        try {
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                String dbPath1 = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+                Authentication authentication = new Authentication();
 
-        DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath1);
-String user=authentication.getUser().get("username");
-        boolean username = false; // Replace "name" with the actual username
-        System.out.println("USERNAME NOW = "  + user);
-        String query = "UPDATE users SET is_active = '" + username + "' WHERE username = '" + user + "';";
-        boolean result1 = dataBaseConnection.execute(query);
-        System.out.println(result1);
+                DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath1);
+                String user=authentication.getUser().get("username");
+                boolean username = false; // Replace "name" with the actual username
+                System.out.println("USERNAME NOW = "  + user);
+                String query = "UPDATE users SET is_active = '" + username + "' WHERE username = '" + user + "';";
+                boolean result1 = dataBaseConnection.execute(query);
+                System.out.println(result1);
 
-        LoginApplication loginApplication = new LoginApplication();
-        Stage stage = (Stage) OverView.getScene().getWindow();
+                LoginApplication loginApplication = new LoginApplication();
+                Stage stage = (Stage) OverView.getScene().getWindow();
 
-            loginApplication.start(stage);
+                loginApplication.start(stage);
 
-    }
+            }
 
-}
-catch (Exception e) {
-    System.out.println(e.getMessage());
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
 
-}
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Authentication authentication = new Authentication();
+
         System.out.println("TYPE =  "+authentication.getUser().get("type"));
         name.setText("Hello, "+authentication.getUser().get("username"));
         if (authentication.getUser().get("is_super_user").equals("false")){

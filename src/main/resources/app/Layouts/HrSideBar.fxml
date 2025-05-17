@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="sideBar" prefHeight="579.0" prefWidth="219.0" style="-fx-background-color: #021B2A;" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.PublicControllers.HrSidebarController">
+    <children>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="206.0" spacing="10.0" style="-fx-background-color: #00A1FF;">
+            <children>
+                <ImageView fitHeight="37.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/user (15).png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="name" text="Hello, username " textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </Label>
+            </children>
+        </HBox>
+        <Line endX="132.95953369140625" endY="-0.6213432550430298" startX="-100.0" />
+        <HBox fx:id="OverView" alignment="CENTER_LEFT" onMouseClicked="#GoToOverView" prefHeight="62.0" prefWidth="235.0" spacing="10.0" style="-fx-padding: 0 0 0 20;" styleClass="hbox-container" stylesheets="@side-bar.css">
+            <children>
+                <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/dashboard (5).png" />
+                    </image>
+                </ImageView>
+                <Label text="Dashboard" textFill="WHITE">
+                    <font>
+                        <Font name="Trebuchet MS Bold" size="16.0" />
+                    </font>
+                </Label>
+            </children>
+            <opaqueInsets>
+                <Insets left="10.0" />
+            </opaqueInsets>
+        </HBox>
+        <HBox fx:id="HR" alignment="CENTER_LEFT" onMouseClicked="#GotoHR" prefHeight="62.0" prefWidth="236.0" spacing="10.0" style="-fx-padding: 0 0 0 20;" styleClass="hbox-container" stylesheets="@side-bar.css">
+            <children>
+                <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/user-setting.png" />
+                    </image>
+                </ImageView>
+                <Label text="HR Managment" textFill="WHITE">
+                    <font>
+                        <Font name="Trebuchet MS Bold" size="16.0" />
+                    </font>
+                </Label>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+        <HBox fx:id="UsersNav" alignment="CENTER_LEFT" onMouseClicked="#GoToUserManagment" prefHeight="62.0" prefWidth="236.0" spacing="10.0" style="-fx-padding: 0 0 0 20;" styleClass="hbox-container" stylesheets="@side-bar.css">
+            <children>
+                <ImageView fitHeight="22.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/user-white.png" />
+                    </image>
+                </ImageView>
+                <Label text="Users" textFill="WHITE">
+                    <font>
+                        <Font name="Trebuchet MS Bold" size="16.0" />
+                    </font>
+                </Label>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+        <Line endX="132.95953369140625" endY="-0.6213432550430298" startX="-100.0" stroke="WHITE">
+         <VBox.margin>
+            <Insets top="220.0" />
+         </VBox.margin></Line>
+        <HBox alignment="CENTER_LEFT" onMouseClicked="#GoToLogin" prefHeight="62.0" prefWidth="236.0" spacing="10.0" style="-fx-padding: 0 0 0 20;" styleClass="hbox-container" stylesheets="@side-bar.css">
+            <children>
+                <ImageView fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/power-off.png" />
+                    </image>
+                </ImageView>
+                <Label text="Logout" textFill="WHITE">
+                    <font>
+                        <Font name="Trebuchet MS Bold" size="16.0" />
+                    </font>
+                </Label>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+    </children>
+</VBox>
