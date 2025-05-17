@@ -1,5 +1,7 @@
 package app.Login;
 
+import app.Login.Factory.AppUser;
+import app.Login.Factory.UserFactory;
 import app.usermanagment.Createuser.SecureAES;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -40,14 +42,13 @@ public class LoginController {
 
         String user = (String) this.username.getText();
         String pass = (String) this.password.getText();
-        String mytype="select type from users where username='"+user+"'";
-        List<Map<String,String>> maps3p= dataBaseConnectionss.select(mytype);
-        try{
-if(maps3p.getFirst().get("type").equals(("HR"))){
-    pass= SecureAES.encrypt(pass);
+        String mytype = "SELECT type FROM users WHERE username = '" + user + "'";
+        List<Map<String, String>> result = dataBaseConnectionss.select(mytype);
+        String userType = result.getFirst().get("type");
 
-}
-        }catch (Exception e){System.out.println(e.getMessage());}
+        AppUser appUser = UserFactory.createUser(userType);
+        pass = appUser.processPassword(pass);
+
 
 
 
@@ -73,7 +74,7 @@ if(maps3p.getFirst().get("type").equals(("HR"))){
             boolean username = true; // Replace "name" with the actual username
 
             String query = "UPDATE users SET is_active = '" + username + "' WHERE username = '" + user + "';";
-            boolean result = dataBaseConnection.execute(query);
+
 
             IndexApplication indexApplication = new IndexApplication();
 
