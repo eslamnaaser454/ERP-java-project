@@ -45,7 +45,9 @@
                                                                     </font>
                                                                 </Label>
                                                                 <ImageView fitHeight="83.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
-
+                                                                    <image>
+                                                                        <Image url="@../images/icons/employee (1).png" />
+                                                                    </image>
                                                                     <HBox.margin>
                                                                         <Insets />
                                                                     </HBox.margin>
@@ -72,7 +74,9 @@
                                                                     </padding>
                                                                 </Label>
                                                                 <ImageView fitHeight="93.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
-
+                                                                    <image>
+                                                                        <Image url="@../images/icons/briefing (1).png" />
+                                                                    </image>
                                                                     <HBox.margin>
                                                                         <Insets />
                                                                     </HBox.margin>

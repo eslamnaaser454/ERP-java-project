@@ -44,13 +44,7 @@ public class SideBarController implements Initializable {
     @FXML
     HBox SuppliersHBox;
     @FXML
-    HBox  StoresHBox;
-
-
-
-
-
-
+    HBox StoresHBox;
 
     @FXML
     public void GoToOverView(){
@@ -61,8 +55,8 @@ public class SideBarController implements Initializable {
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
-
     }
+
     @FXML
     private void GoToMarket(){
         MarketApplication marketApplication = new MarketApplication();
@@ -73,6 +67,7 @@ public class SideBarController implements Initializable {
             System.out.println("exception: "+e.getMessage());
         }
     }
+
     @FXML
     public void GoToSuppliers(){
         Stage stage = (Stage) OverView.getScene().getWindow();
@@ -82,7 +77,6 @@ public class SideBarController implements Initializable {
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
-
     }
 
     @FXML
@@ -91,12 +85,10 @@ public class SideBarController implements Initializable {
         Stage stage = (Stage) OverView.getScene().getWindow();
         try {
             storeIndexApplication.start(stage);
-
         }catch (IOException e){
             System.out.println(e.getCause());
         }
     }
-
 
     @FXML
     public void GotoHR(){
@@ -105,7 +97,6 @@ public class SideBarController implements Initializable {
         stage.setResizable(true);
         try {
             HRIndexApplication.start(stage);
-
         }catch (IOException e){
             System.out.println(e.getCause());
         }
@@ -117,7 +108,6 @@ public class SideBarController implements Initializable {
         Stage stage = (Stage) OverView.getScene().getWindow();
         try {
             salesApplication.start(stage);
-
         }catch (IOException e){
             System.out.println(e.getCause());
         }
@@ -125,62 +115,64 @@ public class SideBarController implements Initializable {
 
     @FXML
     private void GoToUserManagment(){
-
         usermanagmentapp Usermanagmentapp = new usermanagmentapp();
         Stage stage = (Stage) OverView.getScene().getWindow();
         try {
             Usermanagmentapp.start(stage);
-
         }catch (IOException e){
             System.out.println();
         }
     }
+
     @FXML
     private void GoToLogin(){
-
-
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setContentText("Are you sure you want to logout?");
-try {
-    Optional<ButtonType> result = alert.showAndWait();
-    if (result.get() == ButtonType.OK) {
-        String dbPath1 = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
-        Authentication authentication = new Authentication();
+        try {
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                String dbPath1 = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+                Authentication authentication = new Authentication();
 
-        DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath1);
-String user=authentication.getUser().get("username");
-        boolean username = false; // Replace "name" with the actual username
-        System.out.println("USERNAME NOW = "  + user);
-        String query = "UPDATE users SET is_active = '" + username + "' WHERE username = '" + user + "';";
-        boolean result1 = dataBaseConnection.execute(query);
-        System.out.println(result1);
+                DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath1);
+                String user=authentication.getUser().get("username");
+                boolean username = false; // Replace "name" with the actual username
+                System.out.println("USERNAME NOW = "  + user);
+                String query = "UPDATE users SET is_active = '" + username + "' WHERE username = '" + user + "';";
+                boolean result1 = dataBaseConnection.execute(query);
+                System.out.println(result1);
 
-        LoginApplication loginApplication = new LoginApplication();
-        Stage stage = (Stage) OverView.getScene().getWindow();
-
-            loginApplication.start(stage);
-
-    }
-
-}
-catch (Exception e) {
-    System.out.println(e.getMessage());
-
-}
+                LoginApplication loginApplication = new LoginApplication();
+                Stage stage = (Stage) OverView.getScene().getWindow();
+                loginApplication.start(stage);
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Authentication authentication = new Authentication();
-        System.out.println("TYPE =  "+authentication.getUser().get("type"));
-        name.setText("Hello, "+authentication.getUser().get("username"));
-        if (authentication.getUser().get("is_super_user").equals("false")){
-            System.out.println("Equal");
-            UsersNav.setVisible(false);
-        }else {
-            System.out.println("Not Equal "+authentication.getUser().get("is_super_user"));
+        try {
+            Authentication authentication = new Authentication();
+            System.out.println("TYPE =  "+authentication.getUser().get("type"));
+            name.setText("Hello, "+authentication.getUser().get("username"));
 
+            // Add null check for UsersNav
+            if (UsersNav != null && authentication.getUser().get("is_super_user").equals("false")) {
+                System.out.println("Equal");
+                UsersNav.setVisible(false);
+            } else {
+                System.out.println("Not Equal "+authentication.getUser().get("is_super_user"));
+                // If UsersNav is null, log it
+                if (UsersNav == null) {
+                    System.out.println("Warning: UsersNav is null in SideBarController");
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error in SideBarController initialize: " + e.getMessage());
+            e.printStackTrace();
         }
-
     }
 }

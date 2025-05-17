@@ -15,43 +15,42 @@ import java.util.Optional;
 public class IndexApplication extends Application {
 
     public IndexApplication(){
-
     }
-
 
     public static boolean isMaximized = false;
 
-    public void start(Stage stage)  throws IOException{
-
+    public void start(Stage stage) throws IOException {
         Authentication auth = new Authentication();
-        if(!auth.getUser().get("type").equals("HR")){
-            FXMLLoader fxmlLoader = new FXMLLoader(IndexApplication.class.getResource("Index-view.fxml"));
-            Scene scene =  scene = new Scene(fxmlLoader.load() ,1288, 579);
+        FXMLLoader fxmlLoader;
 
-            stage.setTitle("ERP!");
-            stage.setResizable(true);
-            stage.setScene(scene);
-            IndexController indexController =  fxmlLoader.getController();
-
-            stage.centerOnScreen();
-            stage.show();
-
-        }else{
-            FXMLLoader fxmlLoader = new FXMLLoader(IndexApplication.class.getResource("indexHr.fxml"));
-            Scene scene =  scene = new Scene(fxmlLoader.load() ,1288, 579);
-
-            stage.setTitle("ERP!");
-            stage.setResizable(true);
-            stage.setScene(scene);
-            IndexController indexController =  fxmlLoader.getController();
+        try {
+            if(!auth.getUser().get("type").equals("HR")) {
+                // Regular user path
+                fxmlLoader = new FXMLLoader(getClass().getResource("Index-view.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 1288, 579);
+                stage.setTitle("ERP System");
+                stage.setResizable(true);
+                stage.setScene(scene);
+            } else {
+                // HR user path
+                fxmlLoader = new FXMLLoader(getClass().getResource("indexHr.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 1288, 579);
+                stage.setTitle("ERP HR System");
+                stage.setResizable(true);
+                stage.setScene(scene);
+            }
 
             stage.centerOnScreen();
             stage.show();
-
+        } catch (IOException e) {
+            System.err.println("Error loading FXML: " + e.getMessage());
+            e.printStackTrace();
+            throw e; // Re-throw so the calling code knows something went wrong
         }
 
         Authentication authentication = new Authentication();
         System.out.println("Username : "+ authentication.getUsername());
+
         stage.setOnCloseRequest(event -> {
             // Show confirmation dialog
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -64,7 +63,7 @@ public class IndexApplication extends Application {
                 // Allow the application to close
                 System.out.println("Application is closing...");
                 String user = authentication.getUsername();
-                boolean username = false; // Replace "name" with the actual username
+                boolean username = false; // This represents the is_active status (false)
                 String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
                 DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
 
@@ -77,7 +76,6 @@ public class IndexApplication extends Application {
                 event.consume();
             }
         });
-
     }
 
     public static void main(String[] args) {
