@@ -51,6 +51,21 @@ public class IndexApplication extends Application {
         Authentication authentication = new Authentication();
         System.out.println("Username : "+ authentication.getUsername());
 
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            // Allow the application to close
+            System.out.println("Application is closing...");
+            String user = authentication.getUsername();
+            boolean username = false; // This represents the is_active status (false)
+            String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+            DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
+
+            String query = "UPDATE users SET is_active = '" + username + "' WHERE username = '" + user + "';";
+            boolean result1 = dataBaseConnection.execute(query);
+
+            System.out.println(result1);
+            System.out.println("done");
+        }));
         stage.setOnCloseRequest(event -> {
             // Show confirmation dialog
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -71,6 +86,7 @@ public class IndexApplication extends Application {
                 boolean result1 = dataBaseConnection.execute(query);
 
                 System.out.println(result1);
+
             } else {
                 // Consume the event to prevent closing
                 event.consume();
