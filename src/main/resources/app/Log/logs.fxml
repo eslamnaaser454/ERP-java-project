@@ -15,9 +15,8 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="579.0" prefWidth="1058.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Log.LogController">
    <left>
-      <fx:include source="../Layouts/side-bar-view.fxml" />
-
-       </left>
+      <fx:include source="../Layouts/HrSideBar.fxml" />
+   </left>
    <center>
       <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" pannable="true" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
          <content>

@@ -167,7 +167,7 @@ public class SideBarController implements Initializable {
                 System.out.println("Not Equal "+authentication.getUser().get("is_super_user"));
                 // If UsersNav is null, log it
                 if (UsersNav == null) {
-                    System.out.println("Warning: UsersNav is null in SideBarController");
+                    System.out.println("UsersNav ");
                 }
             }
         } catch (Exception e) {
