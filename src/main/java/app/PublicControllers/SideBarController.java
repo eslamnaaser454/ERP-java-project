@@ -14,15 +14,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import app.Stores.Index.*;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import app.Stores.Index.StoreIndexApplication;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -45,6 +53,8 @@ public class SideBarController implements Initializable {
     HBox SuppliersHBox;
     @FXML
     HBox StoresHBox;
+    @FXML
+    private ImageView Profile_Picture;
 
     @FXML
     public void GoToOverView(){
@@ -158,7 +168,62 @@ public class SideBarController implements Initializable {
             Authentication authentication = new Authentication();
             System.out.println("TYPE =  "+authentication.getUser().get("type"));
             name.setText("Hello, "+authentication.getUser().get("username"));
+            String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+            String url = "jdbc:sqlite:" + dbPath;
 
+            String query = "SELECT Image_Path FROM users WHERE username = ?";
+            try (Connection conn = DriverManager.getConnection(url);
+                 PreparedStatement stmt = conn.prepareStatement(query)) {
+
+                stmt.setString(1, authentication.getUser().get("username"));
+
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    String imagePath = rs.getString("Image_Path");
+
+                    // التحقق من أن imagePath ليست null وليست فارغة
+                    if (imagePath != null && !imagePath.trim().isEmpty()) {
+                        File imageFile = new File(imagePath);
+
+                        if (imageFile.exists()) {
+                            Image image = new Image(imageFile.toURI().toString());
+                            Profile_Picture.setImage(image);
+
+// اضبط أبعاد الـ ImageView (ممكن تكون أكبر من الدائرة للظهور بشكل أفضل)
+                            Profile_Picture.setFitWidth(80);  // ممكن تعدل حسب الحاجة
+                            Profile_Picture.setFitHeight(80);
+                            Profile_Picture.setPreserveRatio(true);
+
+// أنشئ دائرة clip بالأبعاد المطلوبة (radius = نصف العرض/الارتفاع)
+                            double clipRadiusX = 39 / 2.0;
+                            double clipRadiusY = 37 / 2.0;
+
+// لأن Circle تأخذ نصف قطر واحد فقط، نستخدم أقل نصف قطر لضمان تناسق الشكل الدائري (تقريبياً)
+                            double clipRadius = Math.min(clipRadiusX, clipRadiusY);
+
+                            Circle clip = new Circle(Profile_Picture.getFitWidth() / 2, Profile_Picture.getFitHeight() / 2, clipRadius);
+                            Profile_Picture.setClip(clip);
+
+// تخزين الحجم الأصلي للقطر حتى نستخدمه في hover
+                            final double originalRadius = clipRadius;
+                            final double hoverRadius = originalRadius * 1.5;  // مثلا 1.5 مرة أكبر
+
+// حدث عند المرور على الصورة (hover)
+                            Profile_Picture.setOnMouseEntered(e -> {
+                                clip.setRadius(hoverRadius);
+                            });
+
+// حدث عند الخروج من الصورة (hover out)
+                            Profile_Picture.setOnMouseExited(e -> {
+                                clip.setRadius(originalRadius);
+                            });} else {
+                            System.out.println("Image file not found: " + imagePath);
+                        }
+                    } else {
+                        System.out.println("No image path set for user.");
+                    }
+                }
             // Add null check for UsersNav
             if (UsersNav != null && authentication.getUser().get("is_super_user").equals("false")) {
                 System.out.println("Equal");
@@ -170,9 +235,10 @@ public class SideBarController implements Initializable {
                     System.out.println("UsersNav ");
                 }
             }
-        } catch (Exception e) {
+        } }
+        catch (Exception e) {
             System.err.println("Error in SideBarController initialize: " + e.getMessage());
             e.printStackTrace();
         }
-    }
-}
+
+}}
