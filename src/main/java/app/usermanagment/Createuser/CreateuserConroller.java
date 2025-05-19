@@ -8,10 +8,17 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.scene.paint.Paint;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -19,6 +26,9 @@ import java.util.ResourceBundle;
 public class CreateuserConroller implements Initializable {
     String selected = "User";
     String Department_name = "HR";
+    private double originalWidth;
+    private double originalHeight;
+    private String currentImagePath;
     @FXML
     private ComboBox<String> Department;
 
@@ -68,12 +78,17 @@ public class CreateuserConroller implements Initializable {
 
     @FXML
     private ToggleGroup user_type;
+    @FXML
+    private Button Upload;
+    @FXML
+    private ImageView Image_View;
 
     private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
     private UserService userService;
 
     @FXML
     public void add() {
+
         if (selected.equals("HR")) {
             Department_name = null;
         } else {
@@ -215,6 +230,11 @@ public class CreateuserConroller implements Initializable {
         User newUser = userBuilder.build();
 
         if (userService.addUser(newUser)) {
+if(currentImagePath!=null) {
+    String username1 = tusername.getText();// عدل حسب معرف المستخدم الحالي
+    saveImagePathToDatabase(currentImagePath, username1);
+
+}
             error.setText("user add successfully");
             error.setTextFill(Paint.valueOf("green"));
             Logging logging = new Logging();
@@ -225,15 +245,79 @@ public class CreateuserConroller implements Initializable {
             tphone.clear();
             temail.clear();
             tssn.clear();
+            Department.setValue("Department");
 
+            Image_View.setImage(null);
+            currentImagePath = null;
         } else {
             error.setText("Failed to add User (Username, Email, Phone, or SSN might already exist)");
             error.setTextFill(Paint.valueOf("red"));
         }
     }
+    private void saveImagePathToDatabase(String imagePath, String username) {
+        String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+
+        String url = "jdbc:sqlite:" + dbPath;
+
+        String updateSQL = "UPDATE users SET Image_Path = ? WHERE username = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(updateSQL)) {
+
+            pstmt.setString(1, imagePath);
+            pstmt.setString(2, username);
+
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Image path saved successfully!");
+            } else {
+                System.out.println("No user updated. Check user ID.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Department.setPromptText("Department");
+
+        Upload.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choose a Profile Picture");
+            fileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+            );
+
+            File selectedFile = fileChooser.showOpenDialog(Upload.getScene().getWindow());
+            if (selectedFile != null) {
+                try {
+                    // عرض الصورة
+                    Image image = new Image(selectedFile.toURI().toString());
+
+                    Image_View.setImage(image);
+                    originalWidth = Image_View.getFitWidth();
+                    originalHeight = Image_View.getFitHeight();
+                    Image_View.setOnMouseEntered(e1 -> {
+                        Image_View.setFitWidth(originalWidth * 5);
+                        Image_View.setFitHeight(originalHeight * 5);
+                    });
+
+                    Image_View.setOnMouseExited(e1 -> {
+                        Image_View.setFitWidth(originalWidth);
+                        Image_View.setFitHeight(originalHeight);
+                    });
+                    // حفظ المسار في قاعدة البيانات
+
+                    currentImagePath = selectedFile.getAbsolutePath();
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         userService = new UserService(dbPath);
         Department_names departmentDAO = new Department_names();
         List<String> departmentNames = departmentDAO.getDepartmentNames();

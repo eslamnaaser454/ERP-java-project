@@ -1,6 +1,4 @@
 package app.usermanagment.Createuser;
-import app.Login.LoginApplication;
-import app.usermanagment.usermanagmentapp;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
