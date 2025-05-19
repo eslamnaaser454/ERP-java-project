@@ -1,5 +1,7 @@
 package app.Suppliers.Preview.CreateSupply;
 
+import app.ImageConverter.ImageConverter;
+import app.ImageConverter.PngConverter;
 import app.Classes.DataBaseConnection;
 import app.Classes.Image;
 import javafx.fxml.FXML;
@@ -14,6 +16,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.List;
@@ -66,7 +69,7 @@ public class CreateSupplyController implements Initializable {
     }
 
     @FXML
-    public void submit(){
+    public void submit() throws IOException {
         String name = (String) nameFiled.getText();
         String imagePath = imageFiled.getText();
         String qnt = qntFiled.getText();
@@ -115,7 +118,7 @@ public class CreateSupplyController implements Initializable {
                 double test = Double.parseDouble(price);
             } catch (Exception e) {
                 priceFiled.setBorder(Border.stroke(Paint.valueOf("red")));
-                ErrMsg.setText("Unite Price Field Must Be Number");
+                ErrMsg.setText("Unit Price Field Must Be Number");
                 ErrMsg.setTextFill(Paint.valueOf("red"));
                 return;
             }
@@ -196,8 +199,10 @@ public class CreateSupplyController implements Initializable {
         if (image != null){
             Image SavedImage = new Image(imagePath);
             String newPath = "\\src\\main\\resources\\app\\DataBaseImages\\SuppliesImages\\"+supplyId;
-            SavedImage.SaveAt(System.getProperty("user.dir")+newPath+"\\");
-            dataBaseConnection.execute("update supply set image='"+newPath+"\\"+image.getName()+"' where id="+supplyId+";");
+            File savedPngImage = SavedImage.convertAndSave(System.getProperty("user.dir")+newPath+"\\");
+            if (savedPngImage != null) {
+                dataBaseConnection.execute("update supply set image='"+newPath+"\\"+savedPngImage.getName()+"' where id="+supplyId+";");
+            }
         }
     }
     @Override
