@@ -35,13 +35,21 @@ public class LoginController {
     protected Button loginBtn;
     @FXML
     protected void LoginEvent() {
-
-          String dbPath1 = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
-
-        DataBaseConnection dataBaseConnectionss=new DataBaseConnection(dbPath1);
+        String dbPath1 = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+        DataBaseConnection dataBaseConnectionss = new DataBaseConnection(dbPath1);
 
         String user = (String) this.username.getText();
         String pass = (String) this.password.getText();
+
+        // Check if username exists
+        String checkUserQuery = "SELECT * FROM users WHERE username = '" + user + "'";
+        List<Map<String, String>> userResult = dataBaseConnectionss.select(checkUserQuery);
+        if (userResult == null || userResult.isEmpty()) {
+            errorMsg.setText("Username not found");
+            errorMsg.setTextFill(Paint.valueOf("red"));
+            return;
+        }
+
         String mytype = "SELECT type FROM users WHERE username = '" + user + "'";
         List<Map<String, String>> result = dataBaseConnectionss.select(mytype);
         String userType = result.getFirst().get("type");
@@ -49,24 +57,18 @@ public class LoginController {
         AppUser appUser = UserFactory.createUser(userType);
         pass = appUser.processPassword(pass);
 
-
-
-
         String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
 
-
-
-
         DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
-        Authentication authentication = new Authentication(user,pass,dataBaseConnection);
+        Authentication authentication = new Authentication(user, pass, dataBaseConnection);
 
-        if (authentication.check()){
+        if (authentication.check()) {
 
             String pre_query = "SELECT is_active FROM users WHERE username = '" + user + "';";
             boolean pre_result = dataBaseConnection.execute(pre_query);
-            String myresult=dataBaseConnectionss.select(pre_query).getFirst().get("is_active");
+            String myresult = dataBaseConnectionss.select(pre_query).getFirst().get("is_active");
 
-            if(myresult.equals("true")|| myresult.equals("1")){
+            if (myresult.equals("true") || myresult.equals("1")) {
                 errorMsg.setText("User Already Logged In");
                 errorMsg.setTextFill(Paint.valueOf("red"));
                 return;
@@ -78,25 +80,19 @@ public class LoginController {
 
             Stage stage = (Stage) errorMsg.getScene().getWindow();
             stage.setResizable(true);
-//                Stage stage = new Stage();
-
 
             try {
                 indexApplication.start(stage);
 
-
-            }catch (IOException e){
+            } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
 
-
-
-        }else {
+        } else {
 
             errorMsg.setText("Wrong User Or Password");
             errorMsg.setTextFill(Paint.valueOf("red"));
         }
-
-
     }
 }
+
