@@ -14,7 +14,7 @@
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="206.0" spacing="10.0" style="-fx-background-color: #00A1FF;">
          <children>
-            <ImageView fitHeight="37.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Profile_Picture" fitHeight="37.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons/user (15).png" />
                </image>
