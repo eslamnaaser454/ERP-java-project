@@ -2,18 +2,22 @@ package app.Market.Cart.payment;
 
 import app.Market.Cart.composite.Order;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.GridPane;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 /**
  * Concrete strategy for processing wallet payments
- * Note: This now shows the provider selection dialog that was previously in InstapayPayment
  */
 public class WalletPayment implements PaymentStrategy {
     private String phoneNumber;
@@ -37,11 +41,36 @@ public class WalletPayment implements PaymentStrategy {
 
         this.provider = providerResult.get();
 
-        // Collect phone number for wallet
+        // Collect phone number for wallet with validation
         TextInputDialog phoneDialog = new TextInputDialog();
         phoneDialog.setTitle("Wallet Payment");
         phoneDialog.setHeaderText("Enter your " + provider + " phone number");
         phoneDialog.setContentText("Phone Number:");
+
+        // Get the layout components to add validation
+        GridPane grid = (GridPane) phoneDialog.getDialogPane().getContent();
+
+        // Add error label
+        Label errorLabel = new Label();
+        errorLabel.setStyle("-fx-text-fill: red;");
+        grid.add(errorLabel, 1, 1);
+
+        // Get text field (it's the first node in the grid)
+        javafx.scene.control.TextField textField = (javafx.scene.control.TextField) grid.getChildren().get(1);
+
+        // Disable OK button initially if the field is empty
+        ButtonType okButtonType = phoneDialog.getDialogPane().getButtonTypes().stream()
+                .filter(buttonType -> buttonType.getButtonData() == ButtonBar.ButtonData.OK_DONE)
+                .findFirst().orElse(ButtonType.OK);
+
+        javafx.scene.control.Button okButton = (javafx.scene.control.Button) phoneDialog.getDialogPane().lookupButton(okButtonType);
+        okButton.setDisable(true);
+
+        // Add listener to validate input
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            boolean isValid = validatePhoneNumber(newValue, provider, errorLabel);
+            okButton.setDisable(!isValid);
+        });
 
         Optional<String> phoneResult = phoneDialog.showAndWait();
         if (phoneResult.isPresent() && !phoneResult.get().isEmpty()) {
@@ -68,6 +97,40 @@ public class WalletPayment implements PaymentStrategy {
         }
 
         return false;
+    }
+
+    private boolean validatePhoneNumber(String phone, String provider, Label errorLabel) {
+        if (phone == null || phone.trim().isEmpty()) {
+            errorLabel.setText("Phone number is required");
+            return false;
+        }
+
+        // Remove spaces and dashes for validation
+        String cleanPhone = phone.replaceAll("[ -]", "");
+
+        // Basic pattern for Egyptian mobile numbers
+        if (!Pattern.matches("^01[0-2|5]{1}[0-9]{8}$", cleanPhone)) {
+            errorLabel.setText("Invalid Egyptian phone number");
+            return false;
+        }
+
+        // Provider-specific prefix validation
+        if (provider.equals("Vodafone Cash") && !cleanPhone.startsWith("010")) {
+            errorLabel.setText("Vodafone numbers start with 010");
+            return false;
+        } else if (provider.equals("Orange Money") && !cleanPhone.startsWith("012")) {
+            errorLabel.setText("Orange numbers start with 012");
+            return false;
+        } else if (provider.equals("Etisalat Cash") && !cleanPhone.startsWith("011")) {
+            errorLabel.setText("Etisalat numbers start with 011");
+            return false;
+        } else if (provider.equals("We Pay") && !cleanPhone.startsWith("015")) {
+            errorLabel.setText("We numbers start with 015");
+            return false;
+        }
+
+        errorLabel.setText("");
+        return true;
     }
 
     @Override
