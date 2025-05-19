@@ -26,13 +26,13 @@
 ---
 ##  ✅ Eslam Nasser 🔥 :
 
-### - 🔥 Payment gateway handling using Strategy Pattern  
+### - 🔥 Payment gateway handling using Strategy Pattern ✅
 ![StrategyUML](images/SenarioInPayment.png)
 
-### - 🔥 Ordering items handling by using Composite Pattern 
+### - 🔥 Ordering items handling by using Composite Pattern ✅
 ![ProxyUML](images/CompositeInOrder.png)
 
-### - 🔥 Product cards in our market by using Factory Pattern 
+### - 🔥 Product cards in our market by using Factory Pattern ✅
 ![ProxyUML](images/FactoryInMarket.png)
 
 
