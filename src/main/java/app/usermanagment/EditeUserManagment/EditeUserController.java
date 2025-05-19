@@ -6,11 +6,19 @@ import app.usermanagment.Createuser.SecureAES;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -23,6 +31,15 @@ public class EditeUserController implements Initializable {
     private String originalEmail;
     private String originalSSN;
     private boolean originalIsAdmin;
+    private double originalWidth;
+    private double originalHeight;
+    private String currentImagePath;
+
+    @FXML
+    private ImageView Image_View;
+
+    @FXML
+    private Button Upload;
     @FXML
     private Label error;
     @FXML
@@ -55,7 +72,6 @@ public class EditeUserController implements Initializable {
         String usernamee="select username from users";
         String ssnn="select ssn from users";
         String phonee="select phone from users";
-
         DataBaseConnection dataBaseConnectionss=new DataBaseConnection(dbPath);
         List <Map<String,String>>maps= dataBaseConnectionss.select(emaill);
         List <Map<String,String>>maps1p= dataBaseConnectionss.select(usernamee);
@@ -74,8 +90,8 @@ public class EditeUserController implements Initializable {
             tpassword.setBorder(Border.stroke(Paint.valueOf("red")));
             return;
         }
-        if (password.length()<8|| password.length()>160) {
-            error.setText("Password Field should be between 8 to 16 ");
+        if (password.length()<8) {
+            error.setText("Password Field should be at least 8");
             error.setTextFill(Paint.valueOf("red"));
             tpassword.setBorder(Border.stroke(Paint.valueOf("red")));
             return;
@@ -174,6 +190,12 @@ public class EditeUserController implements Initializable {
         }
         String query = "update users set username = '" +  username+ "', password = '" +password+ "', phone = '" +phone+ "', email= '" +email+ "', SSN = '" +ssn+ "'  where id = " + id + ";";
         DataBaseConnection dataBaseConnection = new DataBaseConnection(dbPath);
+        if(currentImagePath!=null) {
+            String username1 = tusername.getText();// عدل حسب معرف المستخدم الحالي
+            saveImagePathToDatabase(currentImagePath, username1);
+
+        }
+
         boolean result = dataBaseConnection.execute(query);
 
         if (result==true) {
@@ -184,6 +206,33 @@ public class EditeUserController implements Initializable {
             error.setTextFill(Paint.valueOf("red"));
         }
     }
+
+    private void saveImagePathToDatabase(String imagePath, String username) {
+        String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
+
+        String url = "jdbc:sqlite:" + dbPath;
+
+        String updateSQL = "UPDATE users SET Image_Path = ? WHERE username = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(updateSQL)) {
+
+            pstmt.setString(1, imagePath);
+            pstmt.setString(2, username);
+
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Image path saved successfully!");
+            } else {
+                System.out.println("No user updated. Check user ID.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -213,7 +262,62 @@ public class EditeUserController implements Initializable {
         originalEmail = users.get("email");
         originalPhone = users.get("phone");
         originalSSN = users.get("SSN");
+        String imagePath = users.get("Image_Path");
+        if (imagePath != null && !imagePath.trim().isEmpty()) {
+            File imageFile = new File(imagePath);
 
+            if (imageFile.exists()) {
+                Image image = new Image(imageFile.toURI().toString());
+                Image_View.setImage(image);
+        originalWidth = Image_View.getFitWidth();
+        originalHeight = Image_View.getFitHeight();
+        Image_View.setOnMouseEntered(e1 -> {
+            Image_View.setFitWidth(originalWidth * 5);
+            Image_View.setFitHeight(originalHeight * 5);
+        });
+        Image_View.setOnMouseExited(e1 -> {
+            Image_View.setFitWidth(originalWidth);
+            Image_View.setFitHeight(originalHeight);
+        });
+
+            }
+        }
+        Upload.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choose a Profile Picture");
+            fileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+            );
+
+            File selectedFile = fileChooser.showOpenDialog(Upload.getScene().getWindow());
+            if (selectedFile != null) {
+                try {
+                    // عرض الصورة
+                    Image image = new Image(selectedFile.toURI().toString());
+
+                    Image_View.setImage(image);
+                    originalWidth = Image_View.getFitWidth();
+                    originalHeight = Image_View.getFitHeight();
+                    Image_View.setOnMouseEntered(e1 -> {
+                        Image_View.setFitWidth(originalWidth * 5);
+                        Image_View.setFitHeight(originalHeight * 5);
+                    });
+
+                    Image_View.setOnMouseExited(e1 -> {
+                        Image_View.setFitWidth(originalWidth);
+                        Image_View.setFitHeight(originalHeight);
+                    });
+                    // حفظ المسار في قاعدة البيانات
+
+                    currentImagePath = selectedFile.getAbsolutePath();
+
+
+                } catch (Exception ex) {
+                    System.out.println("Error loading image: " + ex.getMessage());
+                }
+
+            }
+        });
 
         // Handle admin checkbox and password field
         String isAdmin = users.get("type");
@@ -234,7 +338,11 @@ public class EditeUserController implements Initializable {
             if(authentication.getUsername().equals(tusername.getText())){
                 tpassword.setDisable(false);
 
-                tpassword.setText(SecureAES.decrypt(tpassword.getText()));
+                try {
+                    tpassword.setText(SecureAES.decrypt(tpassword.getText()));
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
 
             System.out.println("MASTER IS CALL");
