@@ -6,7 +6,7 @@
 ### - 🔥 Stores Creation using Factory Design Pattern ✅
 ![FactoryPatternUML](images/FactoryForStores.PNG)
 
-### - 🔥 Converting supply images from any extension to png ✅
+### - 🔥 Converting supply images from any extension to PNG using Adapter Pattern ✅
 ![AdapterUML](images/AdapterImage.PNG)
 
 ---
