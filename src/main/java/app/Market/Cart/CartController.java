@@ -1,6 +1,7 @@
 package app.Market.Cart;
 
 import app.Classes.DataBaseConnection;
+import app.Classes.Logging;
 import app.Market.Cart.composite.Order;
 import app.Market.Cart.payment.BankPayment;
 import app.Market.Cart.payment.InstapayPayment;
@@ -268,7 +269,7 @@ public class CartController implements Initializable {
         try {
             // Make sure we have a fresh DB connection
             dataBaseConnection = new DataBaseConnection(dbPath);
-
+            Logging logging = new Logging();
             // Set current date and time if not already set
             if (order.getOrderDate() == null) {
                 order.setOrderDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
@@ -314,7 +315,7 @@ public class CartController implements Initializable {
 
             order.setInvoiceId(invoiceID);
             System.out.println("Invoice created with ID: " + invoiceID);
-
+            logging.addLog("Created invoice #" + invoiceID + " for customer " + customerName);
             // Process each cart item
             boolean allSuccessful = true;
             for (CartItem item : cartItems) {
