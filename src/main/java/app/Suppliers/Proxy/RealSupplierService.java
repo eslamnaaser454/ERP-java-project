@@ -21,7 +21,14 @@ public class RealSupplierService implements SupplierService {
     public List<Map<String, String>> searchSuppliers(String keyword) {
         return db.select("SELECT * FROM supplier WHERE name LIKE '" + keyword + "%';");
     }
+
+    @Override
+    public List<Map<String, String>> searchSuppliersByCompany(String companyName) {
+        return db.select("SELECT * FROM supplier WHERE company LIKE '" + companyName + "%';");
+    }
+    @Override
+    public List<Map<String, String>> searchSuppliersByEmail(String keyword) {
+        return db.select("SELECT * FROM supplier WHERE email LIKE '%" + keyword + "%';");
+    }
+
 }
-
-
-
