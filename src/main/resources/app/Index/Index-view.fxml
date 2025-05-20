@@ -29,7 +29,7 @@
                                  <children>
                                     <VBox prefHeight="243.0" prefWidth="292.0" style="-fx-background-color: #00B4D8; -fx-background-radius: 25;" styleClass="vbox-hover" stylesheets="@index.css" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label alignment="BASELINE_LEFT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="Employees" textAlignment="CENTER" textFill="WHITE">
+                                          <Label fx:id="First" alignment="BASELINE_LEFT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="Employees" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="34.0" />
                                              </font>
@@ -39,7 +39,7 @@
                                           </Label>
                                           <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0" style="-fx-padding: 10;">
                                              <children>
-                                                <Label fx:id="empCount" alignment="BASELINE_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="246.0" styleClass="hbox-container" stylesheets="@index2%20-%20Copy.css" text="61" textFill="WHITE">
+                                                <Label fx:id="First_count" alignment="BASELINE_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="246.0" styleClass="hbox-container" stylesheets="@index2%20-%20Copy.css" text="61" textFill="WHITE">
                                                    <HBox.margin>
                                                       <Insets left="20.0" />
                                                    </HBox.margin>
@@ -47,7 +47,7 @@
                                                       <Font name="System Bold" size="62.0" />
                                                    </font>
                                                 </Label>
-                                                <ImageView fitHeight="108.0" fitWidth="112.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="First_ico" fitHeight="108.0" fitWidth="112.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../images/icons/user-white.png" />
                                                    </image>
@@ -61,7 +61,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefHeight="237.0" prefWidth="299.0" style="-fx-background-color: #FFB400; -fx-background-radius: 25;" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label alignment="BASELINE_LEFT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" styleClass="hbox-container" text="Sales" textAlignment="CENTER" textFill="WHITE">
+                                          <Label fx:id="Second" alignment="BASELINE_LEFT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" styleClass="hbox-container" text="Sales" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="34.0" />
                                              </font>
@@ -71,7 +71,7 @@
                                           </Label>
                                           <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0" styleClass="hbox-container">
                                              <children>
-                                                <Label fx:id="salescont" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" styleClass="hbox-container" stylesheets="@index2%20-%20Copy.css" text="5655$" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                <Label fx:id="Second_count" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" styleClass="hbox-container" stylesheets="@index2%20-%20Copy.css" text="5655$" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <font>
                                                       <Font name="System Bold" size="62.0" />
                                                    </font>
@@ -79,7 +79,7 @@
                                                       <Insets left="20.0" />
                                                    </padding>
                                                 </Label>
-                                                <ImageView fitHeight="109.0" fitWidth="105.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="Second_ico" fitHeight="109.0" fitWidth="105.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../images/icons/business.png" />
                                                    </image>
@@ -97,7 +97,7 @@
                                  <children>
                                     <VBox prefHeight="243.0" prefWidth="292.0" style="-fx-background-color: #FF6F61; -fx-background-radius: 25;" styleClass="vbox-hover" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label alignment="BASELINE_LEFT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" text=" Stocks" textAlignment="CENTER" textFill="WHITE">
+                                          <Label fx:id="Third" alignment="BASELINE_LEFT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" text=" Stocks" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="34.0" />
                                              </font>
@@ -107,7 +107,7 @@
                                           </Label>
                                           <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0">
                                              <children>
-                                                <Label fx:id="stockscont" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" styleClass="hbox-container" stylesheets="@index2%20-%20Copy.css" text="51" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                <Label fx:id="Third_cont" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" styleClass="hbox-container" stylesheets="@index2%20-%20Copy.css" text="51" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <font>
                                                       <Font name="System Bold" size="62.0" />
                                                    </font>
@@ -115,7 +115,7 @@
                                                       <Insets left="20.0" />
                                                    </padding>
                                                 </Label>
-                                                <ImageView fitHeight="113.0" fitWidth="124.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="Third_ico" fitHeight="113.0" fitWidth="124.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../images/icons/trolley-white%20color.png" />
                                                    </image>
@@ -129,7 +129,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefHeight="237.0" prefWidth="299.0" style="-fx-background-color: #00D980; -fx-background-radius: 25;" styleClass="vbox-hover" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label alignment="BASELINE_LEFT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="Products" textAlignment="CENTER" textFill="WHITE">
+                                          <Label fx:id="Fourth" alignment="BASELINE_LEFT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="46.0" text="Products" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="34.0" />
                                              </font>
@@ -139,7 +139,7 @@
                                           </Label>
                                           <HBox alignment="CENTER_RIGHT" prefHeight="161.0" prefWidth="206.0">
                                              <children>
-                                                <Label fx:id="productscont" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" styleClass="hbox-container" stylesheets="@index2%20-%20Copy.css" text="562" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                <Label fx:id="Fourth_cont" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="15.0" layoutY="68.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" styleClass="hbox-container" stylesheets="@index2%20-%20Copy.css" text="562" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <font>
                                                       <Font name="System Bold" size="62.0" />
                                                    </font>
@@ -147,7 +147,7 @@
                                                       <Insets left="20.0" />
                                                    </padding>
                                                 </Label>
-                                                <ImageView fitHeight="131.0" fitWidth="150.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="Fourth_ico" fitHeight="131.0" fitWidth="150.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../../../../../../New%20folder/ERP-java-project/target/classes/app/images/icons/recycle.png" />
                                                    </image>

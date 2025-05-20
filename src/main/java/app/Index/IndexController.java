@@ -87,6 +87,7 @@ import app.Classes.DataBaseConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.*;
@@ -155,24 +156,75 @@ class DatabaseDataSource implements DataSource {
 }
 
 public class IndexController implements Initializable, DataObserver {
+/*
 
+//عدد hr مسجلين فى نفس القسم
+//عدد الموظفين
+//عدد الاقسام
+//عدد المستخدمين غير hr (user,admin)
+* */
     private Authentication authentication;
     @FXML
     private HBox sideBar;
     @FXML
-    private Label empCount;
+    private Label First;
+
     @FXML
-    private Label salescont;
+    private Label First_count;
+
     @FXML
-    private Label stockscont;
+    private ImageView First_ico;
+
     @FXML
-    private Label productscont;
+    private Label Fourth;
+
+    @FXML
+    private Label Fourth_cont;
+
+    @FXML
+    private ImageView Fourth_ico;
+
+    @FXML
+    private Label Second;
+
+    @FXML
+    private Label Second_count;
+
+    @FXML
+    private ImageView Second_ico;
+
+    @FXML
+    private Label Third;
+
+    @FXML
+    private Label Third_cont;
+
+    @FXML
+    private ImageView Third_ico;
 
     private DatabaseDataSource dataSource;
     private final String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Authentication auth = new Authentication();
+        String rule = "SELECT type FROM users WHERE username = '" + auth.getUser().get("username") + "'";
+        System.out.println();
+
+        if(rule.equals("HR")){
+
+First.setText("Hr "+First.getText());
+Second.setText("Employee ");
+Third.setText("Department ");
+Fourth.setText("Users ");
+Second_ico.setImage(First_ico.getImage());
+
+}
+
+else if(rule.equalsIgnoreCase("admin")){
+
+
+}
         dataSource = new DatabaseDataSource(dbPath);
         dataSource.registerObserver(this);
         // Initial data load
@@ -193,17 +245,17 @@ public class IndexController implements Initializable, DataObserver {
 
     @Override
     public void update(Map<String, Integer> data) {
-        if (empCount != null) {
-            empCount.setText(String.valueOf(data.get("employeeCount")));
+        if (First_count != null) {
+            First_count.setText(String.valueOf(data.get("employeeCount")));
         }
-        if (salescont != null) {
-            salescont.setText(String.valueOf(data.get("salesCount")));
+        if (Second_count != null) {
+            Second_count.setText(String.valueOf(data.get("salesCount")));
         }
-        if (stockscont != null) {
-            stockscont.setText(String.valueOf(data.get("stockCount")));
+        if (Third_cont != null) {
+            Third_cont.setText(String.valueOf(data.get("stockCount")));
         }
-        if (productscont != null) {
-            productscont.setText(String.valueOf(data.get("productsCount")));
+        if (Fourth_cont != null) {
+            Fourth_cont.setText(String.valueOf(data.get("productsCount")));
         }
     }
 }
