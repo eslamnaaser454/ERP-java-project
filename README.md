@@ -21,11 +21,11 @@
 ---
 ##  ✅ Ahmed Ashraf 🔥  :  Lazy Initialization of Supplier DB Connections via Proxy Pattern &   Allows dynamic selection of supplier search methods using Strategy pattern & Applied Factory Method Pattern for Login User Type Handling ✅
 
-![ProxyUML](images/ProxyAboAshraf.PNG)
+![ProxyUML](images/ProxyAboAshraf.jpg)
 
-![ProxyUML](images/StrategyAboAshraf.PNG)
+![ProxyUML](images/StrategyAboAshraf.jpg)
 
-![ProxyUML](images/FactoryAboAshraf.PNG)
+![ProxyUML](images/FactoryAboAshraf.png)
 
 ---
 ## ✅ Eslam Nasser 🔥 :
