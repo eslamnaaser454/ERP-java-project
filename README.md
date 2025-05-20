@@ -38,3 +38,7 @@
 ![ProxyUML](images/FactoryInMarket.png)
 
 ---
+## ✅ Ahmed Tony 🔥 :
+
+### - 🔥 Applying observer pattern on dashboard UI ✅
+![ObserverUML](images/ObserverForUI.jpg)
