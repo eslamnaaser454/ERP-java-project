@@ -136,7 +136,7 @@ public class HrSidebarController implements Initializable {
         Authentication authentication = new Authentication();
 
         System.out.println("TYPE =  "+authentication.getUser().get("type"));
-        name.setText("Hello, "+authentication.getUser().get("username"));
+        name.setText(authentication.getUser().get("username"));
         String dbPath = System.getProperty("user.dir") + "\\src\\main\\resources\\database.db";
         String url = "jdbc:sqlite:" + dbPath;
 
