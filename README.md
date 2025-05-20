@@ -38,3 +38,15 @@
 ![ProxyUML](images/FactoryInMarket.png)
 
 ---
+## ✅ Ahmed Tony 🔥 :
+
+### - 🔥 Applying observer pattern on dashboard UI ✅
+![ObserverUML](images/ObserverForUI.jpg)
+
+---
+## ✅ Abdelaziz Ashraf 🔥 :
+
+### - 🔥 Applying Builder Pattern on (HR,User,Admin) structures ✅
+![BuilderUML](images/BuilderPatternDiagram.png)
+
+---
