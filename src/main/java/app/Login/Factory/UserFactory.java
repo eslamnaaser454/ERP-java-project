@@ -7,7 +7,7 @@ public class UserFactory {
                 return new HRUser();
             case "admin":
                 return new AdminUser();
-            case "normal":
+            case "user":
                 return new NormalUser();  // ✅ Add this case
             default:
                 throw new IllegalArgumentException("Unknown user type: " + userType);
