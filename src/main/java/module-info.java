@@ -30,10 +30,6 @@ module app {
     opens app.Sales.Invoice to javafx.fxml;
     opens app.HR.Department.Edit to javafx.fxml;
     opens app.Stores.Products to javafx.fxml;
-//    opens app.Stores.Products to javafx.fxml;
-    opens app.usermanagment to javafx.fxml;
-    opens app.usermanagment.Createuser to javafx.fxml;
-    opens app.usermanagment.EditeUserManagment to javafx.fxml;
     opens app.Log to javafx.fxml;
 
 
@@ -60,9 +56,6 @@ module app {
     exports app.HR.Department.Edit;
     exports app.Stores.Products;
     exports app.HR.Department.Add;
-    exports app.usermanagment;
-    exports app.usermanagment.Createuser;
-    exports app.usermanagment.EditeUserManagment;
     exports app.Log;
 
 }

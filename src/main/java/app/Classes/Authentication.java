@@ -27,7 +27,7 @@ public class Authentication {
     }
 
     public Authentication(){
-    getSession();
+        getSession();
     }
     public Map<String,String> getSession(){
         dataBaseConnection = new DataBaseConnection(DataBaseConnection.dbPath);
@@ -90,6 +90,13 @@ public class Authentication {
         this.dataBaseConnection = dataBaseConnection;
     }
 
+
+
+
+
+
+
+
     public boolean check(){
         String query = "select * from users where username='"+getUsername()+"' and password='"+getPassword()+"';";
         List<Map<String,String >> list = dataBaseConnection.select(query);
@@ -103,7 +110,7 @@ public class Authentication {
             return false;
 
         }
-        }
+    }
 
 
     public Map<String,String> getUser(){
@@ -116,6 +123,9 @@ public class Authentication {
             return null;
 
     }
+
+
+
 
 
 }

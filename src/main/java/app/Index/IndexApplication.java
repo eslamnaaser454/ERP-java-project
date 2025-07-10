@@ -10,12 +10,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class IndexApplication extends Application {
+    Authentication authentication;
 
     public IndexApplication(){
 
     }
 
+  public IndexApplication(Authentication authentication){
+        this.authentication = authentication;
 
+    }
     public static boolean isMaximized = false;
 
     @Override
@@ -30,10 +34,6 @@ public class IndexApplication extends Application {
 
         stage.centerOnScreen();
         stage.show();
-        Authentication authentication = new Authentication();
-        System.out.println("Username : "+ authentication.getUsername());
-
-
 
     }
 

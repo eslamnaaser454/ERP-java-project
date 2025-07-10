@@ -25,6 +25,7 @@ public class LoginApplication extends Application {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+
     }
     //test push
 
